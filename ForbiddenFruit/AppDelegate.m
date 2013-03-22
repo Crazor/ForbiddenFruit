@@ -7,12 +7,26 @@
 //
 
 #import "AppDelegate.h"
+#import "SettingsWindowController.h"
+
+SettingsWindowController *settingsWindowController;
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Insert code here to initialize your application
+    settingsWindowController = SettingsWindowController.alloc.init;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    if ([[defaults stringForKey:DefaultKeyID] isEqualToString:@""]
+        | [[defaults stringForKey:DefaultVCode] isEqualToString:@""])
+    {
+        [settingsWindowController showWindow:self];
+    }
+}
+
+- (IBAction)showSettingsWindow:(id)sender {
+    [settingsWindowController showWindow:sender];
 }
 
 @end
