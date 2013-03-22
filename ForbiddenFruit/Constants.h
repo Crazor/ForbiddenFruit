@@ -10,4 +10,5 @@
 
 FOUNDATION_EXPORT NSString *const DefaultKeyID;
 FOUNDATION_EXPORT NSString *const DefaultVCode;
-FOUNDATION_EXPORT NSString *const CharacterURL;
+FOUNDATION_EXPORT NSString *const CharacterAPIURL;
+FOUNDATION_EXPORT NSString *const CharacterInfoAPIURL;

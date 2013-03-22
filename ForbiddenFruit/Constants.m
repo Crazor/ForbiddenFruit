@@ -10,4 +10,5 @@
 
 NSString *const DefaultKeyID = @"keyID";
 NSString *const DefaultVCode = @"vCode";
-NSString *const CharacterURL = @"https://api.eveonline.com/account/Characters.xml.aspx?keyID=%@&vCode=%@";
+NSString *const CharacterAPIURL = @"https://api.eveonline.com/account/Characters.xml.aspx?keyID=%@&vCode=%@";
+NSString *const CharacterInfoAPIURL = @"https://api.eveonline.com/eve/CharacterInfo.xml.aspx?keyID=%@&vCode=%@&characterID=%@";

@@ -8,18 +8,24 @@
 
 #import "AppDelegate.h"
 #import "SettingsWindowController.h"
+#import "CharacterWindowController.h"
+#import "EveAPI.h"
 
 SettingsWindowController *settingsWindowController;
+CharacterWindowController *characterWindowController;
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    settingsWindowController = SettingsWindowController.alloc.init;
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    settingsWindowController = [[SettingsWindowController alloc] init];
 
-    if ([[defaults stringForKey:DefaultKeyID] isEqualToString:@""]
-        | [[defaults stringForKey:DefaultVCode] isEqualToString:@""])
+    if ([[EveAPI alloc] init].credentialsAreValid)
+    {
+        characterWindowController = [[CharacterWindowController alloc] initWithCharacterID:EveAPI.api.mainCharacterID];
+        [characterWindowController showWindow:self];
+    }
+    else
     {
         [settingsWindowController showWindow:self];
     }

@@ -8,39 +8,87 @@
 
 #import "EveAPI.h"
 #import "XMLDictionary.h"
+#import "Character.h"
 
 @implementation EveAPI
 
-+ (id)api
++ (EveAPI *)api
 {
-    DEFINE_SHARED_INSTANCE_USING_BLOCK(^{
-        EveAPI *sharedInstance = [[self alloc] init];
+    static dispatch_once_t pred = 0;
+    static EveAPI *api = nil;
+    dispatch_once(&pred, ^{
+        api = [[EveAPI alloc] init];
+    });
+    return api;
+}
 
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [sharedInstance defaultsChanged:[NSNotification notificationWithName:@"" object:defaults]];
+- (id)init
+{
+    if (self = [super init])
+    {
+        NSUserDefaults *defaults = NSUserDefaults.standardUserDefaults;
+        [self defaultsChanged:[NSNotification notificationWithName:@"" object:defaults]];
 
-        NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-        [center addObserver:self
+        [NSNotificationCenter.defaultCenter addObserver:self
                    selector:@selector(defaultsChanged:)
                        name:NSUserDefaultsDidChangeNotification
                      object:nil];
+    }
 
-        return sharedInstance;
-    });
+    return self;
 }
 
-- (void)defaultsChanged:(NSNotification *)notification {
-    NSUserDefaults *defaults = (NSUserDefaults *)[notification object];
+- (void)defaultsChanged:(NSNotification *)notification
+{
+    //log(@"Reloading defaults...");
+    NSUserDefaults *defaults = (NSUserDefaults *)notification.object;
 
     self.keyID = [defaults stringForKey:DefaultKeyID];
     self.vCode = [defaults stringForKey:DefaultVCode];
 }
 
-- (NSImage *)portraitForCharacter:(NSString *)characterID
+- (BOOL)credentialsAreValid
 {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://image.eveonline.com/character/%@_128.jpg", characterID]];
+    NSError *error;
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:CharacterAPIURL, _keyID, _vCode]];
+    NSDictionary *response = [NSDictionary dictionaryWithXMLString:[NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error]];
 
-    return [[NSImage alloc] initWithContentsOfURL:url];
+    return [response valueForKeyPath:@"error"] == nil;
+}
+
+- (NSNumber *)mainCharacterID
+{
+    NSError *error;
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:CharacterAPIURL, _keyID, _vCode]];
+    NSDictionary *response = [NSDictionary dictionaryWithXMLString:[NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error]];
+
+    if ([response valueForKeyPath:@"error"] != nil)
+    {
+        log(@"API Error\n%@", response);
+        return nil;
+    }
+    else
+    {
+        //log(@"%@", dict);
+        NSDictionary *dict = (NSDictionary *)[[response valueForKeyPath:@"result.rowset"] childNodes];
+        return dict[@"row"][@"_characterID"];
+    }
+}
+
+- (Character *)mainCharacter
+{
+    static dispatch_once_t pred = 0;
+    static Character *mainCharacter = nil;
+    dispatch_once(&pred, ^{
+        mainCharacter = [[Character alloc] initWithCharacterID:[self mainCharacterID]];
+    });
+
+    return mainCharacter;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

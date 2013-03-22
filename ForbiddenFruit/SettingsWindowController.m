@@ -9,6 +9,7 @@
 #import "SettingsWindowController.h"
 #import "XMLDictionary.h"
 #import "EveAPI.h"
+#import "Character.h"
 
 @interface SettingsWindowController ()
 
@@ -18,7 +19,7 @@
 
 - (id)init
 {
-    self = [super initWithWindowNibName:@"Settings"];
+    self = [super initWithWindowNibName:@"SettingsWindow"];
     if (self) {
         // Initialization code here.
     }
@@ -30,13 +31,13 @@
 {
     [super windowDidLoad];
 
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = NSUserDefaults.standardUserDefaults;
 
-    if ([[NSUserDefaults standardUserDefaults] stringForKey:DefaultKeyID] != nil
-        && [[NSUserDefaults standardUserDefaults] stringForKey:DefaultVCode] != nil)
+    if ([defaults stringForKey:DefaultKeyID] != nil
+        && [defaults stringForKey:DefaultVCode] != nil)
     {
-        [_keyID setStringValue:[defaults stringForKey:DefaultKeyID]];
-        [_vCode setStringValue:[defaults stringForKey:DefaultVCode]];
+        _keyID.stringValue = [defaults stringForKey:DefaultKeyID];
+        _vCode.stringValue = [defaults stringForKey:DefaultVCode];
 
         [self verifyAuthentication];
     }
@@ -45,36 +46,36 @@
 - (void)verifyAuthentication
 {
     NSError *error;
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:CharacterURL, [_keyID stringValue], [_vCode stringValue]]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:CharacterAPIURL, _keyID.stringValue, _vCode.stringValue]];
     NSDictionary *response = [NSDictionary dictionaryWithXMLString:[NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error]];
 
     if ([response valueForKeyPath:@"error"] != nil)
     {
-        [_messageField setStringValue:[NSString stringWithFormat:@"Error %@: %@", [response valueForKeyPath:@"error._code"], [response valueForKeyPath:@"error.__text"]]];
+        _messageField.stringValue = [NSString stringWithFormat:@"Error %@: %@", [response valueForKeyPath:@"error._code"], [response valueForKeyPath:@"error.__text"]];
     }
     else
     {
-        [_messageField setStringValue:@"Authentication verified."];
+        _messageField.stringValue = @"Authentication verified.";
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setValue:[_keyID stringValue] forKey:DefaultKeyID];
         [defaults setValue:[_vCode stringValue] forKey:DefaultVCode];
     }
 
-    [_portrait setImage:[[EveAPI api] portraitForCharacter:@"93114718"]];
+    _portrait.image = [[Character alloc] initWithCharacterID:@93114718].portrait;
 }
 
 - (void)controlTextDidChange:(NSNotification *)notification
 {
-    if ([[_keyID stringValue] isNotEqualTo:@""]
-        && [[_vCode stringValue] isNotEqualTo:@""])
+    if ([_keyID.stringValue isNotEqualTo:@""]
+        && [_vCode.stringValue isNotEqualTo:@""])
     {
         [self verifyAuthentication];
     }
     else
     {
-        [_messageField setStringValue:@""];
-        [_portrait setImage:[NSImage imageNamed:@"NSUser"]];
+        _messageField.stringValue = @"";
+        _portrait.image = [NSImage imageNamed:@"NSUser"];
     }
 }
 

@@ -8,13 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+@class Character;
+
 @interface EveAPI : NSObject
 
 @property NSString *keyID;
 @property NSString *vCode;
 
-+ (id)api;
++ (EveAPI *)api;
 
-- (NSImage *)portraitForCharacter:(NSString *)characterID;
+- (void)defaultsChanged:(NSNotification *)notification;
+
+- (BOOL)credentialsAreValid;
+- (NSNumber *)mainCharacterID;
+- (Character *)mainCharacter;
 
 @end
