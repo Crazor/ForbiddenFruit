@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E00AB3516FC85A90005A69B /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E00AB3416FC85A90005A69B /* XMLDictionary.m */; };
 		6E79606316FB4D9300FBD65F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E79606216FB4D9300FBD65F /* Cocoa.framework */; };
 		6E79606D16FB4D9300FBD65F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6E79606B16FB4D9300FBD65F /* InfoPlist.strings */; };
 		6E79606F16FB4D9300FBD65F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E79606E16FB4D9300FBD65F /* main.m */; };
@@ -19,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6E00AB3316FC85A90005A69B /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
+		6E00AB3416FC85A90005A69B /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
 		6E79605F16FB4D9300FBD65F /* ForbiddenFruit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForbiddenFruit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E79606216FB4D9300FBD65F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6E79606516FB4D9300FBD65F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -51,9 +54,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E00AB3216FC85A90005A69B /* XMLDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				6E00AB3316FC85A90005A69B /* XMLDictionary.h */,
+				6E00AB3416FC85A90005A69B /* XMLDictionary.m */,
+			);
+			name = XMLDictionary;
+			path = XMLDictionary/XMLDictionary;
+			sourceTree = "<group>";
+		};
 		6E79605616FB4D9300FBD65F = {
 			isa = PBXGroup;
 			children = (
+				6E00AB3216FC85A90005A69B /* XMLDictionary */,
 				6E79606816FB4D9300FBD65F /* ForbiddenFruit */,
 				6E79606116FB4D9300FBD65F /* Frameworks */,
 				6E79606016FB4D9300FBD65F /* Products */,
@@ -184,6 +198,7 @@
 				6E79607616FB4D9300FBD65F /* AppDelegate.m in Sources */,
 				6E79608316FB557000FBD65F /* SettingsWindowController.m in Sources */,
 				6E79608616FC7E0400FBD65F /* Constants.m in Sources */,
+				6E00AB3516FC85A90005A69B /* XMLDictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +334,7 @@
 				6E79607E16FB4D9300FBD65F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
