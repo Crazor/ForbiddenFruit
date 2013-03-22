@@ -12,7 +12,9 @@
 
 @property (weak) IBOutlet NSTextField *keyID;
 @property (weak) IBOutlet NSTextField *vCode;
+@property (weak) IBOutlet NSTextField *messageField;
+@property (weak) IBOutlet NSImageView *portrait;
 
-- (IBAction)testAPIKey:(id)sender;
+- (void)verifyAuthentication;
 
 @end
