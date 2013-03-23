@@ -12,7 +12,6 @@
 @interface Character : EveAPI
 
 @property NSNumber *characterID;
-@property NSDictionary *response;
 @property NSDictionary *result;
 
 - (id)initWithCharacterID:(NSNumber *)characterID;

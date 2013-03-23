@@ -62,7 +62,7 @@
         [defaults setValue:[_vCode stringValue] forKey:DefaultVCode];
     }
 
-    _portrait.image = [[Character alloc] initWithCharacterID:@93114718].portrait;
+    _portrait.image = [[EveAPI api] mainCharacter].portrait;
 }
 
 - (void)controlTextDidChange:(NSNotification *)notification

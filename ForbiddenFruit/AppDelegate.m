@@ -9,10 +9,12 @@
 #import "AppDelegate.h"
 #import "SettingsWindowController.h"
 #import "CharacterWindowController.h"
+#import "AccountWindowController.h"
 #import "EveAPI.h"
 
-SettingsWindowController *settingsWindowController;
-CharacterWindowController *characterWindowController;
+static SettingsWindowController *settingsWindowController;
+static CharacterWindowController *characterWindowController;
+static AccountWindowController *accountWindowController;
 
 @implementation AppDelegate
 
@@ -24,6 +26,8 @@ CharacterWindowController *characterWindowController;
     {
         characterWindowController = [[CharacterWindowController alloc] initWithCharacterID:EveAPI.api.mainCharacterID];
         [characterWindowController showWindow:self];
+        accountWindowController = [[AccountWindowController alloc] init];
+        [accountWindowController showWindow:self];
     }
     else
     {

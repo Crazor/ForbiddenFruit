@@ -40,39 +40,47 @@
 
 - (void)defaultsChanged:(NSNotification *)notification
 {
-    //log(@"Reloading defaults...");
     NSUserDefaults *defaults = (NSUserDefaults *)notification.object;
 
     self.keyID = [defaults stringForKey:DefaultKeyID];
     self.vCode = [defaults stringForKey:DefaultVCode];
 }
 
-- (BOOL)credentialsAreValid
+- (BOOL)authenticatedApiRequestWithString:(NSString *)urlString
 {
     NSError *error;
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:CharacterAPIURL, _keyID, _vCode]];
-    NSDictionary *response = [NSDictionary dictionaryWithXMLString:[NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:urlString, _keyID, _vCode]];
+    _response = [NSDictionary dictionaryWithXMLString:[NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error]];
 
-    return [response valueForKeyPath:@"error"] == nil;
+    if (error)
+    {
+        log(@"NSString stringWithContentsOfURL error: %@", error);
+        return false;
+    }
+    
+    if ([_response valueForKeyPath:@"error"] != nil)
+    {
+        log(@"API Error %@: %@", [_response valueForKeyPath:@"error._code"], [_response valueForKeyPath:@"error.__text"]);
+        return false;
+    }
+
+    _result = [_response valueForKeyPath:@"result"];
+    
+    return true;
+}
+
+- (BOOL)credentialsAreValid
+{
+    [self authenticatedApiRequestWithString:CharacterAPIURL];
+    return [_response valueForKeyPath:@"error"] == nil;
 }
 
 - (NSNumber *)mainCharacterID
 {
-    NSError *error;
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:CharacterAPIURL, _keyID, _vCode]];
-    NSDictionary *response = [NSDictionary dictionaryWithXMLString:[NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error]];
+    [self authenticatedApiRequestWithString:CharacterAPIURL];
 
-    if ([response valueForKeyPath:@"error"] != nil)
-    {
-        log(@"API Error\n%@", response);
-        return nil;
-    }
-    else
-    {
-        //log(@"%@", dict);
-        NSDictionary *dict = (NSDictionary *)[[response valueForKeyPath:@"result.rowset"] childNodes];
-        return dict[@"row"][@"_characterID"];
-    }
+    NSDictionary *dict = (NSDictionary *)[[_response valueForKeyPath:@"result.rowset"] childNodes];
+    return dict[@"row"][@"_characterID"];
 }
 
 - (Character *)mainCharacter

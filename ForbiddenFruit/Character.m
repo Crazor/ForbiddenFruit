@@ -23,14 +23,14 @@
         
         NSError *error;
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:CharacterInfoAPIURL, self.keyID, self.vCode, _characterID]];
-        _response = [NSDictionary dictionaryWithXMLString:[NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error]];
-        if ([_response valueForKeyPath:@"error"] != nil)
+        self.response = [NSDictionary dictionaryWithXMLString:[NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error]];
+        if ([self.response valueForKeyPath:@"error"] != nil)
         {
-            log(@"API Error\n%@", _response);
+            log(@"API Error\n%@", self.response);
             return nil;
         }
         
-        _result = [_response valueForKeyPath:@"result"];
+        self.result = [self.response valueForKeyPath:@"result"];
     }
 
     return self;
@@ -45,57 +45,57 @@
 
 - (NSString *)name
 {
-    return _result[@"characterName"];
+    return self.result[@"characterName"];
 }
 
 - (NSString *)corporationName
 {
-    return _result[@"corporation"];
+    return self.result[@"corporation"];
 }
 
 - (NSNumber *)corporationID
 {
-    return _result[@"corporationID"];
+    return self.result[@"corporationID"];
 }
 
 - (NSDate *)corporationDate
 {
-    return [NSDate dateWithString:[NSString stringWithFormat:@"%@ +0000", _result[@"corporationDate"]]];
+    return [NSDate dateWithEveDate:self.result[@"corporationDate"]];
 }
 
 - (NSString *)race
 {
-    return _result[@"race"];
+    return self.result[@"race"];
 }
 
 - (NSString *)bloodline
 {
-    return _result[@"bloodline"];
+    return self.result[@"bloodline"];
 }
 
 - (NSNumber *)skillPoints
 {
-    return _result[@"skillPoints"];
+    return self.result[@"skillPoints"];
 }
 
 - (NSNumber *)securityStatus
 {
-    return _result[@"securityStatus"];
+    return self.result[@"securityStatus"];
 }
 
 - (NSString *)lastLocation
 {
-    return _result[@"lastKnownLocation"];
+    return self.result[@"lastKnownLocation"];
 }
 
 - (NSNumber *)accountBalance
 {
-    return _result[@"accountBalance"];
+    return self.result[@"accountBalance"];
 }
 
 - (NSDate *)nextTrainingEnds
 {
-    return [NSDate dateWithString:[NSString stringWithFormat:@"%@ +0000", _result[@"nextTrainingEnds"]]];
+    return [NSDate dateWithEveDate:self.result[@"nextTrainingEnds"]];
 }
 
 @end

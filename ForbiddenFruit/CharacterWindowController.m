@@ -42,8 +42,8 @@
         _race.stringValue = [NSString stringWithFormat:@"%@ (%@)", _character.race, _character.bloodline];
     }
 
-    _corporation.stringValue = _character.corporation;
-    _corporationDate.stringValue = _character.corporationDate;
+    _corporation.stringValue = _character.corporationName;
+    _corporationDate.stringValue = [NSDateFormatter localizedStringFromDate:_character.corporationDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
     _securityStatus.floatValue = _character.securityStatus.floatValue;
     _skillPoints.intValue = _character.skillPoints.intValue;
     _lastLocation.stringValue = _character.lastLocation;

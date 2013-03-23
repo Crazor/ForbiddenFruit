@@ -21,6 +21,10 @@
 		6EA92ABD16FCD39400798916 /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA92ABC16FCD39400798916 /* Character.m */; };
 		6ECB06D116FCB7EF00829CBB /* CharacterWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ECB06D016FCB7EF00829CBB /* CharacterWindow.xib */; };
 		6ECB06D416FCB9C800829CBB /* CharacterWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECB06D316FCB9C800829CBB /* CharacterWindowController.m */; };
+		6EED719916FDB494001F2419 /* AccountWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EED719716FDB494001F2419 /* AccountWindowController.m */; };
+		6EED719A16FDB494001F2419 /* AccountWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EED719816FDB494001F2419 /* AccountWindow.xib */; };
+		6EED719F16FDB51D001F2419 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EED719E16FDB51D001F2419 /* Account.m */; };
+		6EED71A216FDC174001F2419 /* NSDate+EveDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EED71A116FDC174001F2419 /* NSDate+EveDate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +57,13 @@
 		6ECB06D016FCB7EF00829CBB /* CharacterWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharacterWindow.xib; sourceTree = "<group>"; };
 		6ECB06D216FCB9C800829CBB /* CharacterWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterWindowController.h; sourceTree = "<group>"; };
 		6ECB06D316FCB9C800829CBB /* CharacterWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterWindowController.m; sourceTree = "<group>"; };
+		6EED719616FDB494001F2419 /* AccountWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountWindowController.h; path = ../AccountWindowController.h; sourceTree = "<group>"; };
+		6EED719716FDB494001F2419 /* AccountWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountWindowController.m; path = ../AccountWindowController.m; sourceTree = "<group>"; };
+		6EED719816FDB494001F2419 /* AccountWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AccountWindow.xib; path = ../AccountWindow.xib; sourceTree = "<group>"; };
+		6EED719D16FDB51D001F2419 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Account.h; path = ../Account.h; sourceTree = "<group>"; };
+		6EED719E16FDB51D001F2419 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Account.m; path = ../Account.m; sourceTree = "<group>"; };
+		6EED71A016FDC174001F2419 /* NSDate+EveDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+EveDate.h"; sourceTree = "<group>"; };
+		6EED71A116FDC174001F2419 /* NSDate+EveDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+EveDate.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,18 +128,12 @@
 		6E79606816FB4D9300FBD65F /* ForbiddenFruit */ = {
 			isa = PBXGroup;
 			children = (
-				6EED719216FD0BB1001F2419 /* User Interface */,
+				6EED719C16FDB4F5001F2419 /* API */,
+				6EED719B16FDB4D3001F2419 /* Window Controllers */,
+				6EED719216FD0BB1001F2419 /* XIBs */,
 				6E79606916FB4D9300FBD65F /* Supporting Files */,
 				6E79607416FB4D9300FBD65F /* AppDelegate.h */,
 				6E79607516FB4D9300FBD65F /* AppDelegate.m */,
-				6E79608116FB557000FBD65F /* SettingsWindowController.h */,
-				6E79608216FB557000FBD65F /* SettingsWindowController.m */,
-				6E00AB3616FCAA380005A69B /* EveAPI.h */,
-				6E00AB3716FCAA380005A69B /* EveAPI.m */,
-				6EA92ABB16FCD39400798916 /* Character.h */,
-				6EA92ABC16FCD39400798916 /* Character.m */,
-				6ECB06D216FCB9C800829CBB /* CharacterWindowController.h */,
-				6ECB06D316FCB9C800829CBB /* CharacterWindowController.m */,
 			);
 			path = ForbiddenFruit;
 			sourceTree = "<group>";
@@ -145,18 +150,47 @@
 				6E79607016FB4D9300FBD65F /* ForbiddenFruit-Prefix.pch */,
 				6E79607116FB4D9300FBD65F /* Credits.rtf */,
 				6E00AB3A16FCB51A0005A69B /* DebugLog.h */,
+				6EED71A016FDC174001F2419 /* NSDate+EveDate.h */,
+				6EED71A116FDC174001F2419 /* NSDate+EveDate.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		6EED719216FD0BB1001F2419 /* User Interface */ = {
+		6EED719216FD0BB1001F2419 /* XIBs */ = {
 			isa = PBXGroup;
 			children = (
+				6EED719816FDB494001F2419 /* AccountWindow.xib */,
+				6ECB06D016FCB7EF00829CBB /* CharacterWindow.xib */,
 				6E79607716FB4D9300FBD65F /* MainMenu.xib */,
 				6E79607F16FB4DBA00FBD65F /* SettingsWindow.xib */,
-				6ECB06D016FCB7EF00829CBB /* CharacterWindow.xib */,
 			);
-			name = "User Interface";
+			name = XIBs;
+			sourceTree = "<group>";
+		};
+		6EED719B16FDB4D3001F2419 /* Window Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6EED719616FDB494001F2419 /* AccountWindowController.h */,
+				6EED719716FDB494001F2419 /* AccountWindowController.m */,
+				6ECB06D216FCB9C800829CBB /* CharacterWindowController.h */,
+				6ECB06D316FCB9C800829CBB /* CharacterWindowController.m */,
+				6E79608116FB557000FBD65F /* SettingsWindowController.h */,
+				6E79608216FB557000FBD65F /* SettingsWindowController.m */,
+			);
+			name = "Window Controllers";
+			sourceTree = "<group>";
+		};
+		6EED719C16FDB4F5001F2419 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				6E00AB3616FCAA380005A69B /* EveAPI.h */,
+				6E00AB3716FCAA380005A69B /* EveAPI.m */,
+				6EED719D16FDB51D001F2419 /* Account.h */,
+				6EED719E16FDB51D001F2419 /* Account.m */,
+				6EA92ABB16FCD39400798916 /* Character.h */,
+				6EA92ABC16FCD39400798916 /* Character.m */,
+			);
+			name = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +249,7 @@
 				6E79607916FB4D9300FBD65F /* MainMenu.xib in Resources */,
 				6E79608016FB4DBA00FBD65F /* SettingsWindow.xib in Resources */,
 				6ECB06D116FCB7EF00829CBB /* CharacterWindow.xib in Resources */,
+				6EED719A16FDB494001F2419 /* AccountWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +268,9 @@
 				6E00AB3816FCAA380005A69B /* EveAPI.m in Sources */,
 				6ECB06D416FCB9C800829CBB /* CharacterWindowController.m in Sources */,
 				6EA92ABD16FCD39400798916 /* Character.m in Sources */,
+				6EED719916FDB494001F2419 /* AccountWindowController.m in Sources */,
+				6EED719F16FDB51D001F2419 /* Account.m in Sources */,
+				6EED71A216FDC174001F2419 /* NSDate+EveDate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,10 +14,14 @@
 
 @property NSString *keyID;
 @property NSString *vCode;
+@property NSDictionary *response;
+@property NSDictionary *result;
 
 + (EveAPI *)api;
 
 - (void)defaultsChanged:(NSNotification *)notification;
+
+- (BOOL)authenticatedApiRequestWithString:(NSString *)urlString;
 
 - (BOOL)credentialsAreValid;
 - (NSNumber *)mainCharacterID;
