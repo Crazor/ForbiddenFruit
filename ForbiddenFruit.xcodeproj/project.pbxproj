@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6E00AB3516FC85A90005A69B /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E00AB3416FC85A90005A69B /* XMLDictionary.m */; };
 		6E00AB3816FCAA380005A69B /* EveAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E00AB3716FCAA380005A69B /* EveAPI.m */; };
+		6E6E63461701D84E009A9EBE /* ApiKeysWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6E63441701D84E009A9EBE /* ApiKeysWindowController.m */; };
+		6E6E63471701D84E009A9EBE /* ApiKeysWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E6E63451701D84E009A9EBE /* ApiKeysWindow.xib */; };
 		6E79606316FB4D9300FBD65F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E79606216FB4D9300FBD65F /* Cocoa.framework */; };
 		6E79606D16FB4D9300FBD65F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6E79606B16FB4D9300FBD65F /* InfoPlist.strings */; };
 		6E79606F16FB4D9300FBD65F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E79606E16FB4D9300FBD65F /* main.m */; };
@@ -37,6 +39,9 @@
 		6E00AB3716FCAA380005A69B /* EveAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EveAPI.m; sourceTree = "<group>"; };
 		6E00AB3916FCABAF0005A69B /* GCDSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDSingleton.h; sourceTree = "<group>"; };
 		6E00AB3A16FCB51A0005A69B /* DebugLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DebugLog.h; sourceTree = "<group>"; };
+		6E6E63431701D84E009A9EBE /* ApiKeysWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiKeysWindowController.h; sourceTree = "<group>"; };
+		6E6E63441701D84E009A9EBE /* ApiKeysWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiKeysWindowController.m; sourceTree = "<group>"; };
+		6E6E63451701D84E009A9EBE /* ApiKeysWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApiKeysWindow.xib; sourceTree = "<group>"; };
 		6E79605F16FB4D9300FBD65F /* ForbiddenFruit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForbiddenFruit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E79606216FB4D9300FBD65F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6E79606516FB4D9300FBD65F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -169,6 +174,7 @@
 				6ECB06D016FCB7EF00829CBB /* CharacterWindow.xib */,
 				6E79607716FB4D9300FBD65F /* MainMenu.xib */,
 				6E79607F16FB4DBA00FBD65F /* SettingsWindow.xib */,
+				6E6E63451701D84E009A9EBE /* ApiKeysWindow.xib */,
 				6EED71A516FE08F5001F2419 /* WalletWindow.xib */,
 			);
 			name = XIBs;
@@ -179,6 +185,8 @@
 			children = (
 				6EED719616FDB494001F2419 /* AccountWindowController.h */,
 				6EED719716FDB494001F2419 /* AccountWindowController.m */,
+				6E6E63431701D84E009A9EBE /* ApiKeysWindowController.h */,
+				6E6E63441701D84E009A9EBE /* ApiKeysWindowController.m */,
 				6ECB06D216FCB9C800829CBB /* CharacterWindowController.h */,
 				6ECB06D316FCB9C800829CBB /* CharacterWindowController.m */,
 				6E79608116FB557000FBD65F /* SettingsWindowController.h */,
@@ -264,6 +272,7 @@
 				6ECB06D116FCB7EF00829CBB /* CharacterWindow.xib in Resources */,
 				6EED719A16FDB494001F2419 /* AccountWindow.xib in Resources */,
 				6EED71A716FE08F5001F2419 /* WalletWindow.xib in Resources */,
+				6E6E63471701D84E009A9EBE /* ApiKeysWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +296,7 @@
 				6EED71A216FDC174001F2419 /* NSDate+EveDate.m in Sources */,
 				6EED71A616FE08F5001F2419 /* WalletWindowController.m in Sources */,
 				6EED71AA16FE096B001F2419 /* WalletJournal.m in Sources */,
+				6E6E63461701D84E009A9EBE /* ApiKeysWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
