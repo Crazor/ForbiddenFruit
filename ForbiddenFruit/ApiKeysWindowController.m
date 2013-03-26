@@ -38,6 +38,7 @@
 {
     [_apiKeys addObject:@{DefaultKeyID: @"", DefaultVCode: @""}];
     [_tableView reloadData];
+    [_tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:_apiKeys.count-1] byExtendingSelection:NO];
     [_tableView editColumn:0 row:_apiKeys.count-1 withEvent:nil select:NO];
 }
 
