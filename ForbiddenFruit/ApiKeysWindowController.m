@@ -72,6 +72,16 @@
     _apiKeys[row] = dict;
 }
 
-
+- (void)tableViewSelectionDidChange:(NSNotification *)notification
+{
+    if (_tableView.selectedRow < 0)
+    {
+        _removeButton.enabled = NO;
+    }
+    else
+    {
+        _removeButton.enabled = YES;
+    }
+}
 
 @end

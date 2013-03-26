@@ -11,6 +11,7 @@
 @interface ApiKeysWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
 
 @property (weak) IBOutlet NSTableView *tableView;
+@property (weak) IBOutlet NSButton *removeButton;
 
 @property (readonly) NSMutableArray *apiKeys;
 
