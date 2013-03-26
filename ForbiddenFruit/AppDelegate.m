@@ -10,11 +10,13 @@
 #import "SettingsWindowController.h"
 #import "CharacterWindowController.h"
 #import "AccountWindowController.h"
+#import "WalletWindowController.h"
 #import "EveAPI.h"
 
 static SettingsWindowController *settingsWindowController;
 static CharacterWindowController *characterWindowController;
 static AccountWindowController *accountWindowController;
+static WalletWindowController *walletWindowController;
 
 @implementation AppDelegate
 
@@ -25,9 +27,9 @@ static AccountWindowController *accountWindowController;
     if ([[EveAPI alloc] init].credentialsAreValid)
     {
         characterWindowController = [[CharacterWindowController alloc] initWithCharacterID:EveAPI.api.mainCharacterID];
-        [characterWindowController showWindow:self];
         accountWindowController = [[AccountWindowController alloc] init];
-        [accountWindowController showWindow:self];
+        walletWindowController = [[WalletWindowController alloc] initWithCharacterID:EveAPI.api.mainCharacterID];
+        [walletWindowController showWindow:self];
     }
     else
     {
@@ -37,6 +39,18 @@ static AccountWindowController *accountWindowController;
 
 - (IBAction)showSettingsWindow:(id)sender {
     [settingsWindowController showWindow:sender];
+}
+
+- (IBAction)showAccountWindow:(id)sender {
+    [accountWindowController showWindow:self];
+}
+
+- (IBAction)showCharacterWindow:(id)sender {
+    [characterWindowController showWindow:self];
+}
+
+- (IBAction)showWalletWindow:(id)sender {
+    [walletWindowController showWindow:self];
 }
 
 @end

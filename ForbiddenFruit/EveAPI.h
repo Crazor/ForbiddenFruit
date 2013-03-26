@@ -6,14 +6,13 @@
 //  Copyright (c) 2013 Crazor. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 @class Character;
 
 @interface EveAPI : NSObject
 
-@property NSString *keyID;
-@property NSString *vCode;
+@property (readonly) NSString *keyID;
+@property (readonly) NSString *vCode;
+
 @property NSDictionary *response;
 @property NSDictionary *result;
 
@@ -26,5 +25,7 @@
 - (BOOL)credentialsAreValid;
 - (NSNumber *)mainCharacterID;
 - (Character *)mainCharacter;
+
+- (NSString *)refTypeFromID:(NSString *)refTypeId;
 
 @end

@@ -21,19 +21,17 @@
     {
         _characterID = characterID;
         
-        NSError *error;
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:CharacterInfoAPIURL, self.keyID, self.vCode, _characterID]];
-        self.response = [NSDictionary dictionaryWithXMLString:[NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error]];
-        if ([self.response valueForKeyPath:@"error"] != nil)
-        {
-            log(@"API Error\n%@", self.response);
-            return nil;
-        }
+        [self apiRequest];
         
-        self.result = [self.response valueForKeyPath:@"result"];
+        //self.result = [self.response valueForKeyPath:@"result"];
     }
 
     return self;
+}
+
+- (BOOL)apiRequest
+{
+    return [self authenticatedApiRequestWithString:[NSString stringWithFormat:CharacterInfoAPIURL, _characterID]];
 }
 
 - (NSImage *)portrait

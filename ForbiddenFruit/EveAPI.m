@@ -42,8 +42,8 @@
 {
     NSUserDefaults *defaults = (NSUserDefaults *)notification.object;
 
-    self.keyID = [defaults stringForKey:DefaultKeyID];
-    self.vCode = [defaults stringForKey:DefaultVCode];
+    _keyID = [defaults stringForKey:DefaultKeyID];
+    _vCode = [defaults stringForKey:DefaultVCode];
 }
 
 - (BOOL)authenticatedApiRequestWithString:(NSString *)urlString
@@ -92,6 +92,41 @@
     });
 
     return mainCharacter;
+}
+
+- (NSDictionary *)fetchRefTypes
+{
+    NSError *error;
+    NSURL *url = [NSURL URLWithString:RefTypesAPIURL];
+    NSDictionary *refTypes = [NSDictionary dictionaryWithXMLString:[NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error]];
+
+    if (error)
+    {
+        log(@"Error fetching RefTypes");
+        return nil;
+    }
+
+    //log(@"%@", refTypes[@"result"][@"rowset"][@"row"]);
+    return refTypes[@"result"][@"rowset"][@"row"];
+}
+
+- (NSString *)refTypeFromID:(NSString *)refTypeId
+{
+    static NSDictionary *refTypes;
+    static dispatch_once_t pred;
+    dispatch_once(&pred, ^{
+        refTypes = [self fetchRefTypes];
+    });
+
+    for (NSDictionary *d in refTypes)
+    {
+        if ([d[@"_refTypeID"] isEqualToString:refTypeId])
+        {
+            return d[@"_refTypeName"];
+        }
+    }
+
+    return nil;
 }
 
 - (void)dealloc

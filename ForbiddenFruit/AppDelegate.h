@@ -11,5 +11,8 @@
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 - (IBAction)showSettingsWindow:(id)sender;
+- (IBAction)showAccountWindow:(id)sender;
+- (IBAction)showCharacterWindow:(id)sender;
+- (IBAction)showWalletWindow:(id)sender;
 
 @end
