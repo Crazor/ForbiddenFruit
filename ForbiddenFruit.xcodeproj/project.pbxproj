@@ -65,11 +65,11 @@
 		6ECB06D016FCB7EF00829CBB /* CharacterWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharacterWindow.xib; sourceTree = "<group>"; };
 		6ECB06D216FCB9C800829CBB /* CharacterWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterWindowController.h; sourceTree = "<group>"; };
 		6ECB06D316FCB9C800829CBB /* CharacterWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterWindowController.m; sourceTree = "<group>"; };
-		6EED719616FDB494001F2419 /* AccountWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountWindowController.h; path = ../AccountWindowController.h; sourceTree = "<group>"; };
-		6EED719716FDB494001F2419 /* AccountWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountWindowController.m; path = ../AccountWindowController.m; sourceTree = "<group>"; };
-		6EED719816FDB494001F2419 /* AccountWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AccountWindow.xib; path = ../AccountWindow.xib; sourceTree = "<group>"; };
-		6EED719D16FDB51D001F2419 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Account.h; path = ../Account.h; sourceTree = "<group>"; };
-		6EED719E16FDB51D001F2419 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Account.m; path = ../Account.m; sourceTree = "<group>"; };
+		6EED719616FDB494001F2419 /* AccountWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountWindowController.h; sourceTree = "<group>"; };
+		6EED719716FDB494001F2419 /* AccountWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountWindowController.m; sourceTree = "<group>"; };
+		6EED719816FDB494001F2419 /* AccountWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountWindow.xib; sourceTree = "<group>"; };
+		6EED719D16FDB51D001F2419 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
+		6EED719E16FDB51D001F2419 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
 		6EED71A016FDC174001F2419 /* NSDate+EveDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+EveDate.h"; sourceTree = "<group>"; };
 		6EED71A116FDC174001F2419 /* NSDate+EveDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+EveDate.m"; sourceTree = "<group>"; };
 		6EED71A316FE08F5001F2419 /* WalletWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletWindowController.h; sourceTree = "<group>"; };
