@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6E00AB3516FC85A90005A69B /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E00AB3416FC85A90005A69B /* XMLDictionary.m */; };
 		6E00AB3816FCAA380005A69B /* EveAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E00AB3716FCAA380005A69B /* EveAPI.m */; };
+		6E14F73017D7B930007F08CD /* AddAPIKeySheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E14F72F17D7B930007F08CD /* AddAPIKeySheet.xib */; };
 		6E6E63461701D84E009A9EBE /* ApiKeysWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6E63441701D84E009A9EBE /* ApiKeysWindowController.m */; };
 		6E6E63471701D84E009A9EBE /* ApiKeysWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E6E63451701D84E009A9EBE /* ApiKeysWindow.xib */; };
 		6E79606316FB4D9300FBD65F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E79606216FB4D9300FBD65F /* Cocoa.framework */; };
@@ -17,7 +18,6 @@
 		6E79607316FB4D9300FBD65F /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6E79607116FB4D9300FBD65F /* Credits.rtf */; };
 		6E79607616FB4D9300FBD65F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E79607516FB4D9300FBD65F /* AppDelegate.m */; };
 		6E79607916FB4D9300FBD65F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E79607716FB4D9300FBD65F /* MainMenu.xib */; };
-		6E79608016FB4DBA00FBD65F /* SettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E79607F16FB4DBA00FBD65F /* SettingsWindow.xib */; };
 		6E79608316FB557000FBD65F /* SettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E79608216FB557000FBD65F /* SettingsWindowController.m */; };
 		6E79608616FC7E0400FBD65F /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E79608516FC7E0300FBD65F /* Constants.m */; };
 		6EA92ABD16FCD39400798916 /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA92ABC16FCD39400798916 /* Character.m */; };
@@ -39,6 +39,7 @@
 		6E00AB3716FCAA380005A69B /* EveAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EveAPI.m; sourceTree = "<group>"; };
 		6E00AB3916FCABAF0005A69B /* GCDSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDSingleton.h; sourceTree = "<group>"; };
 		6E00AB3A16FCB51A0005A69B /* DebugLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DebugLog.h; sourceTree = "<group>"; };
+		6E14F72F17D7B930007F08CD /* AddAPIKeySheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAPIKeySheet.xib; sourceTree = "<group>"; };
 		6E6E63431701D84E009A9EBE /* ApiKeysWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiKeysWindowController.h; sourceTree = "<group>"; };
 		6E6E63441701D84E009A9EBE /* ApiKeysWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiKeysWindowController.m; sourceTree = "<group>"; };
 		6E6E63451701D84E009A9EBE /* ApiKeysWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApiKeysWindow.xib; sourceTree = "<group>"; };
@@ -55,7 +56,6 @@
 		6E79607416FB4D9300FBD65F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6E79607516FB4D9300FBD65F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6E79607816FB4D9300FBD65F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		6E79607F16FB4DBA00FBD65F /* SettingsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsWindow.xib; sourceTree = "<group>"; };
 		6E79608116FB557000FBD65F /* SettingsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsWindowController.h; sourceTree = "<group>"; };
 		6E79608216FB557000FBD65F /* SettingsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsWindowController.m; sourceTree = "<group>"; };
 		6E79608416FC7E0300FBD65F /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -173,7 +173,7 @@
 				6EED719816FDB494001F2419 /* AccountWindow.xib */,
 				6ECB06D016FCB7EF00829CBB /* CharacterWindow.xib */,
 				6E79607716FB4D9300FBD65F /* MainMenu.xib */,
-				6E79607F16FB4DBA00FBD65F /* SettingsWindow.xib */,
+				6E14F72F17D7B930007F08CD /* AddAPIKeySheet.xib */,
 				6E6E63451701D84E009A9EBE /* ApiKeysWindow.xib */,
 				6EED71A516FE08F5001F2419 /* WalletWindow.xib */,
 			);
@@ -240,7 +240,7 @@
 		6E79605716FB4D9300FBD65F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Crazor;
 			};
 			buildConfigurationList = 6E79605A16FB4D9300FBD65F /* Build configuration list for PBXProject "ForbiddenFruit" */;
@@ -265,10 +265,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E14F73017D7B930007F08CD /* AddAPIKeySheet.xib in Resources */,
 				6E79606D16FB4D9300FBD65F /* InfoPlist.strings in Resources */,
 				6E79607316FB4D9300FBD65F /* Credits.rtf in Resources */,
 				6E79607916FB4D9300FBD65F /* MainMenu.xib in Resources */,
-				6E79608016FB4DBA00FBD65F /* SettingsWindow.xib in Resources */,
 				6ECB06D116FCB7EF00829CBB /* CharacterWindow.xib in Resources */,
 				6EED719A16FDB494001F2419 /* AccountWindow.xib in Resources */,
 				6EED71A716FE08F5001F2419 /* WalletWindow.xib in Resources */,
@@ -334,7 +334,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
@@ -374,7 +373,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;

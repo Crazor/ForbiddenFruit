@@ -12,38 +12,73 @@
 
 @implementation EveAPI
 
-+ (EveAPI *)api
+static NSMutableDictionary *accounts;
+
++ (void)initialize
 {
-    static dispatch_once_t pred = 0;
-    static EveAPI *api = nil;
-    dispatch_once(&pred, ^{
-        api = [[EveAPI alloc] init];
-    });
-    return api;
+    accounts = [[NSMutableDictionary alloc] init];
 }
 
-- (id)init
++ (NSDictionary *)fetchRefTypes
+{
+    NSError *error;
+    NSURL *url = [NSURL URLWithString:RefTypesAPIURL];
+    NSDictionary *refTypes = [NSDictionary dictionaryWithXMLString:[NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error]];
+
+    if (error)
+    {
+        log(@"Error fetching RefTypes");
+        return nil;
+    }
+
+    //log(@"%@", refTypes[@"result"][@"rowset"][@"row"]);
+    return refTypes[@"result"][@"rowset"][@"row"];
+}
+
+
++ (NSString *)refTypeFromID:(NSString *)refTypeId
+{
+    static NSDictionary *refTypes;
+    static dispatch_once_t pred;
+    dispatch_once(&pred, ^{
+        refTypes = [self fetchRefTypes];
+    });
+
+    for (NSDictionary *d in refTypes)
+    {
+        if ([d[@"_refTypeID"] isEqualToString:refTypeId])
+        {
+            return d[@"_refTypeName"];
+        }
+    }
+
+    return nil;
+}
+
++ (void)setAccounts:(NSMutableDictionary *)a
+{
+    accounts = a;
+}
+
++ (NSMutableDictionary *)accounts
+{
+    return accounts;
+}
+
++ (EveAPI *)apiForKeyID:(NSString *)keyID
+{
+    return accounts[keyID];
+}
+
+- (id)initWithKeyID:(NSString *)keyID andVCode:(NSString *)vCode
 {
     if (self = [super init])
     {
-        NSUserDefaults *defaults = NSUserDefaults.standardUserDefaults;
-        [self defaultsChanged:[NSNotification notificationWithName:@"" object:defaults]];
-
-        [NSNotificationCenter.defaultCenter addObserver:self
-                   selector:@selector(defaultsChanged:)
-                       name:NSUserDefaultsDidChangeNotification
-                     object:nil];
+        _keyID = keyID;
+        _vCode = vCode;
     }
 
     return self;
-}
-
-- (void)defaultsChanged:(NSNotification *)notification
-{
-    NSUserDefaults *defaults = (NSUserDefaults *)notification.object;
-
-    _keyID = [defaults stringForKey:DefaultKeyID];
-    _vCode = [defaults stringForKey:DefaultVCode];
 }
 
 - (BOOL)authenticatedApiRequestWithString:(NSString *)urlString
@@ -88,45 +123,10 @@
     static dispatch_once_t pred = 0;
     static Character *mainCharacter = nil;
     dispatch_once(&pred, ^{
-        mainCharacter = [[Character alloc] initWithCharacterID:[self mainCharacterID]];
+        mainCharacter = [[Character alloc] initWithCharacterID:[self mainCharacterID] andAPI:self];
     });
 
     return mainCharacter;
-}
-
-- (NSDictionary *)fetchRefTypes
-{
-    NSError *error;
-    NSURL *url = [NSURL URLWithString:RefTypesAPIURL];
-    NSDictionary *refTypes = [NSDictionary dictionaryWithXMLString:[NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error]];
-
-    if (error)
-    {
-        log(@"Error fetching RefTypes");
-        return nil;
-    }
-
-    //log(@"%@", refTypes[@"result"][@"rowset"][@"row"]);
-    return refTypes[@"result"][@"rowset"][@"row"];
-}
-
-- (NSString *)refTypeFromID:(NSString *)refTypeId
-{
-    static NSDictionary *refTypes;
-    static dispatch_once_t pred;
-    dispatch_once(&pred, ^{
-        refTypes = [self fetchRefTypes];
-    });
-
-    for (NSDictionary *d in refTypes)
-    {
-        if ([d[@"_refTypeID"] isEqualToString:refTypeId])
-        {
-            return d[@"_refTypeName"];
-        }
-    }
-
-    return nil;
 }
 
 - (void)dealloc

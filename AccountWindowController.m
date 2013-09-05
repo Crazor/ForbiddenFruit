@@ -11,15 +11,17 @@
 
 @interface AccountWindowController ()
 
+@property Account *account;
+
 @end
 
 @implementation AccountWindowController
 
-- (id)init
+- (id)initWithAccount:(Account *)account
 {
     self = [super initWithWindowNibName:@"AccountWindow"];
     if (self) {
-        // Initialization code here.
+        _account = account;
     }
     
     return self;
@@ -29,11 +31,11 @@
 {
     [super windowDidLoad];
     
-    _paidUntil.stringValue = [NSDateFormatter localizedStringFromDate:Account.account.paidUntil dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
-    _creationDate.stringValue = [NSDateFormatter localizedStringFromDate:Account.account.creationDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
-    _logonCount.intValue = Account.account.logonCount.intValue;
+    _paidUntil.stringValue = [NSDateFormatter localizedStringFromDate:_account.paidUntil dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+    _creationDate.stringValue = [NSDateFormatter localizedStringFromDate:_account.creationDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+    _logonCount.intValue = _account.logonCount.intValue;
 
-    int minutesPlayed = Account.account.logonMinutes.intValue;
+    int minutesPlayed = _account.logonMinutes.intValue;
     _logonMinutes.stringValue = [NSString stringWithFormat:@"%dh %dm", minutesPlayed/60, minutesPlayed%60];
 }
 

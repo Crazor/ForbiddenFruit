@@ -10,6 +10,7 @@
 
 @interface Character : EveAPI
 
+@property (readonly) EveAPI *api;
 @property (readonly) NSNumber *characterID;
 @property (readonly) NSImage *portrait;
 @property (readonly) NSString *name;
@@ -24,6 +25,7 @@
 @property (readonly) NSNumber *accountBalance;
 @property (readonly) NSDate *nextTrainingEnds;
 
-- (id)initWithCharacterID:(NSNumber *)characterID;
+- (id)initWithCharacterID:(NSNumber *)characterID andAPI:(EveAPI *)api;
+
 
 @end

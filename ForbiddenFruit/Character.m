@@ -13,13 +13,14 @@
 
 @implementation Character
 
-- (id)initWithCharacterID:(NSNumber *)characterID
+- (id)initWithCharacterID:(NSNumber *)characterID andAPI:(EveAPI *)api
 {
     self = [super init];
 
     if (self)
     {
         _characterID = characterID;
+        _api = api;
         
         [self apiRequest];
         

@@ -8,13 +8,13 @@
 
 #import "EveAPI.h"
 
-@interface Account : EveAPI
+@interface Account : NSObject
 
 @property (readonly) NSDate *paidUntil;
 @property (readonly) NSDate *creationDate;
 @property (readonly) NSNumber *logonCount;
 @property (readonly) NSNumber *logonMinutes;
 
-+ (Account *)account;
+- (id)initWithAPI:(EveAPI *)api;
 
 @end

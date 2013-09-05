@@ -10,6 +10,10 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
+@property NSMenu *dockMenu;
+
+@property (weak) IBOutlet NSMenu *characterMenu;
+
 - (IBAction)showSettingsWindow:(id)sender;
 - (IBAction)showAccountWindow:(id)sender;
 - (IBAction)showCharacterWindow:(id)sender;

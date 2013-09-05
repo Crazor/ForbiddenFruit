@@ -12,7 +12,6 @@
 
 @interface CharacterWindowController : NSWindowController
 
-@property NSNumber *characterID;
 @property Character *character;
 
 @property (weak) IBOutlet NSImageView *portrait;
@@ -24,6 +23,6 @@
 @property (weak) IBOutlet NSTextField *skillPoints;
 @property (weak) IBOutlet NSTextField *lastLocation;
 
-- (id)initWithCharacterID:(NSNumber *)characterID;
+- (id)initWithCharacter:(Character *)character;
 
 @end

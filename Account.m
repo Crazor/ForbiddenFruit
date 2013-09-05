@@ -8,22 +8,19 @@
 
 #import "Account.h"
 
+@interface Account ()
+
+@property EveAPI *api;
+
+@end
+
 @implementation Account
 
-+ (Account *)account
-{
-    static Account *account = nil;
-    static dispatch_once_t pred = 0;
-    dispatch_once(&pred, ^{
-        account = [[Account alloc] init];
-    });
-    return account;
-}
-
-- (id)init
+- (id)initWithAPI:(EveAPI *)api
 {
     if (self = [super init])
     {
+        _api = api;
         [self apiRequest];
     }
     return self;
@@ -31,27 +28,27 @@
 
 - (BOOL)apiRequest
 {
-    return [self authenticatedApiRequestWithString:AccountAPIURL];
+    return [_api authenticatedApiRequestWithString:AccountAPIURL];
 }
 
 - (NSDate *)paidUntil
 {
-    return [NSDate dateWithEveDate:self.result[@"paidUntil"]];
+    return [NSDate dateWithEveDate:_api.result[@"paidUntil"]];
 }
 
 - (NSDate *)creationDate
 {
-    return [NSDate dateWithEveDate:self.result[@"createDate"]];
+    return [NSDate dateWithEveDate:_api.result[@"createDate"]];
 }
 
 - (NSNumber *)logonCount
 {
-    return self.result[@"logonCount"];
+    return _api.result[@"logonCount"];
 }
 
 - (NSNumber *)logonMinutes
 {
-    return self.result[@"logonMinutes"];
+    return _api.result[@"logonMinutes"];
 }
 
 

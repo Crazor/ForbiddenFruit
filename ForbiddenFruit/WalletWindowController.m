@@ -43,19 +43,19 @@
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
     NSString *identifier = tableColumn.identifier;
-    if ([identifier isEqualToString:@"_ownerName1"]
-        && [_walletJournal.journal[row][identifier] isEqualToString:EveAPI.api.mainCharacter.name])
+    if ([identifier isEqualToString:@"_ownerName1"])
+        //&& [_walletJournal.journal[row][identifier] isEqualToString:EveAPI.api.mainCharacter.name])
     {
         return _walletJournal.journal[row][@"_ownerName2"];
     }
-    if ([identifier isEqualToString:@"_ownerName2"]
-        && [_walletJournal.journal[row][identifier] isEqualToString:EveAPI.api.mainCharacter.name])
+    if ([identifier isEqualToString:@"_ownerName2"])
+        //&& [_walletJournal.journal[row][identifier] isEqualToString:EveAPI.api.mainCharacter.name])
     {
         return _walletJournal.journal[row][@"_ownerName1"];
     }
     if ([identifier isEqualToString:@"_refType"])
     {
-        return [[EveAPI api] refTypeFromID:_walletJournal.journal[row][@"_refTypeID"]];
+        return [EveAPI refTypeFromID:_walletJournal.journal[row][@"_refTypeID"]];
     }
     return _walletJournal.journal[row][identifier];
 }

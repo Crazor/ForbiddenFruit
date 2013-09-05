@@ -10,10 +10,8 @@
 
 @interface SettingsWindowController : NSWindowController
 
-@property (weak) IBOutlet NSTextField *keyID;
-@property (weak) IBOutlet NSTextField *vCode;
-@property (weak) IBOutlet NSTextField *messageField;
-@property (weak) IBOutlet NSImageView *portrait;
+@property (strong) IBOutlet NSWindow *settingsWindow;
+@property (strong) IBOutlet NSWindow *addAPIKeySheet;
 
 - (void)verifyAuthentication;
 

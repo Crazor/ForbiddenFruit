@@ -15,12 +15,11 @@
 
 @implementation CharacterWindowController
 
-- (id)initWithCharacterID:(NSNumber *)characterID
+- (id)initWithCharacter:(Character *)character
 {
     self = [super initWithWindowNibName:@"CharacterWindow"];
     if (self) {
-        _characterID = characterID;
-        _character = [[Character alloc] initWithCharacterID:characterID];
+        _character = character;
     }
 
     return self;
@@ -32,6 +31,7 @@
 
     _portrait.image = _character.portrait;
     _name.stringValue = _character.name;
+    self.window.title = _character.name;
 
     if ([_character.race isEqualToString:_character.bloodline])
     {

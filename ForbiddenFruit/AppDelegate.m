@@ -13,6 +13,7 @@
 #import "WalletWindowController.h"
 #import "ApiKeysWindowController.h"
 #import "EveAPI.h"
+#import "Character.h"
 
 static SettingsWindowController *settingsWindowController;
 static CharacterWindowController *characterWindowController;
@@ -22,27 +23,61 @@ static ApiKeysWindowController *apiKeysWindowController;
 
 @implementation AppDelegate
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+- (id)init
 {
-    settingsWindowController = [[SettingsWindowController alloc] init];
-    apiKeysWindowController = [[ApiKeysWindowController alloc] init];
-
-    if ([[EveAPI alloc] init].credentialsAreValid)
+    if (self = [super init])
     {
-        characterWindowController = [[CharacterWindowController alloc] initWithCharacterID:EveAPI.api.mainCharacterID];
-        accountWindowController = [[AccountWindowController alloc] init];
-        walletWindowController = [[WalletWindowController alloc] initWithCharacterID:EveAPI.api.mainCharacterID];
-        //[walletWindowController showWindow:self];
-        [apiKeysWindowController showWindow:self];
+        
     }
-    else
+    return self;
+}
+
+- (void)applicationDidFinishLaunching:(NSNotification *)notification
+{
+    _dockMenu = [[NSMenu alloc] init];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *keys = [defaults arrayForKey:DefaultApiKeyArray];
+    
+    if (keys.count == 0)
     {
-        [settingsWindowController showWindow:self];
+        [self showSettingsWindow:self];
+    }
+
+    for (NSDictionary *k in keys)
+    {
+        EveAPI *api = [[EveAPI alloc] initWithKeyID:k[DefaultKeyID] andVCode:k[DefaultVCode]];
+
+        if (api.credentialsAreValid)
+        {
+            [EveAPI accounts][k[DefaultKeyID]] = api;
+            
+            NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%@", [api mainCharacter].characterID] action:@selector(characterClicked:) keyEquivalent:@""];
+            item.target = self;
+            item.representedObject = [api mainCharacter];
+            NSMenuItem *item2 = [item copy];
+            [_characterMenu addItem:item];
+            [_dockMenu addItem:item2];
+        }
     }
 }
 
+- (NSMenu *)applicationDockMenu:(NSApplication *)sender
+{
+    return _dockMenu;
+}
+
+- (IBAction)characterClicked:(id)sender
+{
+    NSMenuItem *item = (NSMenuItem *)sender;
+    Character *character = (Character *)item.representedObject;
+    
+    [[[CharacterWindowController alloc] initWithCharacter:character] showWindow:self];
+}
+
 - (IBAction)showSettingsWindow:(id)sender {
-    [settingsWindowController showWindow:self];
+    apiKeysWindowController = [[ApiKeysWindowController alloc] init];
+    [apiKeysWindowController showWindow:self];
 }
 
 - (IBAction)showAccountWindow:(id)sender {

@@ -16,16 +16,18 @@
 @property NSDictionary *response;
 @property NSDictionary *result;
 
-+ (EveAPI *)api;
++ (NSString *)refTypeFromID:(NSString *)refTypeId;
++ (void)setAccounts:(NSMutableDictionary *)accounts;
++ (NSMutableDictionary *)accounts;
 
-- (void)defaultsChanged:(NSNotification *)notification;
++ (EveAPI *)apiForKeyID:(NSString *)keyID;
+
+- (id)initWithKeyID:(NSString *)keyID andVCode:(NSString *)vCode;
 
 - (BOOL)authenticatedApiRequestWithString:(NSString *)urlString;
 
 - (BOOL)credentialsAreValid;
 - (NSNumber *)mainCharacterID;
 - (Character *)mainCharacter;
-
-- (NSString *)refTypeFromID:(NSString *)refTypeId;
 
 @end
