@@ -11,6 +11,7 @@
 @interface Character : NSObject
 
 @property (readonly) EveAPI *api;
+
 @property (readonly) NSNumber *characterID;
 @property (readonly) NSImage *portrait;
 @property (readonly) NSString *name;

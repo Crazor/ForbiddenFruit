@@ -9,7 +9,6 @@
 // TODO: Employment History
 
 #import "Character.h"
-#import "XMLDictionary.h"
 
 @implementation Character
 
