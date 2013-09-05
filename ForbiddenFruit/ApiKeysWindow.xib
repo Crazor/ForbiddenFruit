@@ -87,7 +87,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
-                    <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="22">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="22">
                         <rect key="frame" x="20" y="19" width="23" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
@@ -102,7 +102,7 @@
                             <action selector="showAddAPIKeySheet:" target="-2" id="vpM-4u-3fE"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="28">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="28">
                         <rect key="frame" x="42" y="19" width="23" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
@@ -125,6 +125,8 @@
                     <constraint firstAttribute="bottom" secondItem="28" secondAttribute="bottom" constant="20" symbolic="YES" id="31"/>
                     <constraint firstItem="22" firstAttribute="top" secondItem="5" secondAttribute="bottom" constant="8" symbolic="YES" id="37"/>
                     <constraint firstItem="28" firstAttribute="top" secondItem="5" secondAttribute="bottom" constant="8" symbolic="YES" id="38"/>
+                    <constraint firstItem="22" firstAttribute="leading" secondItem="5" secondAttribute="leading" id="392-9b-aF5"/>
+                    <constraint firstItem="28" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="42" id="CWy-Ps-uyn"/>
                 </constraints>
             </view>
             <connections>
