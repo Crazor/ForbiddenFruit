@@ -8,7 +8,7 @@
 
 #import "EveAPI.h"
 
-@interface Character : EveAPI
+@interface Character : NSObject
 
 @property (readonly) EveAPI *api;
 @property (readonly) NSNumber *characterID;

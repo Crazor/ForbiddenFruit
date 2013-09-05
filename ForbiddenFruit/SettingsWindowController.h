@@ -13,6 +13,4 @@
 @property (strong) IBOutlet NSWindow *settingsWindow;
 @property (strong) IBOutlet NSWindow *addAPIKeySheet;
 
-- (void)verifyAuthentication;
-
 @end

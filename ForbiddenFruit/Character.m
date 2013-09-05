@@ -32,69 +32,69 @@
 
 - (BOOL)apiRequest
 {
-    return [self authenticatedApiRequestWithString:[NSString stringWithFormat:CharacterInfoAPIURL, _characterID]];
+    return [self.api authenticatedApiRequestWithString:[NSString stringWithFormat:CharacterInfoAPIURL, _characterID]];
 }
 
 - (NSImage *)portrait
 {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://image.eveonline.com/character/%@_128.jpg", _characterID]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://image.eveonline.com/character/%@_128.jpg", self.characterID]];
 
     return [[NSImage alloc] initWithContentsOfURL:url];
 }
 
 - (NSString *)name
 {
-    return self.result[@"characterName"];
+    return self.api.result[@"characterName"];
 }
 
 - (NSString *)corporationName
 {
-    return self.result[@"corporation"];
+    return self.api.result[@"corporation"];
 }
 
 - (NSNumber *)corporationID
 {
-    return self.result[@"corporationID"];
+    return self.api.result[@"corporationID"];
 }
 
 - (NSDate *)corporationDate
 {
-    return [NSDate dateWithEveDate:self.result[@"corporationDate"]];
+    return [NSDate dateWithEveDate:self.api.result[@"corporationDate"]];
 }
 
 - (NSString *)race
 {
-    return self.result[@"race"];
+    return self.api.result[@"race"];
 }
 
 - (NSString *)bloodline
 {
-    return self.result[@"bloodline"];
+    return self.api.result[@"bloodline"];
 }
 
 - (NSNumber *)skillPoints
 {
-    return self.result[@"skillPoints"];
+    return self.api.result[@"skillPoints"];
 }
 
 - (NSNumber *)securityStatus
 {
-    return self.result[@"securityStatus"];
+    return self.api.result[@"securityStatus"];
 }
 
 - (NSString *)lastLocation
 {
-    return self.result[@"lastKnownLocation"];
+    return self.api.result[@"lastKnownLocation"];
 }
 
 - (NSNumber *)accountBalance
 {
-    return self.result[@"accountBalance"];
+    return self.api.result[@"accountBalance"];
 }
 
 - (NSDate *)nextTrainingEnds
 {
-    return [NSDate dateWithEveDate:self.result[@"nextTrainingEnds"]];
+    return [NSDate dateWithEveDate:self.api.result[@"nextTrainingEnds"]];
 }
 
 @end
