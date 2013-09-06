@@ -120,13 +120,7 @@ static NSMutableDictionary *accounts;
 
 - (Character *)mainCharacter
 {
-    static dispatch_once_t pred = 0;
-    static Character *mainCharacter = nil;
-    dispatch_once(&pred, ^{
-        mainCharacter = [[Character alloc] initWithCharacterID:[self mainCharacterID] andAPI:self];
-    });
-
-    return mainCharacter;
+    return [[Character alloc] initWithCharacterID:[self mainCharacterID] andAPI:self];
 }
 
 - (void)dealloc

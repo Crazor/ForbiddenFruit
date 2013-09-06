@@ -59,7 +59,7 @@ static ApiKeysWindowController *apiKeysWindowController;
         {
             [EveAPI accounts][k[DefaultKeyID]] = api;
 
-            NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%@", [api mainCharacter].characterID] action:@selector(characterClicked:) keyEquivalent:@""];
+            NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%@", [api mainCharacter].name] action:@selector(characterClicked:) keyEquivalent:@""];
             item.target = self;
             item.representedObject = [api mainCharacter];
             NSMenuItem *item2 = [item copy];
