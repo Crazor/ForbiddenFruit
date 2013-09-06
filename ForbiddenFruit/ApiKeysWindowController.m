@@ -9,6 +9,7 @@
 #import "ApiKeysWindowController.h"
 #import "EveAPI.h"
 #import "Character.h"
+#import "AppDelegate.h"
 
 #import "XMLDictionary.h"
 
@@ -64,7 +65,7 @@
     [_tableView reloadData];
                         
     [NSApp endSheet:_addAPIKeySheet];
-    
+    [[NSApp delegate] updateAPIKeys];
     /*
      NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
      [defaults setValue:[_keyID stringValue] forKey:DefaultKeyID];

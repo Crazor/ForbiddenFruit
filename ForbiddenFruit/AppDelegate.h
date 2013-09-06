@@ -14,6 +14,8 @@
 
 @property (weak) IBOutlet NSMenu *characterMenu;
 
+- (void)updateAPIKeys;
+
 - (IBAction)showSettingsWindow:(id)sender;
 - (IBAction)showAccountWindow:(id)sender;
 - (IBAction)showCharacterWindow:(id)sender;

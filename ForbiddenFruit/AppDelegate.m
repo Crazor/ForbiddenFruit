@@ -35,14 +35,21 @@ static ApiKeysWindowController *apiKeysWindowController;
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
     _dockMenu = [[NSMenu alloc] init];
-    
+    [self updateAPIKeys];
+}
+
+- (void)updateAPIKeys
+{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSArray *keys = [defaults arrayForKey:DefaultApiKeyArray];
-    
+
     if (keys.count == 0)
     {
         [self showSettingsWindow:self];
     }
+
+    [_characterMenu removeAllItems];
+    [_dockMenu removeAllItems];
 
     for (NSDictionary *k in keys)
     {
@@ -51,7 +58,7 @@ static ApiKeysWindowController *apiKeysWindowController;
         if (api.credentialsAreValid)
         {
             [EveAPI accounts][k[DefaultKeyID]] = api;
-            
+
             NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%@", [api mainCharacter].characterID] action:@selector(characterClicked:) keyEquivalent:@""];
             item.target = self;
             item.representedObject = [api mainCharacter];
