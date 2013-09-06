@@ -10,6 +10,7 @@
 
 @interface ApiKeysWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
 
+@property (weak) IBOutlet NSTextField *name;
 @property (weak) IBOutlet NSTextField *keyID;
 @property (weak) IBOutlet NSTextField *vCode;
 @property (weak) IBOutlet NSTextField *messageField;

@@ -8,11 +8,15 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class Account;
+
 @interface AccountWindowController : NSWindowController
 
 @property (weak) IBOutlet NSTextField *paidUntil;
 @property (weak) IBOutlet NSTextField *creationDate;
 @property (weak) IBOutlet NSTextField *logonCount;
 @property (weak) IBOutlet NSTextField *logonMinutes;
+
+- (id)initWithAccount:(Account *)account;
 
 @end

@@ -16,10 +16,11 @@
 
 @implementation Account
 
-- (id)initWithAPI:(EveAPI *)api
+- (id)initWithName:(NSString *)name andAPI:(EveAPI *)api;
 {
     if (self = [super init])
     {
+        _name = name;
         _api = api;
         [self apiRequest];
     }

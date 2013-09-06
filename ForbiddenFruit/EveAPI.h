@@ -10,6 +10,7 @@
 
 @interface EveAPI : NSObject
 
+@property (readonly) NSString *name;
 @property (readonly) NSString *keyID;
 @property (readonly) NSString *vCode;
 
@@ -22,7 +23,7 @@
 
 + (EveAPI *)apiForKeyID:(NSString *)keyID;
 
-- (id)initWithKeyID:(NSString *)keyID andVCode:(NSString *)vCode;
+- (id)initWithName:(NSString *)name andKeyID:(NSString *)keyID andVCode:(NSString *)vCode;
 
 - (BOOL)authenticatedApiRequestWithString:(NSString *)urlString;
 

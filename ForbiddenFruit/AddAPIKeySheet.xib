@@ -11,6 +11,7 @@
                 <outlet property="addButton" destination="Ure-8y-WUU" id="NNt-06-4TT"/>
                 <outlet property="keyID" destination="RMc-xT-iUj" id="xSq-FE-HIr"/>
                 <outlet property="messageField" destination="1ny-6s-AvU" id="mmq-Qj-dW9"/>
+                <outlet property="name" destination="L7e-vE-RSH" id="Zxe-PK-iHy"/>
                 <outlet property="portrait" destination="N9q-DV-FU1" id="Oml-Lw-GK1"/>
                 <outlet property="vCode" destination="jwC-hw-fLh" id="j6j-dl-BH3"/>
             </connections>
@@ -20,14 +21,14 @@
         <window title="Add API Key" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="utW-Pf-gjc">
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="647" height="159"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2048" height="1130"/>
+            <rect key="contentRect" x="196" y="240" width="672" height="199"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <view key="contentView" id="e0n-CI-pHp">
-                <rect key="frame" x="0.0" y="0.0" width="647" height="159"/>
+                <rect key="frame" x="0.0" y="0.0" width="672" height="199"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RMc-xT-iUj">
-                        <rect key="frame" x="134" y="101" width="493" height="22"/>
+                        <rect key="frame" x="159" y="121" width="493" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Key ID" drawsBackground="YES" id="fMj-kX-2U1">
                             <font key="font" metaFont="system"/>
@@ -39,7 +40,7 @@
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jwC-hw-fLh">
-                        <rect key="frame" x="134" y="69" width="493" height="22"/>
+                        <rect key="frame" x="159" y="85" width="493" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Verification Code" drawsBackground="YES" id="a5t-FM-sqf">
                             <font key="font" metaFont="system"/>
@@ -51,12 +52,12 @@
                         </connections>
                     </textField>
                     <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N9q-DV-FU1">
-                        <rect key="frame" x="17" y="42" width="100" height="100"/>
+                        <rect key="frame" x="19" y="59" width="123" height="123"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" imageFrameStyle="grayBezel" image="NSUser" id="ZRp-de-edj"/>
                     </imageView>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2xa-zc-NvS">
-                        <rect key="frame" x="14" y="9" width="134" height="32"/>
+                        <rect key="frame" x="16" y="14" width="129" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Create API Key..." alternateTitle="Open a browser to create a new API key" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="c7u-3O-8qH">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -67,7 +68,7 @@
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ny-6s-AvU">
-                        <rect key="frame" x="119" y="45" width="511" height="16"/>
+                        <rect key="frame" x="145" y="61" width="511" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" truncatesLastVisibleLine="YES" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Please provide valid EVE API credentials" id="lFC-CI-nPB">
                             <font key="font" metaFont="cellTitle"/>
@@ -76,7 +77,7 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ure-8y-WUU">
-                        <rect key="frame" x="567" y="9" width="66" height="32"/>
+                        <rect key="frame" x="592" y="14" width="66" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xcU-O5-qSs">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -87,7 +88,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sKd-Gn-eEn">
-                        <rect key="frame" x="485" y="9" width="82" height="32"/>
+                        <rect key="frame" x="510" y="14" width="82" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1F6-gV-OzG">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -100,6 +101,15 @@ Gw
                             <action selector="cancelAddKey:" target="-2" id="Rp3-0X-f47"/>
                         </connections>
                     </button>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L7e-vE-RSH">
+                        <rect key="frame" x="159" y="157" width="493" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Account Name" drawsBackground="YES" id="W2T-Mj-xpB">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
         </window>

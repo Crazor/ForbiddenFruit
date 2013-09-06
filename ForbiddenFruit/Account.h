@@ -10,11 +10,12 @@
 
 @interface Account : NSObject
 
+@property (readonly) NSString *name;
 @property (readonly) NSDate *paidUntil;
 @property (readonly) NSDate *creationDate;
 @property (readonly) NSNumber *logonCount;
 @property (readonly) NSNumber *logonMinutes;
 
-- (id)initWithAPI:(EveAPI *)api;
+- (id)initWithName:(NSString *)name andAPI:(EveAPI *)api;
 
 @end

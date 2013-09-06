@@ -9,6 +9,7 @@
 #import "Constants.h"
 
 NSString *const DefaultApiKeyArray = @"ApiKeys";
+NSString *const DefaultAccountName = @"name";
 NSString *const DefaultKeyID = @"keyID";
 NSString *const DefaultVCode = @"vCode";
 

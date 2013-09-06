@@ -44,13 +44,6 @@
 }
 
 - (IBAction)showAddAPIKeySheet:(id)sender {
-    /*
-    [_apiKeys addObject:@{DefaultKeyID: @"", DefaultVCode: @""}];
-    [_tableView reloadData];
-    [_tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:_apiKeys.count-1] byExtendingSelection:NO];
-    [_tableView editColumn:0 row:_apiKeys.count-1 withEvent:nil select:NO];
-     */
-    
     if (!_addAPIKeySheet)
     {
         [NSBundle loadNibNamed:@"AddAPIKeySheet" owner:self];
@@ -66,11 +59,6 @@
                         
     [NSApp endSheet:_addAPIKeySheet];
     [[NSApp delegate] updateAPIKeys];
-    /*
-     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-     [defaults setValue:[_keyID stringValue] forKey:DefaultKeyID];
-     [defaults setValue:[_vCode stringValue] forKey:DefaultVCode];
-     */
 }
 
 - (IBAction)cancelAddKey:(id)sender
@@ -134,7 +122,7 @@
 
 - (void)verifyAuthentication
 {
-    EveAPI *api = [[EveAPI alloc] initWithKeyID:_keyID.stringValue andVCode:_vCode.stringValue];
+    EveAPI *api = [[EveAPI alloc] initWithName:_name.stringValue andKeyID:_keyID.stringValue andVCode:_vCode.stringValue];
     
     if ([api credentialsAreValid])
     {
@@ -153,7 +141,8 @@
 
 - (void)controlTextDidChange:(NSNotification *)notification
 {
-    if ([_keyID.stringValue isNotEqualTo:@""]
+    if ([_name.stringValue isNotEqualTo:@""]
+        && [_keyID.stringValue isNotEqualTo:@""]
         && [_vCode.stringValue isNotEqualTo:@""])
     {
         [self verifyAuthentication];

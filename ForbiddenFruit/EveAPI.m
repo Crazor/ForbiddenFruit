@@ -70,10 +70,11 @@ static NSMutableDictionary *accounts;
     return accounts[keyID];
 }
 
-- (id)initWithKeyID:(NSString *)keyID andVCode:(NSString *)vCode
+- (id)initWithName:(NSString *)name andKeyID:(NSString *)keyID andVCode:(NSString *)vCode
 {
     if (self = [super init])
     {
+        _name = name;
         _keyID = keyID;
         _vCode = vCode;
     }

@@ -7,6 +7,7 @@
 //
 
 FOUNDATION_EXPORT NSString *const DefaultApiKeyArray;
+FOUNDATION_EXPORT NSString *const DefaultAccountName;
 FOUNDATION_EXPORT NSString *const DefaultKeyID;
 FOUNDATION_EXPORT NSString *const DefaultVCode;
 

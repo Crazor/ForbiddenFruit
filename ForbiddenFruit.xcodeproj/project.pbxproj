@@ -18,7 +18,6 @@
 		6E79607316FB4D9300FBD65F /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6E79607116FB4D9300FBD65F /* Credits.rtf */; };
 		6E79607616FB4D9300FBD65F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E79607516FB4D9300FBD65F /* AppDelegate.m */; };
 		6E79607916FB4D9300FBD65F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E79607716FB4D9300FBD65F /* MainMenu.xib */; };
-		6E79608316FB557000FBD65F /* SettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E79608216FB557000FBD65F /* SettingsWindowController.m */; };
 		6E79608616FC7E0400FBD65F /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E79608516FC7E0300FBD65F /* Constants.m */; };
 		6EA92ABD16FCD39400798916 /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA92ABC16FCD39400798916 /* Character.m */; };
 		6ECB06D116FCB7EF00829CBB /* CharacterWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ECB06D016FCB7EF00829CBB /* CharacterWindow.xib */; };
@@ -56,8 +55,6 @@
 		6E79607416FB4D9300FBD65F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6E79607516FB4D9300FBD65F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6E79607816FB4D9300FBD65F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		6E79608116FB557000FBD65F /* SettingsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsWindowController.h; sourceTree = "<group>"; };
-		6E79608216FB557000FBD65F /* SettingsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsWindowController.m; sourceTree = "<group>"; };
 		6E79608416FC7E0300FBD65F /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		6E79608516FC7E0300FBD65F /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		6EA92ABB16FCD39400798916 /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
@@ -189,8 +186,6 @@
 				6E6E63441701D84E009A9EBE /* ApiKeysWindowController.m */,
 				6ECB06D216FCB9C800829CBB /* CharacterWindowController.h */,
 				6ECB06D316FCB9C800829CBB /* CharacterWindowController.m */,
-				6E79608116FB557000FBD65F /* SettingsWindowController.h */,
-				6E79608216FB557000FBD65F /* SettingsWindowController.m */,
 				6EED71A316FE08F5001F2419 /* WalletWindowController.h */,
 				6EED71A416FE08F5001F2419 /* WalletWindowController.m */,
 			);
@@ -285,7 +280,6 @@
 			files = (
 				6E79606F16FB4D9300FBD65F /* main.m in Sources */,
 				6E79607616FB4D9300FBD65F /* AppDelegate.m in Sources */,
-				6E79608316FB557000FBD65F /* SettingsWindowController.m in Sources */,
 				6E79608616FC7E0400FBD65F /* Constants.m in Sources */,
 				6E00AB3516FC85A90005A69B /* XMLDictionary.m in Sources */,
 				6E00AB3816FCAA380005A69B /* EveAPI.m in Sources */,
