@@ -12,9 +12,9 @@
 
 @property (readonly) Character *character;
 @property (readonly) EveAPI *api;
-@property (readonly) NSArray *journal;
+@property (readonly) NSMutableArray *journal;
 
 - (id)initWithCharacter:(Character *)character;
-- (BOOL)refresh;
+- (void)refresh;
 
 @end

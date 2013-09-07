@@ -22,20 +22,29 @@
     return self;
 }
 
-- (BOOL)refresh
+- (void)refresh
 {
-    if ([self.api authenticatedApiRequestWithString:[NSString stringWithFormat:WalletJournalAPIURL,
-                                                     self.character.characterID]])
-    {
-        _journal = self.api.result[@"rowset"][@"row"];
-        return true;
-    }
-    else
-    {
-        NSLog(@"Request failed: %@", self.api.result);
-        self.api.result = nil;
-        return false;
-    }
+    NSString *fromID;
+    _journal = [[NSMutableArray alloc] init];
+
+    [self.api authenticatedApiRequestWithString:[NSString stringWithFormat:WalletJournalAPIURL,
+                                                 self.character.characterID, fromID]];
+    do {
+            [_journal addObjectsFromArray:self.api.result[@"rowset"][@"row"]];
+            [_journal sortUsingComparator:^(id firstObject, id secondObject) {
+                NSInteger firstKey = ((NSString *)[firstObject valueForKey:@"_refID"]).integerValue;
+                NSInteger secondKey = ((NSString *)[secondObject valueForKey:@"_refID"]).integerValue;
+                if (firstKey > secondKey)
+                    return NSOrderedAscending;
+                else if (firstKey == secondKey)
+                    return NSOrderedSame;
+                else
+                    return NSOrderedDescending;
+            }];
+            fromID = [_journal lastObject][@"_refID"];
+            [self.api authenticatedApiRequestWithString:[NSString stringWithFormat:WalletJournalAPIURL,
+                                                         self.character.characterID, fromID]];
+    } while (((NSArray *)self.api.result[@"rowset"][@"row"]).count > 0);
 }
 
 @end

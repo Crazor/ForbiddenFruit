@@ -33,8 +33,15 @@
     [super windowDidLoad];
     
     self.window.title = [NSString stringWithFormat:@"Wallet — %@", self.walletJournal.character.name];
-    [self.walletJournal refresh];
-    [self.tableView reloadData];
+
+    [self.spinner startAnimation:self];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+    dispatch_async(queue, ^(void)
+    {
+        [self.walletJournal refresh];
+        [self.tableView reloadData];
+        [self.spinner stopAnimation:self];
+    });
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
@@ -58,6 +65,11 @@
     if ([identifier isEqualToString:@"_refType"])
     {
         return [EveAPI refTypeFromID:_walletJournal.journal[row][@"_refTypeID"]];
+    }
+    if ([identifier isEqualToString:@"_reason"]
+        && [_walletJournal.journal[row][@"_refTypeID"] isEqualToString:@"85"]) // Bountys
+    {
+        return nil;
     }
     return _walletJournal.journal[row][identifier];
 }

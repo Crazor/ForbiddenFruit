@@ -13,6 +13,7 @@
 @interface WalletWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
 
 @property (weak) IBOutlet NSTableView *tableView;
+@property (weak) IBOutlet NSProgressIndicator *spinner;
 
 - (id)initWithCharacter:(Character *)character;
 @end
