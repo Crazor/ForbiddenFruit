@@ -6,13 +6,14 @@
 //  Copyright (c) 2013 Crazor. All rights reserved.
 //
 
-#import "EveAPI.h"
+@class EveAPI;
 
-@interface WalletJournal : EveAPI
+@interface WalletJournal : NSObject;
 
+@property (readonly) EveAPI *api;
 @property (readonly) NSNumber *characterID;
 @property (readonly) NSArray *journal;
 
-- (id)initWithCharacterID:(NSNumber *)characterID;
+- (id)initWithCharacterID:(NSNumber *)characterID andAPI:(EveAPI *)api;
 
 @end

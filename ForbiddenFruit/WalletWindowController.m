@@ -18,11 +18,11 @@
 
 @implementation WalletWindowController
 
-- (id)initWithCharacterID:(NSNumber *)characterID
+- (id)initWithWalletJournal:(WalletJournal *)walletJournal
 {
     self = [super initWithWindowNibName:@"WalletWindow"];
     if (self) {
-        _walletJournal = [[WalletJournal alloc] initWithCharacterID:characterID];
+        _walletJournal = walletJournal;
     }
     
     return self;

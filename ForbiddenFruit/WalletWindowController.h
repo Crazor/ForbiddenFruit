@@ -8,8 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class WalletJournal;
+
 @interface WalletWindowController : NSWindowController <NSTableViewDataSource>
 
-- (id)initWithCharacterID:(NSNumber *)characterID;
+- (id)initWithWalletJournal:(WalletJournal *)walletJournal;
 
 @end
