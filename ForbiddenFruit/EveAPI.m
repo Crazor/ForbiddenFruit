@@ -82,6 +82,11 @@ static NSMutableDictionary *accounts;
     return self;
 }
 
+- (EveAPI *)copy
+{
+    return [[EveAPI alloc] initWithName:self.name andKeyID:self.keyID andVCode:self.vCode];
+}
+
 - (BOOL)authenticatedApiRequestWithString:(NSString *)urlString
 {
     NSError *error;

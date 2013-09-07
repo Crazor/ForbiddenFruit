@@ -58,7 +58,8 @@ static ApiKeysWindowController *apiKeysWindowController;
         {
             //Account Entry
             [EveAPI accounts][k[DefaultKeyID]] = api;
-            AccountWindowController *a = [[AccountWindowController alloc] initWithAccount:[[Account alloc] initWithName:k[DefaultAccountName] andAPI:api]];
+
+            AccountWindowController *a = [[AccountWindowController alloc] initWithAccount:[[Account alloc] initWithName:k[DefaultAccountName] andAPI:[api copy]]];
 
             NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:k[DefaultAccountName]
                                                           action:@selector(showWindow:)

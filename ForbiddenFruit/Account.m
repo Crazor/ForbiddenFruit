@@ -22,6 +22,7 @@
     {
         _name = name;
         _api = api;
+        
         [self apiRequest];
     }
     return self;
@@ -29,27 +30,27 @@
 
 - (BOOL)apiRequest
 {
-    return [_api authenticatedApiRequestWithString:AccountAPIURL];
+    return [self.api authenticatedApiRequestWithString:AccountAPIURL];
 }
 
 - (NSDate *)paidUntil
 {
-    return [NSDate dateWithEveDate:_api.result[@"paidUntil"]];
+    return [NSDate dateWithEveDate:self.api.result[@"paidUntil"]];
 }
 
 - (NSDate *)creationDate
 {
-    return [NSDate dateWithEveDate:_api.result[@"createDate"]];
+    return [NSDate dateWithEveDate:self.api.result[@"createDate"]];
 }
 
 - (NSNumber *)logonCount
 {
-    return _api.result[@"logonCount"];
+    return self.api.result[@"logonCount"];
 }
 
 - (NSNumber *)logonMinutes
 {
-    return _api.result[@"logonMinutes"];
+    return self.api.result[@"logonMinutes"];
 }
 
 
