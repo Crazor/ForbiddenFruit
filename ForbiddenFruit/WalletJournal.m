@@ -7,28 +7,35 @@
 //
 
 #import "EveAPI.h"
+#import "Character.h"
 #import "WalletJournal.h"
 
 @implementation WalletJournal
 
-- (id)initWithCharacterID:(NSNumber *)characterID andAPI:(EveAPI *)api
+- (id)initWithCharacter:(Character *)character
 {
     if (self = [super init])
     {
-        _characterID = characterID;
-        _api = api;
-        if (![self apiRequest])
-        {
-            return nil;
-        }
-        _journal = self.api.result[@"rowset"][@"row"];
+        _character = character;
+        _api = [character.api copy];
     }
     return self;
 }
 
-- (BOOL)apiRequest
+- (BOOL)refresh
 {
-    return [self.api authenticatedApiRequestWithString:[NSString stringWithFormat:WalletJournalAPIURL, _characterID]];
+    if ([self.api authenticatedApiRequestWithString:[NSString stringWithFormat:WalletJournalAPIURL,
+                                                     self.character.characterID]])
+    {
+        _journal = self.api.result[@"rowset"][@"row"];
+        return true;
+    }
+    else
+    {
+        NSLog(@"Request failed: %@", self.api.result);
+        self.api.result = nil;
+        return false;
+    }
 }
 
 @end

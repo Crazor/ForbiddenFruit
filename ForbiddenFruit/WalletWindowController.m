@@ -18,11 +18,11 @@
 
 @implementation WalletWindowController
 
-- (id)initWithWalletJournal:(WalletJournal *)walletJournal
+- (id)initWithCharacter:(Character *)character
 {
     self = [super initWithWindowNibName:@"WalletWindow"];
     if (self) {
-        _walletJournal = walletJournal;
+        _walletJournal = [[WalletJournal alloc] initWithCharacter:character];
     }
     
     return self;
@@ -32,7 +32,9 @@
 {
     [super windowDidLoad];
     
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    self.window.title = [NSString stringWithFormat:@"Wallet — %@", self.walletJournal.character.name];
+    [self.walletJournal refresh];
+    [self.tableView reloadData];
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
@@ -43,13 +45,13 @@
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
     NSString *identifier = tableColumn.identifier;
-    if ([identifier isEqualToString:@"_ownerName1"])
-        //&& [_walletJournal.journal[row][identifier] isEqualToString:EveAPI.api.mainCharacter.name])
+    if ([identifier isEqualToString:@"_ownerName1"]
+        && [_walletJournal.journal[row][identifier] isEqualToString:self.walletJournal.character.name])
     {
         return _walletJournal.journal[row][@"_ownerName2"];
     }
-    if ([identifier isEqualToString:@"_ownerName2"])
-        //&& [_walletJournal.journal[row][identifier] isEqualToString:EveAPI.api.mainCharacter.name])
+    if ([identifier isEqualToString:@"_ownerName2"]
+        && [_walletJournal.journal[row][identifier] isEqualToString:self.walletJournal.character.name])
     {
         return _walletJournal.journal[row][@"_ownerName1"];
     }
@@ -60,5 +62,27 @@
     return _walletJournal.journal[row][identifier];
 }
 
+- (NSCell *)tableView:(NSTableView *)tableView dataCellForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+    NSTextFieldCell *cell = [tableColumn dataCell];
+    NSString *identifier = tableColumn.identifier;
+
+    if([identifier isEqualToString:@"_amount"])
+    {
+       if ([self.walletJournal.journal[row][@"_amount"] intValue] < 0)
+       {
+           [cell setTextColor: [NSColor redColor]];
+       }
+       else
+       {
+           [cell setTextColor: [NSColor greenColor]];
+       }
+    }
+    else
+    {
+        [cell setTextColor: [NSColor blackColor]];
+    }
+
+    return cell;
+}
 
 @end

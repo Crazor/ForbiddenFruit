@@ -10,10 +10,11 @@
 
 @interface WalletJournal : NSObject;
 
+@property (readonly) Character *character;
 @property (readonly) EveAPI *api;
-@property (readonly) NSNumber *characterID;
 @property (readonly) NSArray *journal;
 
-- (id)initWithCharacterID:(NSNumber *)characterID andAPI:(EveAPI *)api;
+- (id)initWithCharacter:(Character *)character;
+- (BOOL)refresh;
 
 @end

@@ -89,7 +89,7 @@ static ApiKeysWindowController *apiKeysWindowController;
 
             
             // Wallet Entry
-            WalletWindowController *w = [[WalletWindowController alloc] initWithWalletJournal:[[WalletJournal alloc] initWithCharacterID:api.mainCharacterID andAPI:[api copy]]];
+            WalletWindowController *w = [[WalletWindowController alloc] initWithCharacter:api.mainCharacter];
             item = [[NSMenuItem alloc] initWithTitle:@"Wallet"
                                               action:@selector(showWindow:)
                                        keyEquivalent:@""];

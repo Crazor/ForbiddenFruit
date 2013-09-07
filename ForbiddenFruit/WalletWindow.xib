@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="WalletWindowController">
             <connections>
+                <outlet property="tableView" destination="6" id="KlF-gj-9HA"/>
                 <outlet property="window" destination="1" id="3"/>
             </connections>
         </customObject>
@@ -168,6 +169,7 @@
                                     </tableColumns>
                                     <connections>
                                         <outlet property="dataSource" destination="-2" id="20"/>
+                                        <outlet property="delegate" destination="-2" id="cM4-4i-adc"/>
                                     </connections>
                                 </tableView>
                             </subviews>
