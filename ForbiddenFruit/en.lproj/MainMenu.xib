@@ -336,7 +336,13 @@
                 </menuItem>
                 <menuItem title="Character" id="547">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Character" id="548"/>
+                    <menu key="submenu" title="Character" id="548">
+                        <items>
+                            <menuItem title="No accounts" enabled="NO" id="6xv-6G-wsB">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                        </items>
+                    </menu>
                 </menuItem>
                 <menuItem title="Window" id="19">
                     <menu key="submenu" title="Window" systemMenu="window" id="24">

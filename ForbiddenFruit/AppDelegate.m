@@ -51,8 +51,10 @@ static ApiKeysWindowController *apiKeysWindowController;
     [_characterMenu removeAllItems];
     [_dockMenu removeAllItems];
 
-    for (NSDictionary *k in keys)
+    int i = 0;
+    for (NSMutableDictionary *key in keys)
     {
+        NSMutableDictionary *k = [key mutableCopy];
         EveAPI *api = [[EveAPI alloc] initWithName:k[DefaultAccountName] andKeyID:k[DefaultKeyID] andVCode:k[DefaultVCode]];
 
         if (api.credentialsAreValid)
@@ -62,6 +64,11 @@ static ApiKeysWindowController *apiKeysWindowController;
 
             AccountWindowController *a = [[AccountWindowController alloc] initWithAccount:[[Account alloc] initWithName:k[DefaultAccountName] andAPI:[api copy]]];
 
+            if (k[DefaultAccountName] == nil || [k[DefaultAccountName] isEqualToString:@""])
+            {
+                k[DefaultAccountName] = [NSString stringWithFormat:@"Unnamed %d", ++i];
+            }
+            
             NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:k[DefaultAccountName]
                                                           action:@selector(showWindow:)
                                                    keyEquivalent:@""];
@@ -108,8 +115,22 @@ static ApiKeysWindowController *apiKeysWindowController;
     }
 
     // Remove last seperator
-    [_characterMenu removeItemAtIndex:_characterMenu.numberOfItems -1];
-    [_dockMenu removeItemAtIndex:_dockMenu.numberOfItems -1];
+    if (_characterMenu.numberOfItems > 0)
+    {
+        [self.characterMenu removeItemAtIndex:self.characterMenu.numberOfItems -1];
+    }
+    else
+    {
+        [self.characterMenu addItemWithTitle:@"No accounts" action:nil keyEquivalent:@""];
+    }
+    if (self.dockMenu.numberOfItems > 0)
+    {
+        [self.dockMenu removeItemAtIndex:self.dockMenu.numberOfItems -1];
+    }
+    else
+    {
+        [self.dockMenu addItemWithTitle:@"No accounts" action:nil keyEquivalent:@""];
+    }
 }
 
 - (IBAction)characterClicked:(id)sender

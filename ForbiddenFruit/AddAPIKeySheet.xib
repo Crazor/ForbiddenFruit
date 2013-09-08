@@ -13,6 +13,7 @@
                 <outlet property="messageField" destination="1ny-6s-AvU" id="mmq-Qj-dW9"/>
                 <outlet property="name" destination="L7e-vE-RSH" id="Zxe-PK-iHy"/>
                 <outlet property="portrait" destination="N9q-DV-FU1" id="Oml-Lw-GK1"/>
+                <outlet property="spinner" destination="3k0-YF-KRu" id="mI7-ft-ZcK"/>
                 <outlet property="vCode" destination="jwC-hw-fLh" id="j6j-dl-BH3"/>
             </connections>
         </customObject>
@@ -22,7 +23,7 @@
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="672" height="199"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2048" height="1130"/>
             <view key="contentView" id="e0n-CI-pHp">
                 <rect key="frame" x="0.0" y="0.0" width="672" height="199"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -52,12 +53,12 @@
                         </connections>
                     </textField>
                     <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N9q-DV-FU1">
-                        <rect key="frame" x="19" y="59" width="123" height="123"/>
+                        <rect key="frame" x="19" y="58" width="124" height="124"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" imageFrameStyle="grayBezel" image="NSUser" id="ZRp-de-edj"/>
                     </imageView>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2xa-zc-NvS">
-                        <rect key="frame" x="16" y="14" width="129" height="32"/>
+                        <rect key="frame" x="16" y="14" width="130" height="31"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Create API Key..." alternateTitle="Open a browser to create a new API key" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="c7u-3O-8qH">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -68,7 +69,7 @@
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ny-6s-AvU">
-                        <rect key="frame" x="145" y="61" width="511" height="16"/>
+                        <rect key="frame" x="181" y="61" width="475" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" truncatesLastVisibleLine="YES" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Please provide valid EVE API credentials" id="lFC-CI-nPB">
                             <font key="font" metaFont="cellTitle"/>
@@ -110,6 +111,10 @@ Gw
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="3k0-YF-KRu">
+                        <rect key="frame" x="159" y="61" width="16" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </progressIndicator>
                 </subviews>
             </view>
         </window>

@@ -16,6 +16,7 @@
 @property (weak) IBOutlet NSTextField *messageField;
 @property (weak) IBOutlet NSImageView *portrait;
 @property (weak) IBOutlet NSButton *addButton;
+@property (weak) IBOutlet NSProgressIndicator *spinner;
 
 @property (weak) IBOutlet NSTableView *tableView;
 @property (weak) IBOutlet NSButton *removeButton;

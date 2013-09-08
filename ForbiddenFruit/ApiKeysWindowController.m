@@ -54,10 +54,12 @@
 
 - (IBAction)addKey:(id)sender
 {
-    [_apiKeys addObject:@{DefaultKeyID: _keyID.stringValue, DefaultVCode: _vCode.stringValue}];
+    [_apiKeys addObject:@{DefaultAccountName: self.name.stringValue, DefaultKeyID: self.keyID.stringValue, DefaultVCode: self.vCode.stringValue}];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
     [_tableView reloadData];
                         
-    [NSApp endSheet:_addAPIKeySheet];
+    [NSApp endSheet:self.addAPIKeySheet];
     [[NSApp delegate] updateAPIKeys];
 }
 
@@ -78,6 +80,8 @@
     {
         [_apiKeys removeObjectAtIndex:_tableView.selectedRow];
         [_tableView reloadData];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [[NSApp delegate] updateAPIKeys];
     }
 }
 
@@ -124,19 +128,23 @@
 {
     EveAPI *api = [[EveAPI alloc] initWithName:_name.stringValue andKeyID:_keyID.stringValue andVCode:_vCode.stringValue];
     
-    if ([api credentialsAreValid])
-    {
-        _messageField.stringValue = @"Authentication verified.";
-        _addButton.enabled = YES;
-        _portrait.image = [api mainCharacter].portrait;
-    }
-    else
-    {
-        _messageField.stringValue = [NSString stringWithFormat:@"Error %@: %@", [api.response valueForKeyPath:@"error._code"], [api.response valueForKeyPath:@"error.__text"]];
-        _addButton.enabled = NO;
-    }
+    [self.spinner startAnimation:self];
     
-
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+    dispatch_async(queue, ^(void){
+        if ([api credentialsAreValid])
+        {
+            _messageField.stringValue = @"Authentication verified.";
+            _addButton.enabled = YES;
+            _portrait.image = [api mainCharacter].portrait;
+        }
+        else
+        {
+            _messageField.stringValue = [NSString stringWithFormat:@"Error %@: %@", [api.response valueForKeyPath:@"error._code"], [api.response valueForKeyPath:@"error.__text"]];
+            _addButton.enabled = NO;
+        }
+        [self.spinner stopAnimation:self];
+    });
 }
 
 - (void)controlTextDidChange:(NSNotification *)notification
