@@ -13,9 +13,11 @@
                 <outlet property="name" destination="15" id="83"/>
                 <outlet property="portrait" destination="3" id="82"/>
                 <outlet property="race" destination="28" id="85"/>
+                <outlet property="refreshButton" destination="GVQ-S9-40d" id="wfg-N7-9Jn"/>
                 <outlet property="securityStatus" destination="110" id="174"/>
                 <outlet property="skillPoints" destination="135" id="177"/>
                 <outlet property="skillpoints" destination="42" id="86"/>
+                <outlet property="spinner" destination="xoz-pn-h3q" id="Fgd-D9-FWb"/>
                 <outlet property="window" destination="1" id="GUi-Wd-qTy"/>
             </connections>
         </customObject>
@@ -162,6 +164,21 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GVQ-S9-40d">
+                        <rect key="frame" x="439" y="190" width="21" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="NSRefreshFreestandingTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="K0Q-y0-d9V">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="refresh:" target="-2" id="nbR-6W-5dq"/>
+                        </connections>
+                    </button>
+                    <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="xoz-pn-h3q">
+                        <rect key="frame" x="415" y="191" width="16" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </progressIndicator>
                 </subviews>
                 <constraints>
                     <constraint firstItem="3" firstAttribute="top" secondItem="2" secondAttribute="top" constant="20" symbolic="YES" id="14"/>
@@ -212,4 +229,7 @@
             </textFieldCell>
         </textField>
     </objects>
+    <resources>
+        <image name="NSRefreshFreestandingTemplate" width="14" height="14"/>
+    </resources>
 </document>

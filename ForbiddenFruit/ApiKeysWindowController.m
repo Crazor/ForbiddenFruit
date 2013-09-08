@@ -149,8 +149,7 @@
 
 - (void)controlTextDidChange:(NSNotification *)notification
 {
-    if ([_name.stringValue isNotEqualTo:@""]
-        && [_keyID.stringValue isNotEqualTo:@""]
+    if ([_keyID.stringValue isNotEqualTo:@""]
         && [_vCode.stringValue isNotEqualTo:@""])
     {
         [self verifyAuthentication];

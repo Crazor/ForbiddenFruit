@@ -20,18 +20,15 @@
     {
         _characterID = characterID;
         _api = api;
-        
-        [self apiRequest];
-        
-        //self.result = [self.response valueForKeyPath:@"result"];
+        [self refresh];
     }
 
     return self;
 }
 
-- (BOOL)apiRequest
+- (void)refresh
 {
-    return [self.api authenticatedApiRequestWithString:[NSString stringWithFormat:CharacterInfoAPIURL, _characterID]];
+    [self.api authenticatedApiRequestWithString:[NSString stringWithFormat:CharacterInfoAPIURL, _characterID]];
 }
 
 - (NSImage *)portrait

@@ -361,17 +361,17 @@
                             <menuItem isSeparatorItem="YES" id="92">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Account" keyEquivalent="1" id="537">
+                            <menuItem title="Account" enabled="NO" keyEquivalent="1" id="537">
                                 <connections>
                                     <action selector="showAccountWindow:" target="494" id="541"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Character" keyEquivalent="2" id="539">
+                            <menuItem title="Character" enabled="NO" keyEquivalent="2" id="539">
                                 <connections>
                                     <action selector="showCharacterWindow:" target="494" id="542"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Wallet" keyEquivalent="3" id="540">
+                            <menuItem title="Wallet" enabled="NO" keyEquivalent="3" id="540">
                                 <connections>
                                     <action selector="showWalletWindow:" target="494" id="543"/>
                                 </connections>

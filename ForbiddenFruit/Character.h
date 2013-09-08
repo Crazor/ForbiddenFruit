@@ -27,6 +27,6 @@
 @property (readonly) NSDate *nextTrainingEnds;
 
 - (id)initWithCharacterID:(NSNumber *)characterID andAPI:(EveAPI *)api;
-
+- (void)refresh;
 
 @end

@@ -22,6 +22,8 @@
 @property (weak) IBOutlet NSTextField *securityStatus;
 @property (weak) IBOutlet NSTextField *skillPoints;
 @property (weak) IBOutlet NSTextField *lastLocation;
+@property (weak) IBOutlet NSButton *refreshButton;
+@property (weak) IBOutlet NSProgressIndicator *spinner;
 
 - (id)initWithCharacter:(Character *)character;
 
