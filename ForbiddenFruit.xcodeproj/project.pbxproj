@@ -36,7 +36,6 @@
 		6E00AB3416FC85A90005A69B /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
 		6E00AB3616FCAA380005A69B /* EveAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EveAPI.h; sourceTree = "<group>"; };
 		6E00AB3716FCAA380005A69B /* EveAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EveAPI.m; sourceTree = "<group>"; };
-		6E00AB3916FCABAF0005A69B /* GCDSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDSingleton.h; sourceTree = "<group>"; };
 		6E00AB3A16FCB51A0005A69B /* DebugLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DebugLog.h; sourceTree = "<group>"; };
 		6E14F72F17D7B930007F08CD /* AddAPIKeySheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAPIKeySheet.xib; sourceTree = "<group>"; };
 		6E6E63431701D84E009A9EBE /* ApiKeysWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiKeysWindowController.h; sourceTree = "<group>"; };
@@ -151,7 +150,6 @@
 		6E79606916FB4D9300FBD65F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6E00AB3916FCABAF0005A69B /* GCDSingleton.h */,
 				6E79606A16FB4D9300FBD65F /* ForbiddenFruit-Info.plist */,
 				6E79606B16FB4D9300FBD65F /* InfoPlist.strings */,
 				6E79606E16FB4D9300FBD65F /* main.m */,
