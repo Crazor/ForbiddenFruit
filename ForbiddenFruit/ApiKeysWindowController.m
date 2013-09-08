@@ -1,10 +1,21 @@
-//
-//  ApiKeysWindowController.m
-//  ForbiddenFruit
-//
-//  Created by Crazor on 26.03.13.
-//  Copyright (c) 2013 Crazor. All rights reserved.
-//
+/*
+ * This file is part of ForbiddenFruit.
+ *
+ * Copyright 2013 Crazor <crazor@gmail.com>
+ *
+ * ForbiddenFruit is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ForbiddenFruit is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ForbiddenFruit.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #import "ApiKeysWindowController.h"
 #import "EveAPI.h"
@@ -32,6 +43,8 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
+    self.tableView.target = self;
+    self.tableView.doubleAction = @selector(editTableRow:);
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
@@ -50,6 +63,16 @@
     }
     
     [NSApp beginSheet:_addAPIKeySheet modalForWindow:_apiKeysWindow modalDelegate:self didEndSelector:@selector(didEndAddAPIKeySheet:returnCode:contextInfo:) contextInfo:nil];
+
+    if (self.tableView.clickedRow >= 0)
+    {
+        self.name.stringValue = self.apiKeys[self.tableView.clickedRow][DefaultAccountName];
+        self.keyID.stringValue = self.apiKeys[self.tableView.clickedRow][DefaultKeyID];
+        self.vCode.stringValue = self.apiKeys[self.tableView.clickedRow][DefaultVCode];
+        self.addButton.title = @"Update";
+        
+        [self verifyAuthentication];
+    }
 }
 
 - (IBAction)addKey:(id)sender
@@ -100,11 +123,18 @@
     return _apiKeys[row][tableColumn.identifier];
 }
 
+/*
 - (void)tableView:(NSTableView *)tableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
     NSMutableDictionary *dict = [_apiKeys[row] mutableCopy];
     dict[tableColumn.identifier] = anObject;
     _apiKeys[row] = dict;
+}
+ */
+
+- (void)editTableRow:(id)object
+{
+    [self showAddAPIKeySheet:self];
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification
