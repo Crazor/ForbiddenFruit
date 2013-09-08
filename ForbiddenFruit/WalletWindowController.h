@@ -14,6 +14,7 @@
 
 @property (weak) IBOutlet NSTableView *tableView;
 @property (weak) IBOutlet NSProgressIndicator *spinner;
+@property (weak) IBOutlet NSButton *refreshButton;
 
 - (id)initWithCharacter:(Character *)character;
 @end

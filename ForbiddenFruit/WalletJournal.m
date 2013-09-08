@@ -25,6 +25,11 @@
 
 - (BOOL)refresh
 {
+    if (self.fromID == nil)
+    {
+        _journal = [[NSMutableArray alloc] init];
+    }
+    
     [self.api authenticatedApiRequestWithString:[NSString stringWithFormat:WalletJournalAPIURL,
                                                  self.character.characterID, self.fromID]];
     
@@ -42,7 +47,15 @@
     
     _fromID = [self.journal lastObject][@"_refID"];
     
-    return ((NSArray *)self.api.result[@"rowset"][@"row"]).count > 0;
+    if (((NSArray *)self.api.result[@"rowset"][@"row"]).count > 0)
+    {
+        return YES;
+    }
+    else
+    {
+        _fromID = nil;
+        return NO;
+    }
 }
 
 @end

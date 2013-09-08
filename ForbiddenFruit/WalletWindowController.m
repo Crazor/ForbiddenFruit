@@ -33,11 +33,15 @@
     [super windowDidLoad];
     
     self.window.title = [NSString stringWithFormat:@"Wallet — %@", self.walletJournal.character.name];
+    [self refresh:self];
+}
 
+- (IBAction)refresh:(id)sender
+{
     [self.spinner startAnimation:self];
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
-    dispatch_async(queue, ^(void)
-    {
+    self.refreshButton.enabled = NO;
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul), ^{
         while ([self.walletJournal refresh])
         {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -45,7 +49,9 @@
             });
         }
         [self.spinner stopAnimation:self];
+        self.refreshButton.enabled = YES;
     });
+
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
