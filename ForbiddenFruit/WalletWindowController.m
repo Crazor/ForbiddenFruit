@@ -38,8 +38,12 @@
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
     dispatch_async(queue, ^(void)
     {
-        [self.walletJournal refresh];
-        [self.tableView reloadData];
+        while ([self.walletJournal refresh])
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        }
         [self.spinner stopAnimation:self];
     });
 }
