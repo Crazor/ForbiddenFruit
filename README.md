@@ -4,6 +4,10 @@ ForbiddenFruit wants to be the swiss army knive of Eve API tools on OS X.
 
 This is pretty much early work in progress. Help is appreciated!
 
+Screenshot
+==========
+![](http://i.imgur.com/Bu3Uwpw.png)
+
 Goals
 =====
 In a first phase, I'd like to implement as much of the EveAPI as possibly useful, writing simple features along the way to demonstrate what is implemented right now.
