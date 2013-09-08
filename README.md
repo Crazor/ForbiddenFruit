@@ -1,5 +1,7 @@
 ForbiddenFruit
 ==============
+ForbiddenFruit wants to be the swiss army knive of Eve API tools on OS X.
+
 This is pretty much early work in progress. Help is appreciated!
 
 Goals
