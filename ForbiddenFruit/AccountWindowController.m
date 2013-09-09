@@ -42,6 +42,8 @@
 {
     [super windowDidLoad];
     
+    self.window.title = [NSString stringWithFormat:@"Account — %@", self.account.name];
+    
     self.paidUntil.stringValue = [NSDateFormatter localizedStringFromDate:self.account.paidUntil dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
     self.creationDate.stringValue = [NSDateFormatter localizedStringFromDate:self.account.creationDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
     self.logonCount.intValue = self.account.logonCount.intValue;

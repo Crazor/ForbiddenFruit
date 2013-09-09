@@ -39,7 +39,7 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-
+    self.window.title = [NSString stringWithFormat:@"Character — %@", self.character.name];
     [self refresh:self];
 }
 
@@ -53,7 +53,6 @@
         
         self.portrait.image = self.character.portrait;
         self.name.stringValue = self.character.name;
-        self.window.title = self.character.name;
         
         if ([self.character.race isEqualToString:self.character.bloodline])
         {
