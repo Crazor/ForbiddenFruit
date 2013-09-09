@@ -21,14 +21,17 @@
 #import "EveAPI.h"
 #import "Character.h"
 #import "AppDelegate.h"
-
 #import "XMLDictionary.h"
+
 
 @interface ApiKeysWindowController ()
 
 @end
 
+
 @implementation ApiKeysWindowController
+
+#pragma mark - NSObject
 
 - (id)init
 {
@@ -40,9 +43,13 @@
     return self;
 }
 
+
+#pragma mark - NSWindowController
+
 - (void)windowDidLoad
 {
     [super windowDidLoad];
+    
     self.tableView.target = self;
     self.tableView.doubleAction = @selector(editTableRow:);
     
@@ -55,6 +62,9 @@
     }
     [_tableView reloadData];
 }
+
+
+#pragma mark - IBActions
 
 - (IBAction)showAddAPIKeySheet:(id)sender {
     if (!_addAPIKeySheet)
@@ -91,12 +101,6 @@
     [NSApp endSheet:_addAPIKeySheet];
 }
 
-- (void)didEndAddAPIKeySheet:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
-{
-    [_addAPIKeySheet orderOut:self];
-    _addAPIKeySheet = nil;
-}
-
 - (IBAction)removeKey:(id)sender
 {
     if (_tableView.selectedRow >= 0)
@@ -107,6 +111,23 @@
         [[NSApp delegate] updateAPIKeys];
     }
 }
+
+- (IBAction)openAPIWebsite:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://support.eveonline.com/api/Key/CreatePredefined/268435455"]];
+}
+
+
+#pragma mark - Sheet callback
+
+- (void)didEndAddAPIKeySheet:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+{
+    [_addAPIKeySheet orderOut:self];
+    _addAPIKeySheet = nil;
+}
+
+
+#pragma mark - NSTableViewDataSource
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {
@@ -122,15 +143,6 @@
 {
     return _apiKeys[row][tableColumn.identifier];
 }
-
-/*
-- (void)tableView:(NSTableView *)tableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
-{
-    NSMutableDictionary *dict = [_apiKeys[row] mutableCopy];
-    dict[tableColumn.identifier] = anObject;
-    _apiKeys[row] = dict;
-}
- */
 
 - (void)editTableRow:(id)object
 {
@@ -149,10 +161,25 @@
     }
 }
 
-- (IBAction)openAPIWebsite:(id)sender
+
+#pragma mark - NSTextFieldDelegate
+
+- (void)controlTextDidChange:(NSNotification *)notification
 {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://support.eveonline.com/api/Key/CreatePredefined/268435455"]];
+    if ([_keyID.stringValue isNotEqualTo:@""]
+        && [_vCode.stringValue isNotEqualTo:@""])
+    {
+        [self verifyAuthentication];
+    }
+    else
+    {
+        _messageField.stringValue = @"";
+        _portrait.image = [NSImage imageNamed:@"NSUser"];
+    }
 }
+
+
+#pragma mark - Authentication
 
 - (void)verifyAuthentication
 {
@@ -175,20 +202,6 @@
         }
         [self.spinner stopAnimation:self];
     });
-}
-
-- (void)controlTextDidChange:(NSNotification *)notification
-{
-    if ([_keyID.stringValue isNotEqualTo:@""]
-        && [_vCode.stringValue isNotEqualTo:@""])
-    {
-        [self verifyAuthentication];
-    }
-    else
-    {
-        _messageField.stringValue = @"";
-        _portrait.image = [NSImage imageNamed:@"NSUser"];
-    }
 }
 
 @end

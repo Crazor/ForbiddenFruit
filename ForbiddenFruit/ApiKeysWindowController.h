@@ -19,7 +19,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface ApiKeysWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
+@interface ApiKeysWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate, NSTextFieldDelegate>
 
 @property (weak) IBOutlet NSTextField *name;
 @property (weak) IBOutlet NSTextField *keyID;
