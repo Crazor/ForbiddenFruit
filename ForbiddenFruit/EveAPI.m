@@ -101,7 +101,7 @@ static NSMutableDictionary *accounts;
 - (BOOL)authenticatedApiRequestWithString:(NSString *)urlString
 {
     NSError *error;
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:urlString, _keyID, _vCode]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:urlString, self.keyID, self.vCode]];
     _response = [NSDictionary dictionaryWithXMLString:[NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error]];
 
     if (error)
@@ -110,13 +110,13 @@ static NSMutableDictionary *accounts;
         return false;
     }
     
-    if ([_response valueForKeyPath:@"error"] != nil)
+    if ([self.response valueForKeyPath:@"error"] != nil)
     {
-        log(@"API Error %@: %@", [_response valueForKeyPath:@"error._code"], [_response valueForKeyPath:@"error.__text"]);
+        log(@"API Error %@: %@", [self.response valueForKeyPath:@"error._code"], [self.response valueForKeyPath:@"error.__text"]);
         return false;
     }
 
-    _result = [_response valueForKeyPath:@"result"];
+    _result = [self.response valueForKeyPath:@"result"];
     
     return true;
 }
@@ -124,14 +124,14 @@ static NSMutableDictionary *accounts;
 - (BOOL)credentialsAreValid
 {
     [self authenticatedApiRequestWithString:CharacterAPIURL];
-    return [_response valueForKeyPath:@"error"] == nil;
+    return [self.response valueForKeyPath:@"error"] == nil;
 }
 
 - (NSNumber *)mainCharacterID
 {
     [self authenticatedApiRequestWithString:CharacterAPIURL];
 
-    NSDictionary *dict = (NSDictionary *)[[_response valueForKeyPath:@"result.rowset"] childNodes];
+    NSDictionary *dict = (NSDictionary *)[[self.response valueForKeyPath:@"result.rowset"] childNodes];
     return dict[@"row"][@"_characterID"];
 }
 

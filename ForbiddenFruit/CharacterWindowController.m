@@ -51,24 +51,24 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul), ^{
         [self.character refresh];
         
-        _portrait.image = _character.portrait;
-        _name.stringValue = _character.name;
-        self.window.title = _character.name;
+        self.portrait.image = self.character.portrait;
+        self.name.stringValue = self.character.name;
+        self.window.title = self.character.name;
         
-        if ([_character.race isEqualToString:_character.bloodline])
+        if ([self.character.race isEqualToString:self.character.bloodline])
         {
-            _race.stringValue = _character.race;
+            self.race.stringValue = self.character.race;
         }
         else
         {
-            _race.stringValue = [NSString stringWithFormat:@"%@ (%@)", _character.race, _character.bloodline];
+            self.race.stringValue = [NSString stringWithFormat:@"%@ (%@)", self.character.race, self.character.bloodline];
         }
         
-        _corporation.stringValue = _character.corporationName;
-        _corporationDate.stringValue = [NSDateFormatter localizedStringFromDate:_character.corporationDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
-        _securityStatus.floatValue = _character.securityStatus.floatValue;
-        _skillPoints.intValue = _character.skillPoints.intValue;
-        _lastLocation.stringValue = _character.lastLocation;
+        self.corporation.stringValue = self.character.corporationName;
+        self.corporationDate.stringValue = [NSDateFormatter localizedStringFromDate:self.character.corporationDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+        self.securityStatus.floatValue = self.character.securityStatus.floatValue;
+        self.skillPoints.intValue = self.character.skillPoints.intValue;
+        self.lastLocation.stringValue = self.character.lastLocation;
         
         self.refreshButton.enabled = YES;
         [self.spinner stopAnimation:self];

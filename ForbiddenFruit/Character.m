@@ -37,7 +37,7 @@
 
 - (void)refresh
 {
-    [self.api authenticatedApiRequestWithString:[NSString stringWithFormat:CharacterInfoAPIURL, _characterID]];
+    [self.api authenticatedApiRequestWithString:[NSString stringWithFormat:CharacterInfoAPIURL, self.characterID]];
 }
 
 - (NSImage *)portrait

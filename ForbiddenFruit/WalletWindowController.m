@@ -67,32 +67,32 @@
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {
-    return _walletJournal.journal.count;
+    return self.walletJournal.journal.count;
 }
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
     NSString *identifier = tableColumn.identifier;
     if ([identifier isEqualToString:@"_ownerName1"]
-        && [_walletJournal.journal[row][identifier] isEqualToString:self.walletJournal.character.name])
+        && [self.walletJournal.journal[row][identifier] isEqualToString:self.walletJournal.character.name])
     {
-        return _walletJournal.journal[row][@"_ownerName2"];
+        return self.walletJournal.journal[row][@"_ownerName2"];
     }
     if ([identifier isEqualToString:@"_ownerName2"]
-        && [_walletJournal.journal[row][identifier] isEqualToString:self.walletJournal.character.name])
+        && [self.walletJournal.journal[row][identifier] isEqualToString:self.walletJournal.character.name])
     {
-        return _walletJournal.journal[row][@"_ownerName1"];
+        return self.walletJournal.journal[row][@"_ownerName1"];
     }
     if ([identifier isEqualToString:@"_refType"])
     {
-        return [EveAPI refTypeFromID:_walletJournal.journal[row][@"_refTypeID"]];
+        return [EveAPI refTypeFromID:self.walletJournal.journal[row][@"_refTypeID"]];
     }
     if ([identifier isEqualToString:@"_reason"]
-        && [_walletJournal.journal[row][@"_refTypeID"] isEqualToString:@"85"]) // Bountys
+        && [self.walletJournal.journal[row][@"_refTypeID"] isEqualToString:@"85"]) // Bountys
     {
         return nil;
     }
-    return _walletJournal.journal[row][identifier];
+    return self.walletJournal.journal[row][identifier];
 }
 
 - (NSCell *)tableView:(NSTableView *)tableView dataCellForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {

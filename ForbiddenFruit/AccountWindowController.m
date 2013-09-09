@@ -32,7 +32,7 @@
 {
     self = [super initWithWindowNibName:@"AccountWindow"];
     if (self) {
-        _account = account;
+        self.account = account;
     }
     
     return self;
@@ -42,12 +42,12 @@
 {
     [super windowDidLoad];
     
-    _paidUntil.stringValue = [NSDateFormatter localizedStringFromDate:_account.paidUntil dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
-    _creationDate.stringValue = [NSDateFormatter localizedStringFromDate:_account.creationDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
-    _logonCount.intValue = _account.logonCount.intValue;
+    self.paidUntil.stringValue = [NSDateFormatter localizedStringFromDate:self.account.paidUntil dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+    self.creationDate.stringValue = [NSDateFormatter localizedStringFromDate:self.account.creationDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+    self.logonCount.intValue = self.account.logonCount.intValue;
 
-    int minutesPlayed = _account.logonMinutes.intValue;
-    _logonMinutes.stringValue = [NSString stringWithFormat:@"%dh %dm", minutesPlayed/60, minutesPlayed%60];
+    int minutesPlayed = self.account.logonMinutes.intValue;
+    self.logonMinutes.stringValue = [NSString stringWithFormat:@"%dh %dm", minutesPlayed/60, minutesPlayed%60];
 }
 
 @end

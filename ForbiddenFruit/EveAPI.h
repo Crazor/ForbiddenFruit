@@ -25,8 +25,8 @@
 @property (readonly) NSString *keyID;
 @property (readonly) NSString *vCode;
 
-@property NSDictionary *response;
-@property NSDictionary *result;
+@property (readonly) NSDictionary *response;
+@property (readonly) NSDictionary *result;
 
 + (NSString *)refTypeFromID:(NSString *)refTypeId;
 + (void)setAccounts:(NSMutableDictionary *)accounts;

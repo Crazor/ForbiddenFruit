@@ -38,14 +38,13 @@ static ApiKeysWindowController *apiKeysWindowController;
 {
     if (self = [super init])
     {
-        
+        _dockMenu = [[NSMenu alloc] init];
     }
     return self;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
-    _dockMenu = [[NSMenu alloc] init];
     [self updateAPIKeys];
 }
 
@@ -59,8 +58,8 @@ static ApiKeysWindowController *apiKeysWindowController;
         [self showSettingsWindow:self];
     }
 
-    [_characterMenu removeAllItems];
-    [_dockMenu removeAllItems];
+    [self.characterMenu removeAllItems];
+    [self.dockMenu removeAllItems];
 
     int i = 0;
     for (NSMutableDictionary *key in keys)
@@ -87,8 +86,8 @@ static ApiKeysWindowController *apiKeysWindowController;
             item.representedObject = a;
 
             NSMenuItem *item2 = [item copy];
-            [_characterMenu addItem:item];
-            [_dockMenu addItem:item2];
+            [self.characterMenu addItem:item];
+            [self.dockMenu addItem:item2];
 
 
             // Character Entries TODO
@@ -102,8 +101,8 @@ static ApiKeysWindowController *apiKeysWindowController;
             item.representedObject = c;
 
             item2 = [item copy];
-            [_characterMenu addItem:item];
-            [_dockMenu addItem:item2];
+            [self.characterMenu addItem:item];
+            [self.dockMenu addItem:item2];
 
             
             // Wallet Entry
@@ -116,17 +115,17 @@ static ApiKeysWindowController *apiKeysWindowController;
             item.representedObject = w;
 
             item2 = [item copy];
-            [_characterMenu addItem:item];
-            [_dockMenu addItem:item2];
+            [self.characterMenu addItem:item];
+            [self.dockMenu addItem:item2];
 
             // Seperator
-            [_characterMenu addItem:[NSMenuItem separatorItem]];
-            [_dockMenu addItem:[NSMenuItem separatorItem]];
+            [self.characterMenu addItem:[NSMenuItem separatorItem]];
+            [self.dockMenu addItem:[NSMenuItem separatorItem]];
         }
     }
 
     // Remove last seperator
-    if (_characterMenu.numberOfItems > 0)
+    if (self.characterMenu.numberOfItems > 0)
     {
         [self.characterMenu removeItemAtIndex:self.characterMenu.numberOfItems -1];
     }
@@ -152,7 +151,7 @@ static ApiKeysWindowController *apiKeysWindowController;
 
 - (NSMenu *)applicationDockMenu:(NSApplication *)sender
 {
-    return _dockMenu;
+    return self.dockMenu;
 }
 
 - (IBAction)showSettingsWindow:(id)sender {

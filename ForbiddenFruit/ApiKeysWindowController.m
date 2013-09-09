@@ -54,24 +54,24 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    _apiKeys = [defaults mutableArrayValueForKey:DefaultApiKeyArray];
-    if (_apiKeys.count == 0)
+    self.apiKeys = [defaults mutableArrayValueForKey:DefaultApiKeyArray];
+    if (self.apiKeys.count == 0)
     {
         [self showAddAPIKeySheet:self];
     }
-    [_tableView reloadData];
+    [self.tableView reloadData];
 }
 
 
 #pragma mark - IBActions
 
 - (IBAction)showAddAPIKeySheet:(id)sender {
-    if (!_addAPIKeySheet)
+    if (!self.addAPIKeySheet)
     {
         [NSBundle loadNibNamed:@"AddAPIKeySheet" owner:self];
     }
     
-    [NSApp beginSheet:_addAPIKeySheet modalForWindow:_apiKeysWindow modalDelegate:self didEndSelector:@selector(didEndAddAPIKeySheet:returnCode:contextInfo:) contextInfo:nil];
+    [NSApp beginSheet:self.addAPIKeySheet modalForWindow:self.apiKeysWindow modalDelegate:self didEndSelector:@selector(didEndAddAPIKeySheet:returnCode:contextInfo:) contextInfo:nil];
 
     if (self.tableView.clickedRow >= 0)
     {
@@ -86,10 +86,10 @@
 
 - (IBAction)addKey:(id)sender
 {
-    [_apiKeys addObject:@{DefaultAccountName: self.name.stringValue, DefaultKeyID: self.keyID.stringValue, DefaultVCode: self.vCode.stringValue}];
+    [self.apiKeys addObject:@{DefaultAccountName: self.name.stringValue, DefaultKeyID: self.keyID.stringValue, DefaultVCode: self.vCode.stringValue}];
     [[NSUserDefaults standardUserDefaults] synchronize];
 
-    [_tableView reloadData];
+    [self.tableView reloadData];
                         
     [NSApp endSheet:self.addAPIKeySheet];
     [[NSApp delegate] updateAPIKeys];
@@ -97,15 +97,15 @@
 
 - (IBAction)cancelAddKey:(id)sender
 {
-    [NSApp endSheet:_addAPIKeySheet];
+    [NSApp endSheet:self.addAPIKeySheet];
 }
 
 - (IBAction)removeKey:(id)sender
 {
-    if (_tableView.selectedRow >= 0)
+    if (self.tableView.selectedRow >= 0)
     {
-        [_apiKeys removeObjectAtIndex:_tableView.selectedRow];
-        [_tableView reloadData];
+        [self.apiKeys removeObjectAtIndex:self.tableView.selectedRow];
+        [self.tableView reloadData];
         [[NSUserDefaults standardUserDefaults] synchronize];
         [[NSApp delegate] updateAPIKeys];
     }
@@ -121,8 +121,8 @@
 
 - (void)didEndAddAPIKeySheet:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
-    [_addAPIKeySheet orderOut:self];
-    _addAPIKeySheet = nil;
+    [self.addAPIKeySheet orderOut:self];
+    self.addAPIKeySheet = nil;
 }
 
 
@@ -130,17 +130,17 @@
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {
-    if (!_apiKeys)
+    if (!self.apiKeys)
     {
         return 0;
     }
     
-    return _apiKeys.count;
+    return self.apiKeys.count;
 }
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
-    return _apiKeys[row][tableColumn.identifier];
+    return self.apiKeys[row][tableColumn.identifier];
 }
 
 - (void)editTableRow:(id)object
@@ -150,13 +150,13 @@
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification
 {
-    if (_tableView.selectedRow < 0)
+    if (self.tableView.selectedRow < 0)
     {
-        _removeButton.enabled = NO;
+        self.removeButton.enabled = NO;
     }
     else
     {
-        _removeButton.enabled = YES;
+        self.removeButton.enabled = YES;
     }
 }
 
@@ -165,15 +165,15 @@
 
 - (void)controlTextDidChange:(NSNotification *)notification
 {
-    if ([_keyID.stringValue isNotEqualTo:@""]
-        && [_vCode.stringValue isNotEqualTo:@""])
+    if ([self.keyID.stringValue isNotEqualTo:@""]
+        && [self.vCode.stringValue isNotEqualTo:@""])
     {
         [self verifyAuthentication];
     }
     else
     {
-        _messageField.stringValue = @"";
-        _portrait.image = [NSImage imageNamed:@"NSUser"];
+        self.messageField.stringValue = @"";
+        self.portrait.image = [NSImage imageNamed:@"NSUser"];
     }
 }
 
@@ -182,7 +182,7 @@
 
 - (void)verifyAuthentication
 {
-    EveAPI *api = [[EveAPI alloc] initWithName:_name.stringValue andKeyID:_keyID.stringValue andVCode:_vCode.stringValue];
+    EveAPI *api = [[EveAPI alloc] initWithName:self.name.stringValue andKeyID:self.keyID.stringValue andVCode:self.vCode.stringValue];
     
     [self.spinner startAnimation:self];
     
@@ -190,14 +190,14 @@
     dispatch_async(queue, ^(void){
         if ([api credentialsAreValid])
         {
-            _messageField.stringValue = @"Authentication verified.";
-            _addButton.enabled = YES;
-            _portrait.image = [api mainCharacter].portrait;
+            self.messageField.stringValue = @"Authentication verified.";
+            self.addButton.enabled = YES;
+            self.portrait.image = [api mainCharacter].portrait;
         }
         else
         {
-            _messageField.stringValue = [NSString stringWithFormat:@"Error %@: %@", [api.response valueForKeyPath:@"error._code"], [api.response valueForKeyPath:@"error.__text"]];
-            _addButton.enabled = NO;
+            self.messageField.stringValue = [NSString stringWithFormat:@"Error %@: %@", [api.response valueForKeyPath:@"error._code"], [api.response valueForKeyPath:@"error.__text"]];
+            self.addButton.enabled = NO;
         }
         [self.spinner stopAnimation:self];
     });

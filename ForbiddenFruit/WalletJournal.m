@@ -56,7 +56,7 @@
             return NSOrderedDescending;
     }];
     
-    _fromID = [self.journal lastObject][@"_refID"];
+    self.fromID = [self.journal lastObject][@"_refID"];
     
     if (((NSArray *)self.api.result[@"rowset"][@"row"]).count > 0)
     {
@@ -64,7 +64,7 @@
     }
     else
     {
-        _fromID = nil;
+        self.fromID = nil;
         return NO;
     }
 }

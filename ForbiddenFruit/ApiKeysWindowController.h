@@ -32,6 +32,6 @@
 @property (strong) IBOutlet NSWindow *apiKeysWindow;
 @property (strong) IBOutlet NSWindow *addAPIKeySheet;
 
-@property (readonly) NSMutableArray *apiKeys;
+@property NSMutableArray *apiKeys;
 
 @end
