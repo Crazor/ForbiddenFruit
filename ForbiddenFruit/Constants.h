@@ -27,3 +27,5 @@ FOUNDATION_EXPORT NSString *const CharacterAPIURL;
 FOUNDATION_EXPORT NSString *const CharacterInfoAPIURL;
 FOUNDATION_EXPORT NSString *const WalletJournalAPIURL;
 FOUNDATION_EXPORT NSString *const RefTypesAPIURL;
+
+FOUNDATION_EXPORT NSString *const MovedAPIKeyRowsType;

@@ -49,6 +49,8 @@
 {
     [super windowDidLoad];
     
+    [self.tableView registerForDraggedTypes:[NSArray arrayWithObject:MovedAPIKeyRowsType]];
+    
     self.tableView.target = self;
     self.tableView.doubleAction = @selector(editTableRow:);
     
@@ -148,6 +150,9 @@
     [self showAddAPIKeySheet:self];
 }
 
+
+#pragma mark - NSTableViewDelegate
+
 - (void)tableViewSelectionDidChange:(NSNotification *)notification
 {
     if (self.tableView.selectedRow < 0)
@@ -158,6 +163,57 @@
     {
         self.removeButton.enabled = YES;
     }
+}
+
+#pragma mark - NSTableViewDelegate - Drag'n'drop
+
+- (BOOL)tableView:(NSTableView *)tableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard
+{
+    NSData *d = [NSKeyedArchiver archivedDataWithRootObject:rowIndexes];
+	[pboard setData:d forType:MovedAPIKeyRowsType];
+    
+	return YES;
+}
+
+- (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id<NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation
+{
+    NSDragOperation d = NSDragOperationMove;
+    
+	[tableView setDropRow:row dropOperation:d];
+    
+	return d;
+}
+
+- (BOOL)tableView:(NSTableView *)tableView acceptDrop:(id<NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)dropOperation
+{
+    NSMutableIndexSet* rowIndexSet = [(NSIndexSet *)[NSKeyedUnarchiver unarchiveObjectWithData:[[info draggingPasteboard] dataForType:MovedAPIKeyRowsType]] mutableCopy];
+
+    
+	NSInteger index = 0;
+    
+	while ([rowIndexSet count] > 0) {
+		index = [rowIndexSet firstIndex];
+		[rowIndexSet removeIndex:index];
+        
+		NSArray *apiKey = [self.apiKeys objectAtIndex:index];
+        [self.apiKeys insertObject:apiKey atIndex:row];
+        
+		if(index > row) {
+            // Move row upwards
+            [self.apiKeys removeObjectAtIndex:index+1];
+		}
+        else
+        {
+            // Move row downwards
+            [self.apiKeys removeObjectAtIndex:index];
+		}
+	}
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [[NSApp delegate] updateAPIKeys];
+    });
+    
+	return YES;
 }
 
 
@@ -186,7 +242,7 @@
     
     [self.spinner startAnimation:self];
     
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
     dispatch_async(queue, ^(void){
         if ([api credentialsAreValid])
         {

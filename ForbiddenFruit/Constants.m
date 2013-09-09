@@ -29,3 +29,5 @@ NSString *const CharacterAPIURL = @"https://api.eveonline.com/account/Characters
 NSString *const CharacterInfoAPIURL = @"https://api.eveonline.com/eve/CharacterInfo.xml.aspx?keyID=%%@&vCode=%%@&characterID=%@";
 NSString *const WalletJournalAPIURL = @"https://api.eveonline.com/char/WalletJournal.xml.aspx?keyID=%%@&vCode=%%@&characterID=%@&fromID=%@";
 NSString *const RefTypesAPIURL = @"https://api.eveonline.com/eve/RefTypes.xml.aspx";
+
+NSString *const MovedAPIKeyRowsType = @"MovedAPIRowsType";
