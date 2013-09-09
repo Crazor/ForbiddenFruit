@@ -21,7 +21,6 @@
 #import "EveAPI.h"
 #import "Character.h"
 #import "AppDelegate.h"
-#import "XMLDictionary.h"
 
 
 @interface ApiKeysWindowController ()

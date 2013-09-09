@@ -17,8 +17,8 @@
  * along with ForbiddenFruit.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "EveAPI.h"
 #import "XMLDictionary.h"
+#import "EveAPI.h"
 #import "Character.h"
 
 @implementation EveAPI

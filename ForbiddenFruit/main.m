@@ -17,8 +17,6 @@
  * along with ForbiddenFruit.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Cocoa/Cocoa.h>
-
 int main(int argc, char *argv[])
 {
     return NSApplicationMain(argc, (const char **)argv);

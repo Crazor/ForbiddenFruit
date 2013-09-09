@@ -111,7 +111,7 @@ static ApiKeysWindowController *apiKeysWindowController;
             item = [[NSMenuItem alloc] initWithTitle:@"Wallet"
                                               action:@selector(showWindow:)
                                        keyEquivalent:@""];
-            item.indentationLevel = 2;
+            item.indentationLevel = 1;
             item.target = w;
             item.representedObject = w;
 

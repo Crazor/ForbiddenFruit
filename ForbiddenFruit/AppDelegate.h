@@ -17,8 +17,6 @@
  * along with ForbiddenFruit.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Cocoa/Cocoa.h>
-
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property NSMenu *dockMenu;

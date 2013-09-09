@@ -17,8 +17,6 @@
  * along with ForbiddenFruit.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
-
 @interface NSDate (EveDate)
 
 + (NSDate *)dateWithEveDate:(NSString *)eveDate;
