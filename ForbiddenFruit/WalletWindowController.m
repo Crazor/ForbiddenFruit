@@ -62,7 +62,6 @@
         [self.spinner stopAnimation:self];
         self.refreshButton.enabled = YES;
     });
-
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
@@ -73,25 +72,34 @@
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
     NSString *identifier = tableColumn.identifier;
+    
+    // Hide your own name from the transaction by returning the other owner column
     if ([identifier isEqualToString:@"_ownerName1"]
         && [self.walletJournal.journal[row][identifier] isEqualToString:self.walletJournal.character.name])
     {
         return self.walletJournal.journal[row][@"_ownerName2"];
     }
+    // Not necessary, but will put your name in the _ownerName2 column if it were currently used
     if ([identifier isEqualToString:@"_ownerName2"]
         && [self.walletJournal.journal[row][identifier] isEqualToString:self.walletJournal.character.name])
     {
         return self.walletJournal.journal[row][@"_ownerName1"];
     }
+    
+    // Resolve refTypes
     if ([identifier isEqualToString:@"_refType"])
     {
         return [EveAPI refTypeFromID:self.walletJournal.journal[row][@"_refTypeID"]];
     }
+    
+    // Hide reason code for bountys
     if ([identifier isEqualToString:@"_reason"]
-        && [self.walletJournal.journal[row][@"_refTypeID"] isEqualToString:@"85"]) // Bountys
+        && [self.walletJournal.journal[row][@"_refTypeID"] isEqualToString:@"85"])
     {
         return nil;
     }
+    
+    // Everything else
     return self.walletJournal.journal[row][identifier];
 }
 
@@ -99,6 +107,7 @@
     NSTextFieldCell *cell = [tableColumn dataCell];
     NSString *identifier = tableColumn.identifier;
 
+    // Colorize amounts red or green
     if([identifier isEqualToString:@"_amount"])
     {
        if ([self.walletJournal.journal[row][@"_amount"] intValue] < 0)
