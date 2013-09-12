@@ -118,7 +118,7 @@ static NSMutableDictionary *accounts;
 
     _result = [self.response valueForKeyPath:@"result"];
     _cachedUntil = [NSDate dateWithEveDate:[_response valueForKeyPath:@"cachedUntil"]];
-    _lastRefresh = [NSDate date];
+    _lastRefresh = [NSDate dateWithEveDate:[_response valueForKeyPath:@"currentTime"]];
     
     return true;
 }
