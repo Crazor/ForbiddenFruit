@@ -28,5 +28,6 @@
 @property (readonly) NSNumber *logonMinutes;
 
 - (id)initWithName:(NSString *)name andAPI:(EveAPI *)api;
+- (void)refresh;
 
 @end

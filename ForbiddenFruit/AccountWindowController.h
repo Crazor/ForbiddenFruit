@@ -25,6 +25,8 @@
 @property (weak) IBOutlet NSTextField *creationDate;
 @property (weak) IBOutlet NSTextField *logonCount;
 @property (weak) IBOutlet NSTextField *logonMinutes;
+@property (weak) IBOutlet NSButton *refreshButton;
+@property (weak) IBOutlet NSProgressIndicator *spinner;
 
 - (id)initWithAccount:(Account *)account;
 

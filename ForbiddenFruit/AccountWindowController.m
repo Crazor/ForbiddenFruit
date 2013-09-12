@@ -42,14 +42,29 @@
 {
     [super windowDidLoad];
     
-    self.window.title = [NSString stringWithFormat:@"Account — %@", self.account.name];
-    
-    self.paidUntil.stringValue = [NSDateFormatter localizedStringFromDate:self.account.paidUntil dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
-    self.creationDate.stringValue = [NSDateFormatter localizedStringFromDate:self.account.creationDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
-    self.logonCount.intValue = self.account.logonCount.intValue;
+    [self refresh:self];
+}
 
-    int minutesPlayed = self.account.logonMinutes.intValue;
-    self.logonMinutes.stringValue = [NSString stringWithFormat:@"%dh %dm", minutesPlayed/60, minutesPlayed%60];
+- (IBAction)refresh:(id)sender
+{
+    self.refreshButton.enabled = NO;
+    [self.spinner startAnimation:self];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [self.account refresh];
+        
+        self.window.title = [NSString stringWithFormat:@"Account — %@", self.account.name];
+        
+        self.paidUntil.stringValue = [NSDateFormatter localizedStringFromDate:self.account.paidUntil dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+        self.creationDate.stringValue = [NSDateFormatter localizedStringFromDate:self.account.creationDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+        self.logonCount.intValue = self.account.logonCount.intValue;
+        
+        int minutesPlayed = self.account.logonMinutes.intValue;
+        self.logonMinutes.stringValue = [NSString stringWithFormat:@"%dh %dm", minutesPlayed/60, minutesPlayed%60];
+        
+        self.refreshButton.enabled = YES;
+        [self.spinner stopAnimation:self];
+    });
 }
 
 @end

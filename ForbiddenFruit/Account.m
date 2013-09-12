@@ -34,14 +34,14 @@
         _name = name;
         _api = api;
         
-        [self apiRequest];
+        [self refresh];
     }
     return self;
 }
 
-- (BOOL)apiRequest
+- (void)refresh
 {
-    return [self.api authenticatedApiRequestWithString:AccountAPIURL];
+    [self.api authenticatedApiRequestWithString:AccountAPIURL];
 }
 
 - (NSDate *)paidUntil
