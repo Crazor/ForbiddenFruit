@@ -21,8 +21,6 @@
 
 @interface Account ()
 
-@property EveAPI *api;
-
 @end
 
 @implementation Account

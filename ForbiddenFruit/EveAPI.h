@@ -28,6 +28,9 @@
 @property (readonly) NSDictionary *response;
 @property (readonly) NSDictionary *result;
 
+@property (readonly) NSDate *cachedUntil;
+@property (readonly) NSDate *lastRefresh;
+
 + (NSString *)refTypeFromID:(NSString *)refTypeId;
 + (void)setAccounts:(NSMutableDictionary *)accounts;
 + (NSMutableDictionary *)accounts;

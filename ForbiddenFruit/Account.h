@@ -21,6 +21,7 @@
 
 @interface Account : NSObject
 
+@property EveAPI *api;
 @property (readonly) NSString *name;
 @property (readonly) NSDate *paidUntil;
 @property (readonly) NSDate *creationDate;

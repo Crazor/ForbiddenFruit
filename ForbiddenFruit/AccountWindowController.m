@@ -62,8 +62,15 @@
         int minutesPlayed = self.account.logonMinutes.intValue;
         self.logonMinutes.stringValue = [NSString stringWithFormat:@"%dh %dm", minutesPlayed/60, minutesPlayed%60];
         
-        self.refreshButton.enabled = YES;
         [self.spinner stopAnimation:self];
+        
+        self.refreshButton.toolTip = [NSString stringWithFormat:@"Last refreshed at %@\nCached until %@", [NSDateFormatter localizedStringFromDate:self.account.api.lastRefresh dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle], [NSDateFormatter localizedStringFromDate:self.account.api.cachedUntil dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle]];
+        int64_t delta = (int64_t)(1.0e9 * self.account.api.cachedUntil.timeIntervalSinceNow);
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delta), dispatch_get_main_queue(), ^{
+            self.refreshButton.enabled = YES;
+            self.refreshButton.toolTip = [NSString stringWithFormat:@"Last refresh at %@", [NSDateFormatter localizedStringFromDate:self.account.api.lastRefresh dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle]];
+        });
     });
 }
 
