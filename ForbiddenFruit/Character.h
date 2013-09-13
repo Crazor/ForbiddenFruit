@@ -17,11 +17,13 @@
  * along with ForbiddenFruit.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "EveAPI.h"
+@class EveAPI;
+@class Balance;
 
 @interface Character : NSObject
 
 @property (readonly) EveAPI *api;
+@property (readonly) Balance *balance;
 
 @property (readonly) NSNumber *characterID;
 @property (readonly) NSImage *portrait;

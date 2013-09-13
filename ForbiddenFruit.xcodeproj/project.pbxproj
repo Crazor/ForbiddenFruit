@@ -10,6 +10,7 @@
 		6E00AB3516FC85A90005A69B /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E00AB3416FC85A90005A69B /* XMLDictionary.m */; };
 		6E00AB3816FCAA380005A69B /* EveAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E00AB3716FCAA380005A69B /* EveAPI.m */; };
 		6E14F73017D7B930007F08CD /* AddAPIKeySheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E14F72F17D7B930007F08CD /* AddAPIKeySheet.xib */; };
+		6E517BEA17E24942001A563F /* Balance.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E517BE917E24942001A563F /* Balance.m */; };
 		6E6E63461701D84E009A9EBE /* ApiKeysWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6E63441701D84E009A9EBE /* ApiKeysWindowController.m */; };
 		6E6E63471701D84E009A9EBE /* ApiKeysWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E6E63451701D84E009A9EBE /* ApiKeysWindow.xib */; };
 		6E79606316FB4D9300FBD65F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E79606216FB4D9300FBD65F /* Cocoa.framework */; };
@@ -38,6 +39,8 @@
 		6E00AB3716FCAA380005A69B /* EveAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EveAPI.m; sourceTree = "<group>"; };
 		6E00AB3A16FCB51A0005A69B /* DebugLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DebugLog.h; sourceTree = "<group>"; };
 		6E14F72F17D7B930007F08CD /* AddAPIKeySheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAPIKeySheet.xib; sourceTree = "<group>"; };
+		6E517BE817E24942001A563F /* Balance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Balance.h; sourceTree = "<group>"; };
+		6E517BE917E24942001A563F /* Balance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Balance.m; sourceTree = "<group>"; };
 		6E6E63431701D84E009A9EBE /* ApiKeysWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiKeysWindowController.h; sourceTree = "<group>"; };
 		6E6E63441701D84E009A9EBE /* ApiKeysWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiKeysWindowController.m; sourceTree = "<group>"; };
 		6E6E63451701D84E009A9EBE /* ApiKeysWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApiKeysWindow.xib; sourceTree = "<group>"; };
@@ -201,6 +204,8 @@
 				6EED719E16FDB51D001F2419 /* Account.m */,
 				6EA92ABB16FCD39400798916 /* Character.h */,
 				6EA92ABC16FCD39400798916 /* Character.m */,
+				6E517BE817E24942001A563F /* Balance.h */,
+				6E517BE917E24942001A563F /* Balance.m */,
 				6EED71A816FE096B001F2419 /* WalletJournal.h */,
 				6EED71A916FE096B001F2419 /* WalletJournal.m */,
 			);
@@ -286,6 +291,7 @@
 				6EED719916FDB494001F2419 /* AccountWindowController.m in Sources */,
 				6EED719F16FDB51D001F2419 /* Account.m in Sources */,
 				6EED71A216FDC174001F2419 /* NSDate+EveDate.m in Sources */,
+				6E517BEA17E24942001A563F /* Balance.m in Sources */,
 				6EED71A616FE08F5001F2419 /* WalletWindowController.m in Sources */,
 				6EED71AA16FE096B001F2419 /* WalletJournal.m in Sources */,
 				6E6E63461701D84E009A9EBE /* ApiKeysWindowController.m in Sources */,

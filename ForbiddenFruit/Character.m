@@ -18,6 +18,8 @@
  */
 
 #import "Character.h"
+#import "EveAPI.h"
+#import "Balance.h"
 
 @implementation Character
 
@@ -28,7 +30,8 @@
     if (self)
     {
         _characterID = characterID;
-        _api = api;
+        _api = [api copy];
+        _balance = [[Balance alloc] initWithCharacter:self];
         [self refresh];
     }
 

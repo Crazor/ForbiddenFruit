@@ -18,8 +18,10 @@
  */
 
 #import "WalletWindowController.h"
+#import "EveAPI.h"
 #import "WalletJournal.h"
 #import "Character.h"
+#import "Balance.h"
 
 @interface WalletWindowController ()
 
@@ -53,6 +55,8 @@
     self.refreshButton.enabled = NO;
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul), ^{
+        self.balance.stringValue = [NSString stringWithFormat:@"%@ ISK", self.walletJournal.character.balance.balance];
+        
         while ([self.walletJournal refresh])
         {
             dispatch_async(dispatch_get_main_queue(), ^{
