@@ -23,7 +23,7 @@
 
 @implementation Character
 
-- (id)initWithCharacterID:(NSNumber *)characterID andAPI:(EveAPI *)api
+- (id)initWithCharacterID:(NSString *)characterID andAPI:(EveAPI *)api
 {
     self = [super init];
 

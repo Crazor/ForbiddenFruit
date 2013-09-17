@@ -25,6 +25,7 @@
 
 @property (weak) IBOutlet NSImageView *portrait;
 @property (weak) IBOutlet NSTextField *name;
+@property (weak) IBOutlet NSTextField *characterID;
 @property (weak) IBOutlet NSTextField *corporation;
 @property (weak) IBOutlet NSTextField *corporationDate;
 @property (weak) IBOutlet NSTextField *race;

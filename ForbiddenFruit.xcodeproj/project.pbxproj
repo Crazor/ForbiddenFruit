@@ -10,6 +10,9 @@
 		6E00AB3516FC85A90005A69B /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E00AB3416FC85A90005A69B /* XMLDictionary.m */; };
 		6E00AB3816FCAA380005A69B /* EveAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E00AB3716FCAA380005A69B /* EveAPI.m */; };
 		6E14F73017D7B930007F08CD /* AddAPIKeySheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E14F72F17D7B930007F08CD /* AddAPIKeySheet.xib */; };
+		6E3E625817E895EC009343F3 /* MarketOrdersWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3E625617E895EC009343F3 /* MarketOrdersWindowController.m */; };
+		6E3E625917E895EC009343F3 /* MarketOrdersWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E3E625717E895EC009343F3 /* MarketOrdersWindow.xib */; };
+		6E4C6B0017E754DF00C9F79C /* MarketOrders.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4C6AFF17E754DF00C9F79C /* MarketOrders.m */; };
 		6E517BEA17E24942001A563F /* Balance.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E517BE917E24942001A563F /* Balance.m */; };
 		6E6E63461701D84E009A9EBE /* ApiKeysWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6E63441701D84E009A9EBE /* ApiKeysWindowController.m */; };
 		6E6E63471701D84E009A9EBE /* ApiKeysWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E6E63451701D84E009A9EBE /* ApiKeysWindow.xib */; };
@@ -39,6 +42,11 @@
 		6E00AB3716FCAA380005A69B /* EveAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EveAPI.m; sourceTree = "<group>"; };
 		6E00AB3A16FCB51A0005A69B /* DebugLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DebugLog.h; sourceTree = "<group>"; };
 		6E14F72F17D7B930007F08CD /* AddAPIKeySheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAPIKeySheet.xib; sourceTree = "<group>"; };
+		6E3E625517E895EC009343F3 /* MarketOrdersWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketOrdersWindowController.h; sourceTree = "<group>"; };
+		6E3E625617E895EC009343F3 /* MarketOrdersWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketOrdersWindowController.m; sourceTree = "<group>"; };
+		6E3E625717E895EC009343F3 /* MarketOrdersWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MarketOrdersWindow.xib; sourceTree = "<group>"; };
+		6E4C6AFE17E754DF00C9F79C /* MarketOrders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketOrders.h; sourceTree = "<group>"; };
+		6E4C6AFF17E754DF00C9F79C /* MarketOrders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketOrders.m; sourceTree = "<group>"; };
 		6E517BE817E24942001A563F /* Balance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Balance.h; sourceTree = "<group>"; };
 		6E517BE917E24942001A563F /* Balance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Balance.m; sourceTree = "<group>"; };
 		6E6E63431701D84E009A9EBE /* ApiKeysWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiKeysWindowController.h; sourceTree = "<group>"; };
@@ -169,10 +177,11 @@
 			isa = PBXGroup;
 			children = (
 				6EED719816FDB494001F2419 /* AccountWindow.xib */,
-				6ECB06D016FCB7EF00829CBB /* CharacterWindow.xib */,
-				6E79607716FB4D9300FBD65F /* MainMenu.xib */,
 				6E14F72F17D7B930007F08CD /* AddAPIKeySheet.xib */,
 				6E6E63451701D84E009A9EBE /* ApiKeysWindow.xib */,
+				6ECB06D016FCB7EF00829CBB /* CharacterWindow.xib */,
+				6E79607716FB4D9300FBD65F /* MainMenu.xib */,
+				6E3E625717E895EC009343F3 /* MarketOrdersWindow.xib */,
 				6EED71A516FE08F5001F2419 /* WalletWindow.xib */,
 			);
 			name = XIBs;
@@ -189,6 +198,8 @@
 				6ECB06D316FCB9C800829CBB /* CharacterWindowController.m */,
 				6EED71A316FE08F5001F2419 /* WalletWindowController.h */,
 				6EED71A416FE08F5001F2419 /* WalletWindowController.m */,
+				6E3E625517E895EC009343F3 /* MarketOrdersWindowController.h */,
+				6E3E625617E895EC009343F3 /* MarketOrdersWindowController.m */,
 			);
 			name = "Window Controllers";
 			sourceTree = "<group>";
@@ -196,16 +207,18 @@
 		6EED719C16FDB4F5001F2419 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				6EED719D16FDB51D001F2419 /* Account.h */,
+				6EED719E16FDB51D001F2419 /* Account.m */,
+				6E517BE817E24942001A563F /* Balance.h */,
+				6E517BE917E24942001A563F /* Balance.m */,
+				6EA92ABB16FCD39400798916 /* Character.h */,
+				6EA92ABC16FCD39400798916 /* Character.m */,
 				6E79608416FC7E0300FBD65F /* Constants.h */,
 				6E79608516FC7E0300FBD65F /* Constants.m */,
 				6E00AB3616FCAA380005A69B /* EveAPI.h */,
 				6E00AB3716FCAA380005A69B /* EveAPI.m */,
-				6EED719D16FDB51D001F2419 /* Account.h */,
-				6EED719E16FDB51D001F2419 /* Account.m */,
-				6EA92ABB16FCD39400798916 /* Character.h */,
-				6EA92ABC16FCD39400798916 /* Character.m */,
-				6E517BE817E24942001A563F /* Balance.h */,
-				6E517BE917E24942001A563F /* Balance.m */,
+				6E4C6AFE17E754DF00C9F79C /* MarketOrders.h */,
+				6E4C6AFF17E754DF00C9F79C /* MarketOrders.m */,
 				6EED71A816FE096B001F2419 /* WalletJournal.h */,
 				6EED71A916FE096B001F2419 /* WalletJournal.m */,
 			);
@@ -263,6 +276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E3E625917E895EC009343F3 /* MarketOrdersWindow.xib in Resources */,
 				6E14F73017D7B930007F08CD /* AddAPIKeySheet.xib in Resources */,
 				6E79606D16FB4D9300FBD65F /* InfoPlist.strings in Resources */,
 				6E79607316FB4D9300FBD65F /* Credits.rtf in Resources */,
@@ -289,9 +303,11 @@
 				6ECB06D416FCB9C800829CBB /* CharacterWindowController.m in Sources */,
 				6EA92ABD16FCD39400798916 /* Character.m in Sources */,
 				6EED719916FDB494001F2419 /* AccountWindowController.m in Sources */,
+				6E3E625817E895EC009343F3 /* MarketOrdersWindowController.m in Sources */,
 				6EED719F16FDB51D001F2419 /* Account.m in Sources */,
 				6EED71A216FDC174001F2419 /* NSDate+EveDate.m in Sources */,
 				6E517BEA17E24942001A563F /* Balance.m in Sources */,
+				6E4C6B0017E754DF00C9F79C /* MarketOrders.m in Sources */,
 				6EED71A616FE08F5001F2419 /* WalletWindowController.m in Sources */,
 				6EED71AA16FE096B001F2419 /* WalletJournal.m in Sources */,
 				6E6E63461701D84E009A9EBE /* ApiKeysWindowController.m in Sources */,

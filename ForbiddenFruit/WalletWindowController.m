@@ -127,6 +127,8 @@
     {
         [cell setTextColor: [NSColor blackColor]];
     }
+    
+    //tableColumn.minWidth = MAX(tableColumn.minWidth, cell.cellSize.width);
 
     return cell;
 }

@@ -17,14 +17,15 @@
  * along with ForbiddenFruit.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <Cocoa/Cocoa.h>
+
 @class Character;
 
-@interface WalletWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
+@interface MarketOrdersWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
 
-@property (weak) IBOutlet NSTextField *balance;
-@property (weak) IBOutlet NSTableView *tableView;
 @property (weak) IBOutlet NSProgressIndicator *spinner;
 @property (weak) IBOutlet NSButton *refreshButton;
+@property (weak) IBOutlet NSTableView *tableView;
 
 - (id)initWithCharacter:(Character *)character;
 

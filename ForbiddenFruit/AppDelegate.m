@@ -26,6 +26,8 @@
 #import "Character.h"
 #import "Account.h"
 #import "WalletJournal.h"
+#import "MarketOrdersWindowController.h"
+#import "MarketOrders.h"
 
 static CharacterWindowController *characterWindowController;
 static AccountWindowController *accountWindowController;
@@ -114,6 +116,19 @@ static ApiKeysWindowController *apiKeysWindowController;
             item.target = w;
             item.representedObject = w;
 
+            item2 = [item copy];
+            [self.characterMenu addItem:item];
+            [self.dockMenu addItem:item2];
+            
+            // Market Orders Entry
+            MarketOrdersWindowController *m = [[MarketOrdersWindowController alloc] initWithCharacter:api.mainCharacter];
+            item = [[NSMenuItem alloc] initWithTitle:@"Market Orders"
+                                              action:@selector(showWindow:)
+                                       keyEquivalent:@""];
+            item.indentationLevel = 1;
+            item.target = m;
+            item.representedObject = m;
+            
             item2 = [item copy];
             [self.characterMenu addItem:item];
             [self.dockMenu addItem:item2];

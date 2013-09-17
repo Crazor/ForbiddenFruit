@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1080</int>
-		<string key="IBDocument.SystemVersion">13A569</string>
+		<string key="IBDocument.SystemVersion">13A584</string>
 		<string key="IBDocument.InterfaceBuilderVersion">4510</string>
-		<string key="IBDocument.AppKitVersion">1251</string>
-		<string key="IBDocument.HIToolboxVersion">694.00</string>
+		<string key="IBDocument.AppKitVersion">1262</string>
+		<string key="IBDocument.HIToolboxVersion">695.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			<string key="NS.object.0">4510</string>
@@ -53,7 +53,7 @@
 				<nil key="NSViewClass"/>
 				<nil key="NSUserInterfaceItemIdentifier"/>
 				<object class="NSView" key="NSWindowView" id="509967205">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">1280</int>
 					<array class="NSMutableArray" key="NSSubviews">
 						<object class="NSScrollView" id="282388920">
@@ -71,7 +71,7 @@
 											<object class="NSPSMatrix" key="NSFrameMatrix"/>
 											<string key="NSFrameSize">{873, 551}</string>
 											<reference key="NSSuperview" ref="745049458"/>
-											<reference key="NSNextKeyView" ref="920682319"/>
+											<reference key="NSNextKeyView" ref="116555622"/>
 											<bool key="NSEnabled">YES</bool>
 											<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 											<bool key="NSControlAllowsExpansionToolTips">YES</bool>
@@ -305,10 +305,11 @@
 												</object>
 											</object>
 											<double key="NSRowHeight">17</double>
-											<int key="NSTvFlags">-740294656</int>
+											<int key="NSTvFlags">-203423744</int>
 											<reference key="NSDelegate"/>
 											<reference key="NSDataSource"/>
 											<string key="NSAutosaveName">walletTable</string>
+											<int key="NSGridStyleMask">1</int>
 											<int key="NSColumnAutoresizingStyle">4</int>
 											<int key="NSDraggingSourceMaskForLocal">-1</int>
 											<int key="NSDraggingSourceMaskForNonLocal">0</int>
@@ -343,7 +344,6 @@
 									<object class="NSPSMatrix" key="NSFrameMatrix"/>
 									<string key="NSFrame">{{1, 552}, {873, 16}}</string>
 									<reference key="NSSuperview" ref="282388920"/>
-									<reference key="NSNextKeyView"/>
 									<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 									<int key="NSsFlags">1</int>
 									<reference key="NSTarget" ref="282388920"/>
@@ -365,7 +365,7 @@
 							<object class="NSPSMatrix" key="NSFrameMatrix"/>
 							<string key="NSFrame">{{20, 20}, {875, 569}}</string>
 							<reference key="NSSuperview" ref="509967205"/>
-							<reference key="NSNextKeyView" ref="116555622"/>
+							<reference key="NSNextKeyView" ref="745049458"/>
 							<int key="NSsFlags">133682</int>
 							<reference key="NSVScroller" ref="920682319"/>
 							<reference key="NSHScroller" ref="38572086"/>
@@ -468,7 +468,6 @@
 					</array>
 					<object class="NSPSMatrix" key="NSFrameMatrix"/>
 					<string key="NSFrameSize">{915, 618}</string>
-					<reference key="NSSuperview"/>
 					<reference key="NSNextKeyView" ref="42993871"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {2048, 1130}}</string>

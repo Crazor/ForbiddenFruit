@@ -129,7 +129,7 @@ static NSMutableDictionary *accounts;
     return [self.response valueForKeyPath:@"error"] == nil;
 }
 
-- (NSNumber *)mainCharacterID
+- (NSString *)mainCharacterID
 {
     [self authenticatedApiRequestWithString:CharacterAPIURL];
 

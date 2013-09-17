@@ -26,10 +26,11 @@ NSString *const DefaultVCode = @"vCode";
 
 NSString *const AccountAPIURL = @"https://api.eveonline.com/account/AccountStatus.xml.aspx?keyID=%@&vCode=%@";
 NSString *const AccountBalanceAPIURL = @"https://api.eveonline.com/char/AccountBalance.xml.aspx?keyID=%%@&vCode=%%@&characterID=%@";
-
 NSString *const CharacterAPIURL = @"https://api.eveonline.com/account/Characters.xml.aspx?keyID=%@&vCode=%@";
 NSString *const CharacterInfoAPIURL = @"https://api.eveonline.com/eve/CharacterInfo.xml.aspx?keyID=%%@&vCode=%%@&characterID=%@";
-NSString *const WalletJournalAPIURL = @"https://api.eveonline.com/char/WalletJournal.xml.aspx?keyID=%%@&vCode=%%@&characterID=%@&fromID=%@";
+NSString *const MarketOrdersAPIURL = @"https://api.eveonline.com/char/MarketOrders.xml.aspx?keyID=%%@&vCode=%%@&characterID=%@";
 NSString *const RefTypesAPIURL = @"https://api.eveonline.com/eve/RefTypes.xml.aspx";
+NSString *const WalletJournalAPIURL = @"https://api.eveonline.com/char/WalletJournal.xml.aspx?keyID=%%@&vCode=%%@&characterID=%@&fromID=%@";
+
 
 NSString *const MovedAPIKeyRowsType = @"MovedAPIRowsType";

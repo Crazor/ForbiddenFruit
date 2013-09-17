@@ -18,31 +18,15 @@
  */
 
 @class Character;
+@class EveAPI;
 
-@interface EveAPI : NSObject
+@interface MarketOrders : NSObject
 
-@property (readonly) NSString *name;
-@property (readonly) NSString *keyID;
-@property (readonly) NSString *vCode;
+@property (readonly) Character *character;
+@property (readonly) EveAPI *api;
+@property (readonly) NSArray *orders;
 
-@property (readonly) NSDictionary *response;
-@property (readonly) NSDictionary *result;
-
-@property (readonly) NSDate *cachedUntil;
-@property (readonly) NSDate *lastRefresh;
-
-+ (NSString *)refTypeFromID:(NSString *)refTypeId;
-+ (void)setAccounts:(NSMutableDictionary *)accounts;
-+ (NSMutableDictionary *)accounts;
-
-+ (EveAPI *)apiForKeyID:(NSString *)keyID;
-
-- (id)initWithName:(NSString *)name andKeyID:(NSString *)keyID andVCode:(NSString *)vCode;
-
-- (BOOL)authenticatedApiRequestWithString:(NSString *)urlString;
-
-- (BOOL)credentialsAreValid;
-- (NSString *)mainCharacterID;
-- (Character *)mainCharacter;
+- (id)initWithCharacter:(Character *)character;
+- (void)refresh;
 
 @end

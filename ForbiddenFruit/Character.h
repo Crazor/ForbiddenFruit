@@ -25,7 +25,7 @@
 @property (readonly) EveAPI *api;
 @property (readonly) Balance *balance;
 
-@property (readonly) NSNumber *characterID;
+@property (readonly) NSString *characterID;
 @property (readonly) NSImage *portrait;
 @property (readonly) NSString *name;
 @property (readonly) NSString *corporationName;
@@ -39,7 +39,7 @@
 @property (readonly) NSNumber *accountBalance;
 @property (readonly) NSDate *nextTrainingEnds;
 
-- (id)initWithCharacterID:(NSNumber *)characterID andAPI:(EveAPI *)api;
+- (id)initWithCharacterID:(NSString *)characterID andAPI:(EveAPI *)api;
 - (void)refresh;
 
 @end

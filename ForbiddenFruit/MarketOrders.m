@@ -17,15 +17,28 @@
  * along with ForbiddenFruit.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@class Character;
+#import "MarketOrders.h"
+#import "Character.h"
+#import "EveAPI.h"
 
-@interface WalletWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
+@implementation MarketOrders
 
-@property (weak) IBOutlet NSTextField *balance;
-@property (weak) IBOutlet NSTableView *tableView;
-@property (weak) IBOutlet NSProgressIndicator *spinner;
-@property (weak) IBOutlet NSButton *refreshButton;
+- (id)initWithCharacter:(Character *)character
+{
+    if (self = [super init])
+    {
+        _character = character;
+        _api = [character.api copy];
+    }
+    return self;
+}
 
-- (id)initWithCharacter:(Character *)character;
+- (void)refresh
+{
+    [self.api authenticatedApiRequestWithString:[NSString stringWithFormat:MarketOrdersAPIURL,
+                                                 self.character.characterID]];
+    
+    _orders = self.api.result[@"rowset"][@"row"];
+}
 
 @end

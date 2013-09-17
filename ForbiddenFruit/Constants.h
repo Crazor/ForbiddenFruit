@@ -22,11 +22,14 @@ FOUNDATION_EXPORT NSString *const DefaultAccountName;
 FOUNDATION_EXPORT NSString *const DefaultKeyID;
 FOUNDATION_EXPORT NSString *const DefaultVCode;
 
+// Eve API URLs
 FOUNDATION_EXPORT NSString *const AccountAPIURL;
 FOUNDATION_EXPORT NSString *const AccountBalanceAPIURL;
 FOUNDATION_EXPORT NSString *const CharacterAPIURL;
 FOUNDATION_EXPORT NSString *const CharacterInfoAPIURL;
-FOUNDATION_EXPORT NSString *const WalletJournalAPIURL;
+FOUNDATION_EXPORT NSString *const MarketOrdersAPIURL;
 FOUNDATION_EXPORT NSString *const RefTypesAPIURL;
+FOUNDATION_EXPORT NSString *const WalletJournalAPIURL;
 
+// NSTableView dragging types
 FOUNDATION_EXPORT NSString *const MovedAPIKeyRowsType;

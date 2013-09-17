@@ -53,6 +53,7 @@
         
         self.portrait.image = self.character.portrait;
         self.name.stringValue = self.character.name;
+        self.characterID.stringValue = self.character.characterID;
         
         if ([self.character.race isEqualToString:self.character.bloodline])
         {
