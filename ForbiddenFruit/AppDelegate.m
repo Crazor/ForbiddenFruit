@@ -28,6 +28,7 @@
 #import "WalletJournal.h"
 #import "MarketOrdersWindowController.h"
 #import "MarketOrders.h"
+#import "EveSDE.h"
 
 static CharacterWindowController *characterWindowController;
 static AccountWindowController *accountWindowController;
@@ -48,6 +49,8 @@ static ApiKeysWindowController *apiKeysWindowController;
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
     [self updateAPIKeys];
+    
+    EveSDE *sde = [EveSDE sharedInstance];
 }
 
 - (void)updateAPIKeys
