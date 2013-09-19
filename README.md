@@ -16,13 +16,15 @@ Later on (or as soon as someone writes them), I'd like to concentrate on more co
 
 Current status
 ==============
-I'm implementing the basic API, refactoring stuff around as needed. The GUI is just a demonstrator and needs to be improved. I'm going with the single window concept right now, because that allows to easily test one feature while another is broken.
+I'm implementing the basic API, refactoring stuff around as needed. The GUI is just a demonstrator and needs to be improved. I'm going with the single window per feature concept right now, because that allows to easily test one feature while another one is broken.
 
 What's working
 ==============
- * Managing multiple API keys
+ * managing multiple API keys
  * browsing account and character infos
  * fetching wallet journal data
+ * fetching market order data
+ * download and extract the CCP SDE database converted to SQLite
 
 What's missing
 ==============
