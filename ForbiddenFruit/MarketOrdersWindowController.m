@@ -20,6 +20,7 @@
 #import "MarketOrdersWindowController.h"
 #import "MarketOrders.h"
 #import "Character.h"
+#import "EveSDE.h"
 
 @interface MarketOrdersWindowController ()
 
@@ -73,7 +74,15 @@
     NSString *identifier = [tableColumn identifier];
     NSTableCellView *cellView = [tableView makeViewWithIdentifier:identifier owner:self];
     
-    if ([identifier isEqualToString:@"_orderState"])
+    if ([identifier isEqualToString:@"_station"])
+    {
+        cellView.textField.stringValue = [[EveSDE sharedInstance] statonNameForID:self.marketOrders.orders[row][@"_stationID"]];
+    }
+    else if ([identifier isEqualToString:@"_type"])
+    {
+        cellView.textField.stringValue = [[EveSDE sharedInstance] typeNameForID:self.marketOrders.orders[row][@"_typeID"]];
+    }
+    else if ([identifier isEqualToString:@"_orderState"])
     {
         if ([self.marketOrders.orders[row][identifier] isEqualToString:@"0"])
         {

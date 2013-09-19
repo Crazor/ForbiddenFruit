@@ -176,4 +176,24 @@
     return YES;
 }
 
+- (NSString *)statonNameForID:(NSString *)stationID
+{
+    FMResultSet *r = [db executeQuery:[NSString stringWithFormat:@"SELECT stationName FROM stastations WHERE stationID='%@'", stationID]];
+    if ([r next])
+    {
+        return [r stringForColumn:@"stationName"];
+    }
+    return [NSString stringWithFormat:@"Unknown Station (ID %@)", stationID];
+}
+
+- (NSString *)typeNameForID:(NSString *)typeID
+{
+    FMResultSet *r = [db executeQuery:[NSString stringWithFormat:@"SELECT typeName FROM invtypes WHERE typeID='%@'", typeID]];
+    if ([r next])
+    {
+        return [r stringForColumn:@"typeName"];
+    }
+    return [NSString stringWithFormat:@"Unknown Type (ID %@)", typeID];
+}
+
 @end
