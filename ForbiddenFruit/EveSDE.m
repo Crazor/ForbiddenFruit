@@ -1,19 +1,37 @@
-//
-//  EveSDE.m
-//  ForbiddenFruit
-//
-//  Created by Crazor on 18.09.13.
-//  Copyright (c) 2013 Crazor. All rights reserved.
-//
+/*
+ * This file is part of ForbiddenFruit.
+ *
+ * Copyright 2013 Crazor <crazor@gmail.com>
+ *
+ * ForbiddenFruit is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * ForbiddenFruit is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ForbiddenFruit.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #import "EveSDE.h"
 #import "FMDatabase.h"
+#import "DownloadWindowController.h"
 
 @implementation EveSDE
 {
     FMDatabase *db;
-    long long _bytesReceived;
+    NSString *_dbPath;
+    BOOL _downloading;
+    long long _totalBytesReceived;
+    NSDate *_speedLastCalculated;
+    long long _bytesReceivedSinceLastSpeedCalculation;
+    int _speed;
     NSURLResponse *_response;
+    DownloadWindowController *_downloadWindowController;
 }
 
 + (EveSDE *)sharedInstance
@@ -22,8 +40,6 @@
     static dispatch_once_t once;
     dispatch_once(&once, ^{
         sharedInstance = [[EveSDE alloc] init];
-        //[sharedInstance downloadDB];
-        //[sharedInstance openDB];
     });
     return sharedInstance;
 }
@@ -33,85 +49,131 @@
     if (self = [super init])
     {
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-        NSString *dbPath = [[[paths objectAtIndex:0] stringByAppendingPathComponent:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"]] stringByAppendingPathComponent:@"ody110-sqlite3-v1.db"];
+        _dbPath = [[[paths objectAtIndex:0] stringByAppendingPathComponent:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"]] stringByAppendingPathComponent:@"ody110-sqlite3-v1.db"];
         
-        db = [[FMDatabase alloc] initWithPath:dbPath];
-        
-        [db openWithFlags:SQLITE_OPEN_READONLY];
-        if (![db goodConnection])
-        {
-            NSLog(@"Failed to open the SDE SQLite database at %@", dbPath);
-        }
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            BOOL ready = NO;
+            while (!ready)
+            {
+                [self downloadDBIfNecessary];
+                if ([self checkDB])
+                {
+                    db = [[FMDatabase alloc] initWithPath:_dbPath];
+                    [db openWithFlags:SQLITE_OPEN_READONLY];
+                    if ([db goodConnection])
+                    {
+                        ready = YES;
+                    }
+                }
+            }
+        });
     }
     
     return self;
 }
 
-- (void)openDB
+- (void)downloadDBIfNecessary
 {
-    [db openWithFlags:SQLITE_OPEN_READONLY];
-    if (![db goodConnection])
+    if (![[NSFileManager defaultManager] fileExistsAtPath:_dbPath])
     {
-        NSLog(@"Failed to open the SDE SQLite database.");
-    }
-}
-
-- (void)downloadDB
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *dbPath = [[[paths objectAtIndex:0] stringByAppendingPathComponent:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"]] stringByAppendingPathComponent:@"ody110-sqlite3-v1.db"];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:dbPath])
-    {
-        //http://pozniak.pl/dbdump/ody110-sqlite3-v1.db.bz2
-        NSURL *url = [NSURL URLWithString:@"http://pozniak.pl/dbdump/ody110-sqlite3-v1.db.bz2"];
+        NSURL *url = [NSURL URLWithString:EveSDEDownloadURL];
         NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-        NSURLDownload *download = [[NSURLDownload alloc] initWithRequest:request delegate:self];
-        if (download)
-        {
-            [download setDestination:[dbPath stringByAppendingString:@".bz2"] allowOverwrite:NO];
-        }
-        else
-        {
-            NSLog(@"Failed to download the SDE SQLite database from %@", url);
-        }
+        _downloading = YES;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSURLDownload *download = [[NSURLDownload alloc] initWithRequest:request delegate:self];
+            download.deletesFileUponFailure = YES;
+            [download setDestination:[_dbPath stringByAppendingString:@".bz2"] allowOverwrite:YES];
+            _downloadWindowController = [[DownloadWindowController alloc] init];
+            [_downloadWindowController showWindow:self];
+        });
+
+        while(_downloading);
     }
 }
 
 - (void)download:(NSURLDownload *)download didReceiveResponse:(NSURLResponse *)response
 {
     _response = response;
-    _bytesReceived = 0;
-    NSLog(@"Download response: %@", response);
+    _totalBytesReceived = 0;
+    [_downloadWindowController.progressBar setIndeterminate:YES];
+    [_downloadWindowController.progressBar startAnimation:self];
 }
 
 - (void)download:(NSURLDownload *)download didReceiveDataOfLength:(NSUInteger)length
 {
-    long long expectedLength = [_response expectedContentLength];
-    _bytesReceived += length;
+    _totalBytesReceived += length;
+    _bytesReceivedSinceLastSpeedCalculation += length;
     
-    if (expectedLength != NSURLResponseUnknownLength)
+    if (!_speedLastCalculated)
     {
-        double percentComplete = (_bytesReceived/(double)expectedLength)*100.0;
-        NSLog(@"%f Percent complete", percentComplete);
+        _speedLastCalculated = [NSDate date];
+    }
+    
+    if (abs((int)_speedLastCalculated.timeIntervalSinceNow) >= 1)
+    {
+        _speed = abs((int)(_bytesReceivedSinceLastSpeedCalculation / _speedLastCalculated.timeIntervalSinceNow));
+        
+        _speedLastCalculated = [NSDate date];
+        _bytesReceivedSinceLastSpeedCalculation = 0;
+    }
+    
+    if ([_response expectedContentLength] != NSURLResponseUnknownLength)
+    {
+        double percentComplete = (_totalBytesReceived/(double)[_response expectedContentLength])*100.0;
+        _downloadWindowController.progressLabel.stringValue = [NSString stringWithFormat:@"%d%% %@/s", (int)percentComplete, [NSByteCountFormatter stringFromByteCount:_speed countStyle:NSByteCountFormatterCountStyleDecimal]];
+        [_downloadWindowController.progressBar setIndeterminate:NO];
+        _downloadWindowController.progressBar.doubleValue = percentComplete;
     }
     else
     {
-        NSLog(@"%lld Bytes received", _bytesReceived);
+        _downloadWindowController.progressLabel.stringValue = [NSString stringWithFormat:@"%@/s", [NSByteCountFormatter stringFromByteCount:_speed countStyle:NSByteCountFormatterCountStyleDecimal]];
     }
     
 }
 
 - (void)downloadDidFinish:(NSURLDownload *)download
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *dbPath = [[[paths objectAtIndex:0] stringByAppendingPathComponent:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"]] stringByAppendingPathComponent:@"ody110-sqlite3-v1.db"];
     NSTask *task = [[NSTask alloc] init];
     task.launchPath = @"/usr/bin/bunzip2";
-    task.arguments = @[[dbPath stringByAppendingString:@".bz2"]];
-    NSLog(@"Unpacking...");
+    task.arguments = @[[_dbPath stringByAppendingString:@".bz2"]];
+    _downloadWindowController.progressLabel.stringValue = @"Unpacking...";
+    [_downloadWindowController.progressBar setIndeterminate:YES];
+    [_downloadWindowController.progressBar startAnimation:self];
     [task launch];
     [task waitUntilExit];
-    NSLog(@"Unpacking complete.");
+    [_downloadWindowController close];
+    _downloading = NO;
+}
+
+- (BOOL)checkDB
+{
+    NSTask *task = [[NSTask alloc] init];
+    task.launchPath = @"/sbin/md5";
+    task.arguments = @[@"-q", _dbPath];
+    task.standardOutput = [NSPipe pipe];
+    [task launch];
+    [task waitUntilExit];
+    NSString *md5 = [[[NSString alloc] initWithData:[[task.standardOutput fileHandleForReading] readDataToEndOfFile] encoding:NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    if (![md5 isEqualToString:EveSDEMD5])
+    {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"The SDE SQLite database file appears to be corrupt.";
+            [alert addButtonWithTitle:@"Delete and redownload"];
+            [alert addButtonWithTitle:@"Quit"];
+            NSInteger ret = [alert runModal];
+            if (ret == NSAlertFirstButtonReturn)
+            {
+                [[NSFileManager defaultManager] removeItemAtPath:_dbPath error:nil];
+            }
+            else if (ret == NSAlertSecondButtonReturn)
+            {
+                [NSApp terminate:self];
+            }
+        });
+        return NO;
+    }
+    return YES;
 }
 
 @end

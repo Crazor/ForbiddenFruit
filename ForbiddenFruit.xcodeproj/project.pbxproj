@@ -14,6 +14,8 @@
 		6E3E625917E895EC009343F3 /* MarketOrdersWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E3E625717E895EC009343F3 /* MarketOrdersWindow.xib */; };
 		6E4316FE17E9B63D002A1EC9 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E4316FD17E9B63D002A1EC9 /* libsqlite3.dylib */; };
 		6E43170117E9B654002A1EC9 /* EveSDE.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E43170017E9B654002A1EC9 /* EveSDE.m */; };
+		6E43170A17EB1FFA002A1EC9 /* DownloadWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E43170817EB1FFA002A1EC9 /* DownloadWindow.xib */; };
+		6E43170D17EB21DF002A1EC9 /* DownloadWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E43170C17EB21DF002A1EC9 /* DownloadWindowController.m */; };
 		6E4C6B0017E754DF00C9F79C /* MarketOrders.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4C6AFF17E754DF00C9F79C /* MarketOrders.m */; };
 		6E517BEA17E24942001A563F /* Balance.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E517BE917E24942001A563F /* Balance.m */; };
 		6E6E63461701D84E009A9EBE /* ApiKeysWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6E63441701D84E009A9EBE /* ApiKeysWindowController.m */; };
@@ -55,6 +57,9 @@
 		6E4316FD17E9B63D002A1EC9 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		6E4316FF17E9B654002A1EC9 /* EveSDE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EveSDE.h; sourceTree = "<group>"; };
 		6E43170017E9B654002A1EC9 /* EveSDE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EveSDE.m; sourceTree = "<group>"; };
+		6E43170817EB1FFA002A1EC9 /* DownloadWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadWindow.xib; sourceTree = "<group>"; };
+		6E43170B17EB21DF002A1EC9 /* DownloadWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadWindowController.h; sourceTree = "<group>"; };
+		6E43170C17EB21DF002A1EC9 /* DownloadWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadWindowController.m; sourceTree = "<group>"; };
 		6E4C6AFE17E754DF00C9F79C /* MarketOrders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketOrders.h; sourceTree = "<group>"; };
 		6E4C6AFF17E754DF00C9F79C /* MarketOrders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketOrders.m; sourceTree = "<group>"; };
 		6E517BE817E24942001A563F /* Balance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Balance.h; sourceTree = "<group>"; };
@@ -230,6 +235,7 @@
 				6E14F72F17D7B930007F08CD /* AddAPIKeySheet.xib */,
 				6E6E63451701D84E009A9EBE /* ApiKeysWindow.xib */,
 				6ECB06D016FCB7EF00829CBB /* CharacterWindow.xib */,
+				6E43170817EB1FFA002A1EC9 /* DownloadWindow.xib */,
 				6E79607716FB4D9300FBD65F /* MainMenu.xib */,
 				6E3E625717E895EC009343F3 /* MarketOrdersWindow.xib */,
 				6EED71A516FE08F5001F2419 /* WalletWindow.xib */,
@@ -246,6 +252,8 @@
 				6E6E63441701D84E009A9EBE /* ApiKeysWindowController.m */,
 				6ECB06D216FCB9C800829CBB /* CharacterWindowController.h */,
 				6ECB06D316FCB9C800829CBB /* CharacterWindowController.m */,
+				6E43170B17EB21DF002A1EC9 /* DownloadWindowController.h */,
+				6E43170C17EB21DF002A1EC9 /* DownloadWindowController.m */,
 				6EED71A316FE08F5001F2419 /* WalletWindowController.h */,
 				6EED71A416FE08F5001F2419 /* WalletWindowController.m */,
 				6E3E625517E895EC009343F3 /* MarketOrdersWindowController.h */,
@@ -327,6 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E3E625917E895EC009343F3 /* MarketOrdersWindow.xib in Resources */,
+				6E43170A17EB1FFA002A1EC9 /* DownloadWindow.xib in Resources */,
 				6E14F73017D7B930007F08CD /* AddAPIKeySheet.xib in Resources */,
 				6E79606D16FB4D9300FBD65F /* InfoPlist.strings in Resources */,
 				6E79607316FB4D9300FBD65F /* Credits.rtf in Resources */,
@@ -363,6 +372,7 @@
 				6EED71A216FDC174001F2419 /* NSDate+EveDate.m in Sources */,
 				6E517BEA17E24942001A563F /* Balance.m in Sources */,
 				6E4C6B0017E754DF00C9F79C /* MarketOrders.m in Sources */,
+				6E43170D17EB21DF002A1EC9 /* DownloadWindowController.m in Sources */,
 				6EED71A616FE08F5001F2419 /* WalletWindowController.m in Sources */,
 				6E43170117E9B654002A1EC9 /* EveSDE.m in Sources */,
 				6EED71AA16FE096B001F2419 /* WalletJournal.m in Sources */,

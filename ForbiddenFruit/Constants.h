@@ -33,3 +33,7 @@ FOUNDATION_EXPORT NSString *const WalletJournalAPIURL;
 
 // NSTableView dragging types
 FOUNDATION_EXPORT NSString *const MovedAPIKeyRowsType;
+
+// Eve SDE database download URL and md5
+FOUNDATION_EXPORT NSString *const EveSDEDownloadURL;
+FOUNDATION_EXPORT NSString *const EveSDEMD5;

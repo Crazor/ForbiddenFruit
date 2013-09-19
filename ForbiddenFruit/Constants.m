@@ -32,5 +32,7 @@ NSString *const MarketOrdersAPIURL = @"https://api.eveonline.com/char/MarketOrde
 NSString *const RefTypesAPIURL = @"https://api.eveonline.com/eve/RefTypes.xml.aspx";
 NSString *const WalletJournalAPIURL = @"https://api.eveonline.com/char/WalletJournal.xml.aspx?keyID=%%@&vCode=%%@&characterID=%@&fromID=%@";
 
-
 NSString *const MovedAPIKeyRowsType = @"MovedAPIRowsType";
+
+NSString *const EveSDEDownloadURL =@"http://pozniak.pl/dbdump/ody110-sqlite3-v1.db.bz2";
+NSString *const EveSDEMD5 = @"6f7c11936307694a886584bd73de7e33";

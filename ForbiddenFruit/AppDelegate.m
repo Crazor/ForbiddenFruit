@@ -48,9 +48,8 @@ static ApiKeysWindowController *apiKeysWindowController;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
+    [EveSDE sharedInstance];
     [self updateAPIKeys];
-    
-    EveSDE *sde = [EveSDE sharedInstance];
 }
 
 - (void)updateAPIKeys
