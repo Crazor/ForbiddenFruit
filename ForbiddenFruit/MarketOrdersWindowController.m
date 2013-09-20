@@ -76,7 +76,7 @@
     
     if ([identifier isEqualToString:@"_station"])
     {
-        cellView.textField.stringValue = [[EveSDE sharedInstance] statonNameForID:self.marketOrders.orders[row][@"_stationID"]];
+        cellView.textField.stringValue = [[EveSDE sharedInstance] stationNameForID:self.marketOrders.orders[row][@"_stationID"]];
     }
     else if ([identifier isEqualToString:@"_type"])
     {

@@ -23,7 +23,7 @@
 
 + (EveSDE *)sharedInstance;
 
-- (NSString *)statonNameForID:(NSString *)stationID;
+- (NSString *)stationNameForID:(NSString *)stationID;
 - (NSString *)typeNameForID:(NSString *)typeID;
 
 @end

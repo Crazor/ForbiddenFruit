@@ -176,9 +176,9 @@
     return YES;
 }
 
-- (NSString *)statonNameForID:(NSString *)stationID
+- (NSString *)stationNameForID:(NSString *)stationID
 {
-    FMResultSet *r = [db executeQuery:[NSString stringWithFormat:@"SELECT stationName FROM stastations WHERE stationID='%@'", stationID]];
+    FMResultSet *r = [db executeQuery:@"SELECT stationName FROM stastations WHERE stationID=(?)", stationID];
     if ([r next])
     {
         return [r stringForColumn:@"stationName"];
@@ -188,7 +188,7 @@
 
 - (NSString *)typeNameForID:(NSString *)typeID
 {
-    FMResultSet *r = [db executeQuery:[NSString stringWithFormat:@"SELECT typeName FROM invtypes WHERE typeID='%@'", typeID]];
+    FMResultSet *r = [db executeQuery:@"SELECT typeName FROM invtypes WHERE typeID=(?)", typeID];
     if ([r next])
     {
         return [r stringForColumn:@"typeName"];
