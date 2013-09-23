@@ -18,6 +18,9 @@
 		6E43170D17EB21DF002A1EC9 /* DownloadWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E43170C17EB21DF002A1EC9 /* DownloadWindowController.m */; };
 		6E4C6B0017E754DF00C9F79C /* MarketOrders.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4C6AFF17E754DF00C9F79C /* MarketOrders.m */; };
 		6E517BEA17E24942001A563F /* Balance.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E517BE917E24942001A563F /* Balance.m */; };
+		6E589BF317F0BEF800AD17A2 /* CorePlot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E24193C17F0BEDA0087356C /* CorePlot.framework */; };
+		6E589BF517F0BF7000AD17A2 /* CorePlot.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6E24193C17F0BEDA0087356C /* CorePlot.framework */; };
+		6E589BF717F0BF9700AD17A2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E589BF617F0BF9700AD17A2 /* QuartzCore.framework */; };
 		6E6E63461701D84E009A9EBE /* ApiKeysWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6E63441701D84E009A9EBE /* ApiKeysWindowController.m */; };
 		6E6E63471701D84E009A9EBE /* ApiKeysWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E6E63451701D84E009A9EBE /* ApiKeysWindow.xib */; };
 		6E79606316FB4D9300FBD65F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E79606216FB4D9300FBD65F /* Cocoa.framework */; };
@@ -44,6 +47,36 @@
 		6EED71AA16FE096B001F2419 /* WalletJournal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EED71A916FE096B001F2419 /* WalletJournal.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		6E24193B17F0BEDA0087356C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E24193517F0BED90087356C /* CorePlot.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = CorePlot;
+		};
+		6E24193D17F0BEDA0087356C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E24193517F0BED90087356C /* CorePlot.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0730F600109492D800E95162;
+			remoteInfo = UnitTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6E589BF417F0BF6200AD17A2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6E589BF517F0BF7000AD17A2 /* CorePlot.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		6E00AB3316FC85A90005A69B /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
 		6E00AB3416FC85A90005A69B /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
@@ -51,6 +84,7 @@
 		6E00AB3716FCAA380005A69B /* EveAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EveAPI.m; sourceTree = "<group>"; };
 		6E00AB3A16FCB51A0005A69B /* DebugLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DebugLog.h; sourceTree = "<group>"; };
 		6E14F72F17D7B930007F08CD /* AddAPIKeySheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAPIKeySheet.xib; sourceTree = "<group>"; };
+		6E24193517F0BED90087356C /* CorePlot.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CorePlot.xcodeproj; path = "core-plot/framework/CorePlot.xcodeproj"; sourceTree = "<group>"; };
 		6E3E625517E895EC009343F3 /* MarketOrdersWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketOrdersWindowController.h; sourceTree = "<group>"; };
 		6E3E625617E895EC009343F3 /* MarketOrdersWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketOrdersWindowController.m; sourceTree = "<group>"; };
 		6E3E625717E895EC009343F3 /* MarketOrdersWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MarketOrdersWindow.xib; sourceTree = "<group>"; };
@@ -64,6 +98,7 @@
 		6E4C6AFF17E754DF00C9F79C /* MarketOrders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketOrders.m; sourceTree = "<group>"; };
 		6E517BE817E24942001A563F /* Balance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Balance.h; sourceTree = "<group>"; };
 		6E517BE917E24942001A563F /* Balance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Balance.m; sourceTree = "<group>"; };
+		6E589BF617F0BF9700AD17A2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6E6E63431701D84E009A9EBE /* ApiKeysWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiKeysWindowController.h; sourceTree = "<group>"; };
 		6E6E63441701D84E009A9EBE /* ApiKeysWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiKeysWindowController.m; sourceTree = "<group>"; };
 		6E6E63451701D84E009A9EBE /* ApiKeysWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApiKeysWindow.xib; sourceTree = "<group>"; };
@@ -116,8 +151,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E589BF717F0BF9700AD17A2 /* QuartzCore.framework in Frameworks */,
 				6E4316FE17E9B63D002A1EC9 /* libsqlite3.dylib in Frameworks */,
 				6E79606316FB4D9300FBD65F /* Cocoa.framework in Frameworks */,
+				6E589BF317F0BEF800AD17A2 /* CorePlot.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +169,15 @@
 			);
 			name = XMLDictionary;
 			path = XMLDictionary/XMLDictionary;
+			sourceTree = "<group>";
+		};
+		6E24193617F0BED90087356C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6E24193C17F0BEDA0087356C /* CorePlot.framework */,
+				6E24193E17F0BEDA0087356C /* UnitTests.octest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		6E4316FC17E9B621002A1EC9 /* FMDB */ = {
@@ -163,6 +209,7 @@
 		6E79605616FB4D9300FBD65F = {
 			isa = PBXGroup;
 			children = (
+				6E24193517F0BED90087356C /* CorePlot.xcodeproj */,
 				6E4316FC17E9B621002A1EC9 /* FMDB */,
 				6E00AB3216FC85A90005A69B /* XMLDictionary */,
 				6E79606816FB4D9300FBD65F /* ForbiddenFruit */,
@@ -182,6 +229,7 @@
 		6E79606116FB4D9300FBD65F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6E589BF617F0BF9700AD17A2 /* QuartzCore.framework */,
 				6E4316FD17E9B63D002A1EC9 /* libsqlite3.dylib */,
 				6E79606216FB4D9300FBD65F /* Cocoa.framework */,
 				6E79606416FB4D9300FBD65F /* Other Frameworks */,
@@ -293,6 +341,7 @@
 				6E79605B16FB4D9300FBD65F /* Sources */,
 				6E79605C16FB4D9300FBD65F /* Frameworks */,
 				6E79605D16FB4D9300FBD65F /* Resources */,
+				6E589BF417F0BF6200AD17A2 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -322,12 +371,35 @@
 			mainGroup = 6E79605616FB4D9300FBD65F;
 			productRefGroup = 6E79606016FB4D9300FBD65F /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 6E24193617F0BED90087356C /* Products */;
+					ProjectRef = 6E24193517F0BED90087356C /* CorePlot.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				6E79605E16FB4D9300FBD65F /* ForbiddenFruit */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		6E24193C17F0BEDA0087356C /* CorePlot.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CorePlot.framework;
+			remoteRef = 6E24193B17F0BEDA0087356C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6E24193E17F0BEDA0087356C /* UnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = UnitTests.octest;
+			remoteRef = 6E24193D17F0BEDA0087356C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		6E79605D16FB4D9300FBD65F /* Resources */ = {
