@@ -17,9 +17,11 @@
  * along with ForbiddenFruit.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <CorePlot/CorePlot.h>
+
 @class Character;
 
-@interface WalletWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
+@interface WalletWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate, CPTPlotDataSource>
 
 @property (weak) IBOutlet NSTextField *balance;
 @property (weak) IBOutlet NSTableView *tableView;

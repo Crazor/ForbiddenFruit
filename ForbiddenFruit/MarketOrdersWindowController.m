@@ -46,6 +46,12 @@
     
     self.window.title = [NSString stringWithFormat:@"Market Orders — %@", self.marketOrders.character.name];
     
+    self.tableView.cornerView = [[NSButton alloc] init];
+    ((NSButton *)self.tableView.cornerView).image = [NSImage imageNamed:@"NSColumnViewTemplate"];
+    ((NSButton *)self.tableView.cornerView).target = self;
+    ((NSButton *)self.tableView.cornerView).action = @selector(autoResizeColumns:);
+    ((NSButton *)self.tableView.cornerView).bordered = YES;
+    
     [self refresh:self];
 }
 
@@ -159,5 +165,28 @@
     
     return cellView;
 }
+
+- (IBAction)autoResizeColumns:(id)sender
+{
+    // The following code is for cell-based table views, needs to be reworked for view-based table view!
+    
+    /*
+    CGFloat oldWidth =0.0;
+    for (int i=0; i<self.marketOrders.orders.count; i++)
+    {
+        for (int j=0; j<self.tableView.tableColumns.count; j++)
+        {
+            NSCell *dataCell=[self.tableView preparedCellAtColumn:j row:i];
+            CGFloat  newWidth=[dataCell cellSize].width;
+            if (newWidth > oldWidth)
+            {
+                oldWidth=newWidth;
+            }
+            [[[self.tableView tableColumns] objectAtIndex:j] setWidth:newWidth];
+        }
+    }
+     */
+}
+
 
 @end

@@ -26,6 +26,7 @@
 @interface WalletWindowController ()
 
 @property WalletJournal *walletJournal;
+@property (weak) IBOutlet CPTGraphHostingView *graphView;
 
 @end
 
@@ -46,7 +47,44 @@
     [super windowDidLoad];
     
     self.window.title = [NSString stringWithFormat:@"Wallet — %@", self.walletJournal.character.name];
+    
+    self.tableView.cornerView = [[NSButton alloc] init];
+    ((NSButton *)self.tableView.cornerView).image = [NSImage imageNamed:@"NSColumnViewTemplate"];
+    ((NSButton *)self.tableView.cornerView).target = self;
+    ((NSButton *)self.tableView.cornerView).action = @selector(autoResizeColumns:);
+    ((NSButton *)self.tableView.cornerView).bordered = YES;
+    
     [self refresh:self];
+    
+    [self initGraph];
+}
+
+- (void)initGraph
+{
+    CPTXYGraph *graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
+    [graph applyTheme:[CPTTheme themeNamed:kCPTSlateTheme]];
+    graph.plotAreaFrame.masksToBorder = NO;
+    graph.paddingLeft = 100.f;
+    graph.paddingBottom = 30.f;
+    self.graphView.hostedGraph = graph;
+    
+    CPTXYAxisSet *axisSet = (CPTXYAxisSet *)graph.axisSet;
+    CPTAxis *xAxis = axisSet.xAxis;
+    xAxis.majorIntervalLength = CPTDecimalFromInt(0);
+    xAxis.minorTicksPerInterval = 0;
+    
+    
+    CPTScatterPlot *linePlot = [[CPTScatterPlot alloc] init];
+    linePlot.identifier = @"BalanceChart";
+    
+    CPTMutableLineStyle *lineStyle = [linePlot.dataLineStyle mutableCopy];
+    lineStyle.lineWidth = 1.f;
+    lineStyle.lineColor = [CPTColor greenColor];
+    
+    linePlot.dataLineStyle = lineStyle;
+    linePlot.dataSource = self;
+    
+    [graph addPlot:linePlot];
 }
 
 - (IBAction)refresh:(id)sender
@@ -61,12 +99,33 @@
         {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
+                
+                NSInteger __block maxISK = 0;
+                [self.walletJournal.journal enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    maxISK = MAX(maxISK, [obj[@"_balance"] integerValue]);
+                }];
+                
+                CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graphView.hostedGraph.defaultPlotSpace;
+                plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0f) length:CPTDecimalFromInteger(maxISK)];
+                plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0f) length:CPTDecimalFromInteger(self.walletJournal.journal.count)];
+                
+                int mag = (int)floor(log10(maxISK));
+                int majorInterval = (int)pow(10, mag);
+                
+                CPTXYAxisSet *axisSet = (CPTXYAxisSet *)self.graphView.hostedGraph.axisSet;
+                CPTAxis *yAxis = axisSet.yAxis;
+                yAxis.majorIntervalLength = CPTDecimalFromInt(majorInterval);
+                yAxis.minorTicksPerInterval = 1;
+               
+                [self.graphView.hostedGraph reloadData];
             });
         }
         [self.spinner stopAnimation:self];
         self.refreshButton.enabled = YES;
     });
 }
+
+#pragma mark - NSTableViewDataSource
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {
@@ -131,6 +190,48 @@
     //tableColumn.minWidth = MAX(tableColumn.minWidth, cell.cellSize.width);
 
     return cell;
+}
+
+#pragma mark - CPTPlotDataSource
+
+- (NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot
+{
+    return self.walletJournal.journal.count;
+}
+
+- (NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)idx
+{
+    NSNumber *n;
+    switch (fieldEnum)
+    {
+        case CPTScatterPlotFieldX:
+            return [NSDecimalNumber numberWithUnsignedInteger:idx];
+        case CPTScatterPlotFieldY:
+            n = [NSNumber numberWithFloat:[(NSString *)(self.walletJournal.journal[idx][@"_balance"]) floatValue]];
+            return n;
+    }
+
+    return nil;
+}
+
+#pragma mark -
+
+- (IBAction)autoResizeColumns:(id)sender
+{
+    CGFloat oldWidth =0.0;
+    for (int i=0; i<self.walletJournal.journal.count; i++)
+    {
+        for (int j=0; j<self.tableView.tableColumns.count; j++)
+        {
+            NSCell *dataCell=[self.tableView preparedCellAtColumn:j row:i];
+            CGFloat  newWidth=[dataCell cellSize].width;
+            if (newWidth > oldWidth)
+            {
+                oldWidth=newWidth;
+            }
+            [[[self.tableView tableColumns] objectAtIndex:j] setWidth:newWidth];
+        }
+    }
 }
 
 @end
