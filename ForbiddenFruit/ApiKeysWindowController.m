@@ -94,7 +94,7 @@
     [self.tableView reloadData];
                         
     [NSApp endSheet:self.addAPIKeySheet];
-    [[NSApp delegate] updateAPIKeys];
+    [(AppDelegate *)[NSApp delegate] updateAPIKeys];
 }
 
 - (IBAction)cancelAddKey:(id)sender
@@ -109,7 +109,7 @@
         [self.apiKeys removeObjectAtIndex:self.tableView.selectedRow];
         [self.tableView reloadData];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        [[NSApp delegate] updateAPIKeys];
+        [(AppDelegate *)[NSApp delegate] updateAPIKeys];
     }
 }
 
@@ -210,7 +210,7 @@
 	}
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        [[NSApp delegate] updateAPIKeys];
+        [(AppDelegate *)[NSApp delegate] updateAPIKeys];
     });
     
 	return YES;

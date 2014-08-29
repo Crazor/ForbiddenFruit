@@ -34,5 +34,5 @@ NSString *const WalletJournalAPIURL = @"https://api.eveonline.com/char/WalletJou
 
 NSString *const MovedAPIKeyRowsType = @"MovedAPIRowsType";
 
-NSString *const EveSDEDownloadURL =@"http://pozniak.pl/dbdump/ody110-sqlite3-v1.db.bz2";
-NSString *const EveSDEMD5 = @"6f7c11936307694a886584bd73de7e33";
+NSString *const EveSDEDownloadURL =@"https://www.fuzzwork.co.uk/dump/sqlite-latest.sqlite.bz2";
+NSString *const EveSDEMD5 = @"7c6c5fe943db3b2ca74fc76f88115ce5";

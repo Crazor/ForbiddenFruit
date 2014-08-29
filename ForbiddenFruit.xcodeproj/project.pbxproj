@@ -19,7 +19,7 @@
 		6E4C6B0017E754DF00C9F79C /* MarketOrders.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E4C6AFF17E754DF00C9F79C /* MarketOrders.m */; };
 		6E517BEA17E24942001A563F /* Balance.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E517BE917E24942001A563F /* Balance.m */; };
 		6E589BF317F0BEF800AD17A2 /* CorePlot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E24193C17F0BEDA0087356C /* CorePlot.framework */; };
-		6E589BF517F0BF7000AD17A2 /* CorePlot.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6E24193C17F0BEDA0087356C /* CorePlot.framework */; };
+		6E589BF517F0BF7000AD17A2 /* CorePlot.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6E24193C17F0BEDA0087356C /* CorePlot.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		6E589BF717F0BF9700AD17A2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E589BF617F0BF9700AD17A2 /* QuartzCore.framework */; };
 		6E6E63461701D84E009A9EBE /* ApiKeysWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6E63441701D84E009A9EBE /* ApiKeysWindowController.m */; };
 		6E6E63471701D84E009A9EBE /* ApiKeysWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E6E63451701D84E009A9EBE /* ApiKeysWindow.xib */; };
@@ -175,7 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				6E24193C17F0BEDA0087356C /* CorePlot.framework */,
-				6E24193E17F0BEDA0087356C /* UnitTests.octest */,
+				6E24193E17F0BEDA0087356C /* UnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -358,7 +358,7 @@
 		6E79605716FB4D9300FBD65F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = Crazor;
 			};
 			buildConfigurationList = 6E79605A16FB4D9300FBD65F /* Build configuration list for PBXProject "ForbiddenFruit" */;
@@ -392,10 +392,10 @@
 			remoteRef = 6E24193B17F0BEDA0087356C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E24193E17F0BEDA0087356C /* UnitTests.octest */ = {
+		6E24193E17F0BEDA0087356C /* UnitTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = UnitTests.xctest;
 			remoteRef = 6E24193D17F0BEDA0087356C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -517,7 +517,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -549,7 +549,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
