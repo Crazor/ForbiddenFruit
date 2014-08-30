@@ -53,23 +53,25 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         [self.account refresh];
         
-        self.window.title = [NSString stringWithFormat:@"Account — %@", self.account.name];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.window.title = [NSString stringWithFormat:@"Account — %@", self.account.name];
         
-        self.paidUntil.stringValue = [NSDateFormatter localizedStringFromDate:self.account.paidUntil dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
-        self.creationDate.stringValue = [NSDateFormatter localizedStringFromDate:self.account.creationDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
-        self.logonCount.intValue = self.account.logonCount.intValue;
-        
-        int minutesPlayed = self.account.logonMinutes.intValue;
-        self.logonMinutes.stringValue = [NSString stringWithFormat:@"%dh %dm", minutesPlayed/60, minutesPlayed%60];
-        
-        [self.spinner stopAnimation:self];
-        
-        self.refreshButton.toolTip = [NSString stringWithFormat:@"Last refreshed at %@\nCached until %@", [NSDateFormatter localizedStringFromDate:self.account.api.lastRefresh dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle], [NSDateFormatter localizedStringFromDate:self.account.api.cachedUntil dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle]];
-        int64_t delta = (int64_t)(1.0e9 * self.account.api.cachedUntil.timeIntervalSinceNow);
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delta), dispatch_get_main_queue(), ^{
-            self.refreshButton.enabled = YES;
-            self.refreshButton.toolTip = [NSString stringWithFormat:@"Last refresh at %@", [NSDateFormatter localizedStringFromDate:self.account.api.lastRefresh dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle]];
+            self.paidUntil.stringValue = [NSDateFormatter localizedStringFromDate:self.account.paidUntil dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+            self.creationDate.stringValue = [NSDateFormatter localizedStringFromDate:self.account.creationDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+            self.logonCount.intValue = self.account.logonCount.intValue;
+            
+            int minutesPlayed = self.account.logonMinutes.intValue;
+            self.logonMinutes.stringValue = [NSString stringWithFormat:@"%dh %dm", minutesPlayed/60, minutesPlayed%60];
+            
+            [self.spinner stopAnimation:self];
+            
+            self.refreshButton.toolTip = [NSString stringWithFormat:@"Last refreshed at %@\nCached until %@", [NSDateFormatter localizedStringFromDate:self.account.api.lastRefresh dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle], [NSDateFormatter localizedStringFromDate:self.account.api.cachedUntil dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle]];
+            int64_t delta = (int64_t)(1.0e9 * self.account.api.cachedUntil.timeIntervalSinceNow);
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delta), dispatch_get_main_queue(), ^{
+                self.refreshButton.enabled = YES;
+                self.refreshButton.toolTip = [NSString stringWithFormat:@"Last refresh at %@", [NSDateFormatter localizedStringFromDate:self.account.api.lastRefresh dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle]];
+            });
         });
     });
 }

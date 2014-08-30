@@ -51,27 +51,29 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul), ^{
         [self.character refresh];
         
-        self.portrait.image = self.character.portrait;
-        self.name.stringValue = self.character.name;
-        self.characterID.stringValue = self.character.characterID;
-        
-        if ([self.character.race isEqualToString:self.character.bloodline])
-        {
-            self.race.stringValue = self.character.race;
-        }
-        else
-        {
-            self.race.stringValue = [NSString stringWithFormat:@"%@ (%@)", self.character.race, self.character.bloodline];
-        }
-        
-        self.corporation.stringValue = self.character.corporationName;
-        self.corporationDate.stringValue = [NSDateFormatter localizedStringFromDate:self.character.corporationDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
-        self.securityStatus.floatValue = self.character.securityStatus.floatValue;
-        self.skillPoints.intValue = self.character.skillPoints.intValue;
-        self.lastLocation.stringValue = self.character.lastLocation;
-        
-        self.refreshButton.enabled = YES;
-        [self.spinner stopAnimation:self];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.portrait.image = self.character.portrait;
+            self.name.stringValue = self.character.name;
+            self.characterID.stringValue = self.character.characterID;
+            
+            if ([self.character.race isEqualToString:self.character.bloodline])
+            {
+                self.race.stringValue = self.character.race;
+            }
+            else
+            {
+                self.race.stringValue = [NSString stringWithFormat:@"%@ (%@)", self.character.race, self.character.bloodline];
+            }
+            
+            self.corporation.stringValue = self.character.corporationName;
+            self.corporationDate.stringValue = [NSDateFormatter localizedStringFromDate:self.character.corporationDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+            self.securityStatus.floatValue = self.character.securityStatus.floatValue;
+            self.skillPoints.intValue = self.character.skillPoints.intValue;
+            self.lastLocation.stringValue = self.character.lastLocation;
+            
+            self.refreshButton.enabled = YES;
+            [self.spinner stopAnimation:self];
+        });
     });
 }
 
